@@ -1,0 +1,235 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Api",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/sample.transformer.ts.SearchService/Search": {
+      "post": {
+        "tags": [
+          "SearchService"
+        ],
+        "operationId": "search",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "SearchService"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "protobufAny": {
+        "type": "object",
+        "properties": {
+          "typeUrl": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string",
+            "format": "byte"
+          }
+        }
+      },
+      "rpcStatus": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/protobufAny"
+            }
+          }
+        }
+      },
+      "NormalMessage": {
+        "type": "object",
+        "properties": {
+          "field_bool": {
+            "type": "boolean"
+          },
+          "field_double": {
+            "type": "number",
+            "format": "double"
+          },
+          "field_float": {
+            "type": "number",
+            "format": "float"
+          },
+          "field_int32": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "field_uint32": {
+            "type": "integer",
+            "format": "uint32"
+          },
+          "field_sint32": {
+            "type": "integer",
+            "format": "sint32"
+          },
+          "field_fixed32": {
+            "type": "integer",
+            "format": "fixed32"
+          },
+          "field_sfixed32": {
+            "type": "integer",
+            "format": "sfixed32"
+          },
+          "field_string": {
+            "type": "string"
+          },
+          "field_int64": {
+            "type": "string",
+            "format": "int64"
+          },
+          "field_uint64": {
+            "type": "string",
+            "format": "uint64"
+          },
+          "field_sint64": {
+            "type": "string",
+            "format": "sint64"
+          },
+          "field_fixed64": {
+            "type": "string",
+            "format": "fixed64"
+          },
+          "field_sfixed64": {
+            "type": "string",
+            "format": "sfixed64"
+          },
+          "field_bytes": {
+            "type": "string",
+            "format": "bytes"
+          }
+        }
+      },
+      "RepeatedMessage": {
+        "type": "object",
+        "properties": {
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NormalMessage"
+            }
+          }
+        }
+      },
+      "Statuses": {
+        "type": "number",
+        "enum": [
+          1,
+          2
+        ],
+        "x-enum-varnames": [
+          "SUCCESS",
+          "FAILED"
+        ]
+      },
+      "MapField": {
+        "type": "object",
+        "properties": {
+          "permission": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "boolean"
+            }
+          },
+          "status": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/NormalMessage"
+            }
+          }
+        }
+      },
+      "SampleMessageSubMessage": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "SampleMessage": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "format": "uint64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "sub_message": {
+            "$ref": "#/components/schemas/SampleMessageSubMessage"
+          }
+        }
+      },
+      "SearchRequest": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "uint32"
+          },
+          "query": {
+            "type": "string"
+          }
+        }
+      },
+      "SearchResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NormalMessage"
+            }
+          }
+        }
+      }
+    }
+  }
+}

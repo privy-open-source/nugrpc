@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package sample.transformer.ts;
+
+option go_package = "sample/transformer/ts";
+
+message NormalMessage {
+  bool     field_bool     = 1;
+  double   field_double   = 2;
+  float    field_float    = 3;
+  int32    field_int32    = 4;
+  uint32   field_uint32   = 5;
+  sint32   field_sint32   = 6;
+  fixed32  field_fixed32  = 7;
+  sfixed32 field_sfixed32 = 8;
+  string   field_string   = 9;
+  int64    field_int64    = 10;
+  uint64   field_uint64   = 11;
+  sint64   field_sint64   = 12;
+  fixed64  field_fixed64  = 13;
+  sfixed64 field_sfixed64 = 14;
+  bytes    field_bytes    = 15;
+}
+
+message RepeatedMessage {
+  repeated NormalMessage messages = 1;
+}
+
+enum Statuses {
+  SUCCESS = 1;
+  FAILED  = 2;
+}
+
+message MapField {
+  map<string, bool> permission = 1;
+
+  map<string, NormalMessage> status = 2;
+}
+
+message SampleMessage {
+  uint64 field = 1;
+
+  oneof test_oneof {
+    string name = 4;
+    SubMessage sub_message = 9;
+  }
+
+  message SubMessage {
+    string name = 1;
+  }
+}
+
+message SearchRequest {
+  uint32 page = 1;
+  string query = 2;
+}
+
+message SearchResponse {
+  repeated NormalMessage data = 1;
+}
+
+service SearchService {
+  rpc Search(SearchRequest) returns (SearchResponse);
+}

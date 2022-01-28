@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.build.json",
+
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@privyid/googleapis": ["packages/google-rpc"],
+      "@privyid/*": ["packages/*/src"]
+    },
+    "noEmit": true
+  }
+}
