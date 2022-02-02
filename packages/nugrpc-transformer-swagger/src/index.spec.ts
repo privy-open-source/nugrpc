@@ -1,5 +1,5 @@
 import { load } from "@privyid/nugrpc-utils"
-import { TransformAdapter } from "@privyid/nugrpc-codegen"
+import { TransformAdapter } from "@privyid/nugrpc-transformer"
 import * as path from "path"
 import * as fs from "fs"
 import Transformer from "."
@@ -14,10 +14,9 @@ describe('Transformer Swagger', () => {
   })
 
   it('should be able to transform protobuff into swagger config', () => {
-    const root     = load(path.resolve(__dirname, '../fixtures/sample.proto'))
-    const raw      = fs.readFileSync(path.resolve(__dirname, '../fixtures/sample.output')).toString()
-    const expected = JSON.parse(raw)
-    const result   = new Transformer({}).process(root).toObject()
+    const root     = load(path.resolve(__dirname, '../../../sample/sample.proto'))
+    const expected = fs.readFileSync(path.resolve(__dirname, '../../../sample/sample.swagger.json')).toString()
+    const result   = new Transformer({}).process(root).toString()
 
     expect(result).toEqual(expected)
   })

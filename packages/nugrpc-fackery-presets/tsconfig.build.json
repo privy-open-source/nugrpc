@@ -3,8 +3,8 @@
 
   "compilerOptions": {
     "outDir": "./dist",
-    "types": [
-      "node"
+    "lib": [
+      "ES2019"
     ]
   },
 

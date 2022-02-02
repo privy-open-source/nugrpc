@@ -1,12 +1,14 @@
 {
-  "name": "@privyid/nugrpc-writer",
+  "name": "@privyid/nugrpc-transformer",
   "packageManager": "yarn@3.1.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "prepack": "npm run build",
     "build": "tsc -p tsconfig.build.json",
     "test": "jest"
+  },
+  "dependencies": {
+    "@privyid/nugrpc-utils": "workspace:^"
   },
   "devDependencies": {
     "jest": "^27.4.7",

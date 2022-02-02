@@ -1,0 +1,21 @@
+{
+  "name": "@privyid/nugrpc-transformer-proxy",
+  "packageManager": "yarn@3.1.1",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.5.3",
+    "@privyid/google-rpc": "workspace:^",
+    "@privyid/nugrpc-transformer": "workspace:^",
+    "@privyid/nugrpc-utils": "workspace:^",
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2",
+    "lodash": "^4.17.21",
+    "protobufjs": "^6.11.2",
+    "url-join": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1",
+    "@types/express": "^4",
+    "@types/lodash": "^4.14.178",
+    "@types/url-join": "^4"
+  }
+}

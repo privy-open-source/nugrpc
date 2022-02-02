@@ -1,6 +1,8 @@
 {
   "name": "@privid/nugrpc-api",
   "packageManager": "yarn@3.1.1",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
   "devDependencies": {
     "@nuxt/types": "^2.15.8",
     "@nuxtjs/axios": "^5.13.6",

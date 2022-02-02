@@ -6,10 +6,10 @@ export * from './utils/error'
 
 const NugrpcApi: Module<void> = function () {
   this.requireModule('@nuxtjs/axios')
-  this.addPlugin({
-    src     : path.resolve(__dirname, './plugin/api.ts'),
-    fileName: 'nugrpc-api.js',
-  })
+  this.addPlugin({ src: path.resolve(__dirname, './plugin/api.ts') })
 }
 
 export default NugrpcApi
+
+// REQUIRED if publishing the module as npm package
+export const meta = require('../package.json')

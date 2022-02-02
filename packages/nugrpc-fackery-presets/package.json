@@ -1,0 +1,14 @@
+{
+  "name": "nugrpc-fackery-presets",
+  "packageManager": "yarn@3.1.1",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@privyid/nugrpc-fackery": "workspace:^"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.5"
+  }
+}

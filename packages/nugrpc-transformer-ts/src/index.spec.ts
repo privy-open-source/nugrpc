@@ -1,7 +1,7 @@
 import { load } from "@privyid/nugrpc-utils"
-import { TransformAdapter } from "@privyid/nugrpc-codegen"
-import * as path from "path"
-import * as fs from "fs"
+import { TransformAdapter } from "@privyid/nugrpc-transformer"
+import path from "path"
+import fs from "fs"
 import Transformer from "."
 
 describe('Transformer TS', () => {
@@ -14,8 +14,8 @@ describe('Transformer TS', () => {
   })
 
   it('should be able to transform protobuff into ts', () => {
-    const root     = load(path.resolve(__dirname, '../fixtures/sample.proto'))
-    const expected = fs.readFileSync(path.resolve(__dirname, '../fixtures/sample.output')).toString()
+    const root     = load(path.resolve(__dirname, '../../../sample/sample.proto'))
+    const expected = fs.readFileSync(path.resolve(__dirname, '../../../sample/sample.ts')).toString()
     const result   = new Transformer({}).process(root).toString()
 
     expect(result).toBe(expected)

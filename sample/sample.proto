@@ -1,169 +1,64 @@
 syntax = "proto3";
 
-package privy.user.v1;
+package sample.transformer.ts;
 
-option go_package = "protobuf/privy/v1/user";
+option go_package = "sample/transformer/ts";
 
-message UserMeta {
-  int32 page = 1;
-  int32 per_page = 2;
-  int32 total = 3;
+message NormalMessage {
+  bool     field_bool     = 1;
+  double   field_double   = 2;
+  float    field_float    = 3;
+  int32    field_int32    = 4;
+  uint32   field_uint32   = 5;
+  sint32   field_sint32   = 6;
+  fixed32  field_fixed32  = 7;
+  sfixed32 field_sfixed32 = 8;
+  string   field_string   = 9;
+  int64    field_int64    = 10;
+  uint64   field_uint64   = 11;
+  sint64   field_sint64   = 12;
+  fixed64  field_fixed64  = 13;
+  sfixed64 field_sfixed64 = 14;
+  bytes    field_bytes    = 15;
 }
 
-message UserParameterRequest {
-  // @Rules: Required
-  int32 page = 1;
-
-  // @Rules: Required | In(5, 10, 15)
-  int32 per_page = 2;
-
-  /* @Rules: Required | Example(10) */
-  string order_by = 3;
-
-  /* @Rules: Required | In("asc", "desc") */
-  string order_method = 4;
-
-  // @Rules: Match(/[A-Z]{2}[0-9]{4-6}/gi)
-  string search_condition = 5;
-
-  // @Rules: Equal  ("Towata\"")
-  string equal = 6;
-
-  // @Rules: is-email | EqualTo ("order_by")
-  string not = 7;
-
-  // @Optional
-  string like = 8;
-
-  // @Required
-  // @Optional
-  string date_range_by = 9;
-  string date_start = 10;
-  string date_end = 11;
+message RepeatedMessage {
+  repeated NormalMessage messages = 1;
 }
 
-message User {
-  string id = 1;
-  string name = 2;
-  string privy_id = 3;
-  string email = 4;
-  string phone = 5;
-  string created_at = 6;
-  string updated_at = 7;
+enum Statuses {
+  SUCCESS = 1;
+  FAILED  = 2;
 }
 
-message UserBulk {
-  repeated User data = 1;
+message MapField {
+  map<string, bool> permission = 1;
+
+  map<string, NormalMessage> status = 2;
 }
 
-message Users {
-  repeated User data = 1;
-  UserMeta meta = 2;
+message SampleMessage {
+  uint64 field = 1;
+
+  oneof test_oneof {
+    string name = 4;
+    SubMessage sub_message = 9;
+  }
+
+  message SubMessage {
+    string name = 1;
+  }
 }
 
-message DeactivateUserRequest {
-  string id = 1;
+message SearchRequest {
+  uint32 page = 1;
+  string query = 2;
 }
 
-message DeleteUserRequest {
-  string id = 1;
+message SearchResponse {
+  repeated NormalMessage data = 1;
 }
 
-message FindUserRequest {
-  string id = 1;
-}
-
-message FindUserByIDAndApplicationIDRequest {
-  string id = 1;
-  string application_id = 2;
-}
-
-message FindUserByEmailRequest {
-  string email = 1;
-}
-
-message FindUserByPhoneRequest {
-  string phone = 1;
-}
-
-message FindUserByPrivyIDRequest {
-  string privy_id = 1;
-}
-
-message FindUserByCredentialRequest {
-  string email = 1;
-  string password = 2;
-}
-
-message GetUserBulkRequest {
-  UserParameterRequest parameters = 1;
-}
-
-message GetUsersRequest {
-  UserParameterRequest parameters = 1;
-}
-
-message GetUserRoleRequest {
-  string id = 1;
-}
-
-message SaveUserRequest {
-  string privyID = 1;
-  string password = 2;
-}
-
-message UpdateUserRequest {
-  string id = 1;
-  string privyID = 2;
-  string password = 3;
-}
-
-message UpdateUserPasswordRequest {
-  string id = 1;
-  string old_password = 2;
-  string new_password = 3;
-  string confirm_password = 4;
-}
-
-message UpdateUserProfileEmailRequest {
-  string user_id = 1;
-  string email = 2;
-}
-
-message UpdateUserProfilePhoneRequest {
-  string user_id = 1;
-  string phone = 2;
-}
-
-message UpdateUserProfileRequest {
-  string user_id = 1;
-  string application_id = 2;
-  string name = 3;
-  string email = 4;
-  string phone = 5;
-}
-
-message UpdateUserProfileStatusRequest {
-  string user_id = 1;
-  string status = 2;
-}
-
-service UserService {
-  rpc DeactivateUser(DeactivateUserRequest) returns (User);
-  rpc DeleteUser(DeleteUserRequest) returns (User);
-  rpc FindUser(FindUserRequest) returns (User);
-  rpc FindUserByIDAndApplicationID(FindUserByIDAndApplicationIDRequest) returns (User);
-  rpc FindUserByEmail(FindUserByEmailRequest) returns (User);
-  rpc FindUserByPhone(FindUserByPhoneRequest) returns (User);
-  rpc FindUserByPrivyID(FindUserByPrivyIDRequest) returns (User);
-  rpc FindUserByCredential(FindUserByCredentialRequest) returns (User);
-  rpc GetUserBulk(GetUserBulkRequest) returns (UserBulk);
-  rpc GetUsers(GetUsersRequest) returns (Users);
-  rpc SaveUser(SaveUserRequest) returns (User);
-  rpc UpdateUser(UpdateUserRequest) returns (User);
-  rpc UpdateUserPassword(UpdateUserPasswordRequest) returns (User);
-  rpc UpdateUserProfileEmail(UpdateUserProfileEmailRequest) returns (User);
-  rpc UpdateUserProfilePhone(UpdateUserProfilePhoneRequest) returns (User);
-  rpc UpdateUserProfile(UpdateUserProfileRequest) returns (User);
-  rpc UpdateUserProfileStatus(UpdateUserProfileStatusRequest) returns (User);
+service SearchService {
+  rpc Search(SearchRequest) returns (SearchResponse);
 }

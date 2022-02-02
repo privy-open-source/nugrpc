@@ -1,7 +1,7 @@
 export class TextWriter {
-  private lines: string[]
-  private index: number
-  private tabs: number
+  private lines: string[];
+  private index: number;
+  private tabs: number;
 
   constructor () {
     this.lines = []
@@ -16,7 +16,7 @@ export class TextWriter {
   }
 
   goto (index: number) {
-    this.index = index
+    this.index = Math.max(index - 1, 0)
 
     return this
   }
@@ -55,7 +55,8 @@ export class TextWriter {
   }
 
   line (line = 1) {
-    this.write((Array.from({ length: line }).join('\n')))
+    for (let u = 0; u < line; u++)
+      this.lines.splice(this.index++, 0, '')
 
     return this
   }

@@ -8,7 +8,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@privyid/nugrpc-codegen": "workspace:^",
+    "@privyid/nugrpc-transformer": "workspace:^",
     "@privyid/nugrpc-utils": "workspace:^",
     "@privyid/nugrpc-writer": "workspace:^"
   },

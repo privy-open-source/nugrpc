@@ -1,4 +1,8 @@
-import { TransformAdapter, TransformContext } from "@privyid/nugrpc-codegen"
+import {
+  TransformAdapter,
+  TransformContext,
+  Saveable,
+} from "@privyid/nugrpc-transformer"
 import { OpenAPIV3 } from 'openapi-types'
 import {
   getMethodName,
@@ -18,7 +22,7 @@ import {
   getUrl,
 } from "@privyid/nugrpc-utils"
 
-export default class TransformerSwagger extends TransformAdapter {
+export default class TransformerSwagger extends TransformAdapter implements Saveable {
   protected writer: OpenAPIV3.Document
 
   constructor (context: TransformContext) {
@@ -220,7 +224,7 @@ export default class TransformerSwagger extends TransformAdapter {
   }
 
   toString (): string {
-    return JSON.stringify(this.writer, null, 2)
+    return JSON.stringify(this.writer, null, 2) + '\n'
   }
 }
 

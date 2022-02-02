@@ -1,5 +1,9 @@
 import TextWriter from "@privyid/nugrpc-writer"
-import { TransformAdapter, TransformContext } from "@privyid/nugrpc-codegen"
+import {
+  Saveable,
+  TransformAdapter,
+  TransformContext,
+} from "@privyid/nugrpc-transformer"
 import {
   Enum,
   Field,
@@ -19,7 +23,7 @@ import {
   Type,
 } from "@privyid/nugrpc-utils"
 
-export default class TransformerTS extends TransformAdapter {
+export default class TransformerTS extends TransformAdapter implements Saveable {
   private writer: TextWriter
 
   constructor (context: TransformContext) {
