@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@privyid/nugrpc-codegen": "workspace:^",
-    "@privyid/nugrpc-transformer": "workspace:^"
+    "@privyid/nugrpc-transformer": "workspace:^",
+    "@privyid/nugrpc-utils": "workspace:^"
   }
 }

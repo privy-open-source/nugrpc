@@ -8,6 +8,6 @@
   "scripts": {
     "build": "yarn workspaces foreach run build",
     "test": "yarn workspaces foreach run test",
-    "check": "yarn dlx @yarnpkg/doctor ."
+    "check": "yarn dlx @yarnpkg/doctor packages/"
   }
 }
