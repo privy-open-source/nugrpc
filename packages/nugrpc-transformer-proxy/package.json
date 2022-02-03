@@ -2,7 +2,7 @@
   "name": "@privyid/nugrpc-transformer-proxy",
   "packageManager": "yarn@3.1.1",
   "dependencies": {
-    "@grpc/grpc-js": "^1.5.3",
+    "@grpc/grpc-js": "1.5.4",
     "@privyid/google-rpc": "workspace:^",
     "@privyid/nugrpc-transformer": "workspace:^",
     "@privyid/nugrpc-utils": "workspace:^",
