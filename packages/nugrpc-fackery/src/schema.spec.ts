@@ -1,4 +1,4 @@
-import { createString, createBoolean, createNumber, createArray, createObject } from './schema'
+import { createString, createBoolean, createNumber, createArray, createObject, createTuple } from './schema'
 
 describe('Schema builder', () => {
   describe('createString', () => {
@@ -34,6 +34,24 @@ describe('Schema builder', () => {
       expect(typeof type).toBe('function')
       expect(resolver).toBeCalledWith({ type: 'boolean' })
       expect(result).toBe(true)
+    })
+  })
+
+  describe('createNumber', () => {
+    it('should be Type contructor', () => {
+      const resolver = jest.fn()
+        .mockReturnValueOnce(123)
+        .mockReturnValueOnce('lorem')
+        .mockReturnValueOnce(true)
+
+      const type   = createTuple(createNumber(), createString(), createBoolean())
+      const result = type({}, resolver)
+
+      expect(typeof type).toBe('function')
+      expect(resolver).toHaveBeenNthCalledWith(1, { type: 'number' })
+      expect(resolver).toHaveBeenNthCalledWith(2, { type: 'string' })
+      expect(resolver).toHaveBeenNthCalledWith(3, { type: 'boolean' })
+      expect(result).toStrictEqual([123, 'lorem', true])
     })
   })
 

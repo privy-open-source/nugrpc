@@ -2,15 +2,16 @@
   "name": "@privyid/google-rpc",
   "packageManager": "yarn@3.1.1",
   "scripts": {
-    "prepare": "npm run build",
     "build": "npm run build:js && npm run build:ts",
     "build:js": "pbjs -t static-module -w commonjs -o index.js --keep-case googleapis/google/rpc/code.proto googleapis/google/rpc/status.proto googleapis/google/rpc/error_details.proto",
     "build:ts": "pbts -o index.d.ts index.js",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "(path-exists index.js && path-exists index.d.ts && echo \"PASS file index.js is exists\") || (echo \"FAIL file index.js not exist\" && exit 1)"
   },
   "main": "index.js",
   "types": "index.d.ts",
   "devDependencies": {
+    "path-exists-cli": "^2.0.0",
     "protobufjs": "^6.11.2"
-  }
+  },
+  "license": "Apache-2.0"
 }
