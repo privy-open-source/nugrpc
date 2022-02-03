@@ -18,7 +18,7 @@ workflows:
       - node/test:
           pkg-manager: yarn
           test-results-for: jest
-          override-ci-command: yarn install --immutable-cache
+          override-ci-command: yarn install --immutable
           matrix:
             parameters:
               version: ["12.22", "14.19", "lts", "current"]
