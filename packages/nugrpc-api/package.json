@@ -4,8 +4,8 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "devDependencies": {
-    "@nuxt/types": "^2.15.8",
-    "@nuxtjs/axios": "^5.13.6",
-    "axios": "^0.25.0"
+    "@nuxt/types": "2.15.8",
+    "@nuxtjs/axios": "5.13.6",
+    "axios": "0.25.0"
   }
 }
