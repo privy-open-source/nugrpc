@@ -1,5 +1,5 @@
 export * from './is'
-export * from './naming'
+export * from './name'
 export * from './proto'
 
 export type {

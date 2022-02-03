@@ -1,7 +1,7 @@
 import fs from 'fs-extra'
 import path from 'path'
 import { load } from '@privyid/nugrpc-utils'
-import { TransformContext, TransformAdapter, Saveable } from '@privyid/nugrpc-transformer'
+import type { TransformContext, TransformAdapter, Saveable } from '@privyid/nugrpc-transformer'
 
 export type Transformer = { new(context: TransformContext): TransformAdapter } & typeof TransformAdapter & Saveable
 export interface InputOption {
