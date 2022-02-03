@@ -8,7 +8,7 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@types/jest": "^27.4.0",
+    "@types/jest": "27.4.0",
     "jest": "^27.4.7",
     "openapi-types": "^10.0.0",
     "ts-jest": "^27.1.3",
