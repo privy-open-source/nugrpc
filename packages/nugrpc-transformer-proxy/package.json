@@ -6,16 +6,16 @@
     "@privyid/google-rpc": "workspace:^",
     "@privyid/nugrpc-transformer": "workspace:^",
     "@privyid/nugrpc-utils": "workspace:^",
-    "body-parser": "^1.19.1",
-    "express": "^4.17.2",
-    "lodash": "^4.17.21",
-    "protobufjs": "^6.11.2",
-    "url-join": "^4.0.1"
+    "body-parser": "1.19.1",
+    "express": "4.17.2",
+    "lodash": "4.17.21",
+    "protobufjs": "6.11.2",
+    "url-join": "4.0.1"
   },
   "devDependencies": {
-    "@types/body-parser": "^1",
-    "@types/express": "^4",
-    "@types/lodash": "^4.14.178",
-    "@types/url-join": "^4"
+    "@types/body-parser": "1.19.2",
+    "@types/express": "4.17.13",
+    "@types/lodash": "4.14.178",
+    "@types/url-join": "4.0.1"
   }
 }

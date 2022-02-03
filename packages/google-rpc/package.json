@@ -10,8 +10,8 @@
   "main": "index.js",
   "types": "index.d.ts",
   "devDependencies": {
-    "path-exists-cli": "^2.0.0",
-    "protobufjs": "^6.11.2"
+    "path-exists-cli": "2.0.0",
+    "protobufjs": "6.11.2"
   },
   "license": "Apache-2.0"
 }
