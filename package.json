@@ -9,8 +9,5 @@
     "build": "yarn workspaces foreach run build",
     "test": "yarn workspaces foreach run test",
     "check": "yarn dlx @yarnpkg/doctor packages/"
-  },
-  "devDependencies": {
-    "jest-junit": "^13.0.0"
   }
 }

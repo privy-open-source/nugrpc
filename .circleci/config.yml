@@ -17,7 +17,6 @@ workflows:
     jobs:
       - node/test:
           pkg-manager: yarn
-          test-results-for: jest
           override-ci-command: yarn install --immutable
           matrix:
             parameters:
