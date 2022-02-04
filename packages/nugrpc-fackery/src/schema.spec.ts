@@ -37,7 +37,7 @@ describe('Schema builder', () => {
     })
   })
 
-  describe('createNumber', () => {
+  describe('createTuple', () => {
     it('should be Type contructor', () => {
       const resolver = jest.fn()
         .mockReturnValueOnce(123)
