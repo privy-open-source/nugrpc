@@ -18,6 +18,7 @@ workflows:
       - node/test:
           pkg-manager: yarn
           override-ci-command: yarn install --immutable
+          run-command: yarn build && yarn test
           matrix:
             parameters:
               version: ["12.22", "14.19", "lts", "current"]
