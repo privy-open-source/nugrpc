@@ -26,5 +26,6 @@ export function getMethodName (method: Method): string {
 }
 
 export function getUrl (method: Method): string {
-  return `${method.parent.fullName.replace('.', '/')}/${method.name}`
+  /* istanbul ignore next */
+  return `${method.parent?.fullName.replace('.', '/')}/${method.name}`
 }

@@ -16,10 +16,13 @@ export class Fackery {
 
   protected findHandler (context: TypeContext): Rule['handler'] | never {
     const rule = this.presets.find((rule) => {
-      return Object.keys(context)
+      return (Object.keys(context) as Array<keyof TypeContext>)
         .every((k) => {
-          if (rule[k])
-            return isMatch(context[k], rule[k])
+          const matcher = rule[k]
+          const text    = context[k]
+
+          if (matcher)
+            return text && isMatch(text, matcher)
 
           return true
         })
@@ -36,7 +39,7 @@ export class Fackery {
 
     // Get from cache if exist
     if (this.memoize.has(hash))
-      return this.memoize.get(hash)
+      return this.memoize.get(hash) as Rule['handler']
 
     // If not, find handler from presets
     const handler = this.findHandler(context)
@@ -48,7 +51,7 @@ export class Fackery {
   }
 
   protected resolve (context: TypeContext): ReturnType<Rule['handler']> {
-    return this.getHandler(context).call(this, context)
+    return this.getHandler(context)()
   }
 
   public create<T> (schema: Type<T>): T {

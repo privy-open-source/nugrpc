@@ -104,6 +104,7 @@ export default class TransformerSwagger extends TransformAdapter implements Save
         return 'string'
     }
 
+    /* istanbul ignore next */
     return 'object'
   }
 
@@ -180,11 +181,11 @@ export default class TransformerSwagger extends TransformAdapter implements Save
 
       const request = isModel(method.resolvedRequestType)
         ? this.getType(method.resolvedRequestType)
-        : this.getPrimitiveType(method.requestType)
+        : /* istanbul ignore next */this.getPrimitiveType(method.requestType)
 
       const response = isModel(method.resolvedResponseType)
         ? this.getType(method.resolvedResponseType)
-        : this.getPrimitiveType(method.responseType)
+        : /* istanbul ignore next */this.getPrimitiveType(method.responseType)
 
       this.writer.paths[url] = {
         post: {

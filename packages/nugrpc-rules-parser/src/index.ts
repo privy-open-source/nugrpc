@@ -87,8 +87,8 @@ export function splitBy (params: string, delimiter: string): string[] {
 
 export function parseRule (text: string): Rule {
   const match        = text.trim().match(RULE_REGEX)
-  const name         = pascalCase(match[1])
-  const parameters   = splitBy(match[2] ?? '', ',')
+  const name         = pascalCase(match?.[1] ?? /* istanbul ignore next */ '')
+  const parameters   = splitBy(match?.[2] ?? '', ',')
   const rule: Rule   = { name, options: parameters }
   const subRuleIndex = HAS_SUBRULE[name]
 

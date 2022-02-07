@@ -6,9 +6,10 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "yarn workspaces foreach run build",
-    "test": "yarn workspaces foreach run test",
+    "build": "yarn workspaces foreach -vt run build",
+    "test": "yarn workspaces foreach -v run test",
     "test:ci": "yarn build && yarn test",
+    "coverage": "yarn workspaces foreach -v run coverage",
     "check": "yarn dlx @yarnpkg/doctor packages/"
   }
 }
