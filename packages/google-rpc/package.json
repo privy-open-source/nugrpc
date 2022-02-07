@@ -11,10 +11,10 @@
   "main": "index.js",
   "types": "index.d.ts",
   "devDependencies": {
-    "@types/rimraf": "^3",
+    "@types/rimraf": "3.0.2",
     "path-exists-cli": "2.0.0",
     "protobufjs": "6.11.2",
-    "rimraf": "^3.0.2"
+    "rimraf": "3.0.2"
   },
   "license": "Apache-2.0"
 }
