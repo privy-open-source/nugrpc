@@ -5,6 +5,12 @@ export default function usePresets (language: UsableLocale = 'en'): Rule[] {
   faker.setLocale(language)
 
   return [
+    // city
+    {
+      type   : 'string',
+      name   : /city/i,
+      handler: () => faker.address.city(),
+    },
     // province, state
     {
       type   : 'string',
