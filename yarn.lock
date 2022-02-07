@@ -473,7 +473,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/core@npm:^27.4.7, @jest/core@npm:^27.5.0":
+"@jest/core@npm:^27.5.0":
   version: 27.5.0
   resolution: "@jest/core@npm:27.5.0"
   dependencies:
@@ -843,7 +843,7 @@ __metadata:
     "@types/url-join": 4.0.1
     body-parser: 1.19.1
     express: 4.17.2
-    jest: 27.4.7
+    jest: 27.5.0
     lodash: 4.17.21
     protobufjs: 6.11.2
     rimraf: 3.0.2
@@ -3358,7 +3358,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-cli@npm:^27.4.7, jest-cli@npm:^27.5.0":
+"jest-cli@npm:^27.5.0":
   version: 27.5.0
   resolution: "jest-cli@npm:27.5.0"
   dependencies:
@@ -3819,24 +3819,6 @@ __metadata:
     merge-stream: ^2.0.0
     supports-color: ^8.0.0
   checksum: bfd41bef36d3c217819278d8e53b7b9e02c32d90f54149ab4ec87595e389f5caca84237cc4c84050c93a435d458150876ce1812d68cd50a5a4cbb7d80286212f
-  languageName: node
-  linkType: hard
-
-"jest@npm:27.4.7":
-  version: 27.4.7
-  resolution: "jest@npm:27.4.7"
-  dependencies:
-    "@jest/core": ^27.4.7
-    import-local: ^3.0.2
-    jest-cli: ^27.4.7
-  peerDependencies:
-    node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
-  peerDependenciesMeta:
-    node-notifier:
-      optional: true
-  bin:
-    jest: bin/jest.js
-  checksum: 28ce948b30c074907393f37553acac4422d0f60190776e62b3403e4c742d33dd6012e3a20748254a43e38b5b4ce52d813b13a3a5be1d43d6d12429bd08ce1a23
   languageName: node
   linkType: hard
 
