@@ -7,7 +7,7 @@ describe('Transfomer Base Class', () => {
     const fn = jest.fn()
 
     class MockAdapter extends TransformAdapter {
-      constructor(context: TransformContext) {
+      constructor (context: TransformContext) {
         super(context)
       }
 

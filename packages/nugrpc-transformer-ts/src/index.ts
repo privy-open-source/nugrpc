@@ -52,9 +52,7 @@ export default class TransformerTS extends TransformAdapter implements Saveable 
       : this.getPrimitiveType(field.type)
 
     if (isMap(field)) {
-      const key = isModel(field.resolvedKeyType)
-        ? this.getType(field.resolvedKeyType)
-        : this.getPrimitiveType(field.keyType)
+      const key = this.getPrimitiveType(field.keyType)
 
       type = `Record<${key}, ${type}>`
     }
@@ -180,11 +178,11 @@ export default class TransformerTS extends TransformAdapter implements Saveable 
 
       const request = isModel(method.resolvedRequestType)
         ? this.getType(method.resolvedRequestType)
-        : this.getPrimitiveType(method.requestType)
+        : /* istanbul ignore next */ this.getPrimitiveType(method.requestType)
 
       const response = isModel(method.resolvedResponseType)
         ? this.getType(method.resolvedResponseType)
-        : this.getPrimitiveType(method.responseType)
+        : /* istanbul ignore next */ this.getPrimitiveType(method.responseType)
 
       this.writer.line(1)
       this.writer.write(`async ${methodName} (body: ${request}): ApiResponse<${response}> {`)

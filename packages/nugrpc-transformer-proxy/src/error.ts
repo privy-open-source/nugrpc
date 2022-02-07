@@ -102,10 +102,10 @@ export function getCode(code: number): number {
 }
 
 export function isServiceError(error: any): error is ServiceError {
-  return error.code
+  return Boolean(error.code
     && error.details
     && error.metadata
-    && error.metadata instanceof Metadata
+    && error.metadata instanceof Metadata)
 }
 
 export function formatError(error: any): ErrorResponse {

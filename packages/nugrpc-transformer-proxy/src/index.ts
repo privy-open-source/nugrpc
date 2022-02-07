@@ -73,7 +73,7 @@ export default class TransformerProxy extends TransformAdapter {
     }, false, false)
 
     for (const method of service.methodsArray) {
-      const url     = urlJoin(this.context.baseUrl, getUrl(method))
+      const url     = urlJoin(this.context.baseUrl ?? '/', getUrl(method))
       const handler = this.transformMethod(serviceClient, method)
 
       this.router.post(url, handler)
@@ -85,7 +85,7 @@ export default class TransformerProxy extends TransformAdapter {
       const metadata = new Metadata()
 
       for (const [key, header] of Object.entries(request.headers)) {
-        if (!HOP_TO_HOP.includes(key)) {
+        if (!HOP_TO_HOP.includes(key) && header) {
           const value = Array.isArray(header)
             ? header.join(';')
             : header

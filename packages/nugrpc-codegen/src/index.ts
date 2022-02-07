@@ -11,7 +11,7 @@ export interface InputOption {
   transformerContext?: TransformContext;
 }
 
-export function generate (options: InputOption | InputOption[]) {
+export function generate (options: InputOption | InputOption[]): void {
   if (!Array.isArray(options))
     return generate([options])
 
@@ -19,7 +19,7 @@ export function generate (options: InputOption | InputOption[]) {
     const Formatter = option.transformer
     const files     = option.input
     const output    = option.output
-    const context   = option.transformerContext ?? {}
+    const context   = option.transformerContext || {}
     const root      = load(files)
 
     const formatter   = new Formatter(context)
