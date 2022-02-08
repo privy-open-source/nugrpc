@@ -22,5 +22,6 @@
   "dependencies": {
     "@privyid/nugrpc-transformer": "workspace:^",
     "@privyid/nugrpc-utils": "workspace:^"
-  }
+  },
+  "license": "MIT"
 }

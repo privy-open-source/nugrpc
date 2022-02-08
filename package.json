@@ -10,5 +10,6 @@
     "test": "yarn workspaces foreach -vp run test",
     "coverage": "yarn workspaces foreach -v run coverage",
     "check": "yarn dlx @yarnpkg/doctor packages/"
-  }
+  },
+  "license": "MIT"
 }

@@ -20,5 +20,6 @@
   },
   "dependencies": {
     "@privyid/nugrpc-utils": "workspace:^"
-  }
+  },
+  "license": "MIT"
 }
