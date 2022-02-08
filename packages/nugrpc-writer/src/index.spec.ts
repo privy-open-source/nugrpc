@@ -1,7 +1,7 @@
 import TextWriter from '.'
 
 describe('Text Writer', () => {
-  it('could write text line by line', () => {
+  it('could write text line by line using .write()', () => {
     const writer   = new TextWriter()
     const expected = `Hello\nWorld\n`
 
@@ -11,7 +11,7 @@ describe('Text Writer', () => {
     expect(writer.toString()).toBe(expected)
   })
 
-  it('could append text without create new line', () => {
+  it('could append text without create new line using .append()', () => {
     const writer   = new TextWriter()
     const expected = `HelloWorld\n`
 
@@ -21,7 +21,7 @@ describe('Text Writer', () => {
     expect(writer.toString()).toBe(expected)
   })
 
-  it('could add tab indent', () => {
+  it('could add tab indent using .tab()', () => {
     const writer   = new TextWriter()
     const expected = `Hello\n  World\n`
 
@@ -32,7 +32,7 @@ describe('Text Writer', () => {
     expect(writer.toString()).toBe(expected)
   })
 
-  it('could add new empty line', () => {
+  it('could add new empty line using .line()', () => {
     const writer   = new TextWriter()
     const expected = `Hello\n\nWorld\n`
 
@@ -43,7 +43,7 @@ describe('Text Writer', () => {
     expect(writer.toString()).toBe(expected)
   })
 
-  it('could add new line n times', () => {
+  it('could add new line n times using .line(n)', () => {
     const writer   = new TextWriter()
     const expected = `Hello\n\n\n\nWorld\n`
 
@@ -54,7 +54,7 @@ describe('Text Writer', () => {
     expect(writer.toString()).toBe(expected)
   })
 
-  it('could back pointer on top of file (first line)', () => {
+  it('could back pointer on top of file (first line) using .home()', () => {
     const writer   = new TextWriter()
     const expected = `Foobar\nHello\nWorld\n`
 
@@ -66,7 +66,7 @@ describe('Text Writer', () => {
     expect(writer.toString()).toBe(expected)
   })
 
-  it('could back pointer on top of file (last line)', () => {
+  it('could back pointer on bottom of file (last line) using .end()', () => {
     const writer   = new TextWriter()
     const expected = `Foobar\nHello\nWorld\nFooter\n`
 
@@ -80,7 +80,7 @@ describe('Text Writer', () => {
     expect(writer.toString()).toBe(expected)
   })
 
-  it('could goto spesifice line', () => {
+  it('could goto spesifice line using .goto()', () => {
     const writer   = new TextWriter()
     const expected = `1st\n3rd\n2nd\n`
 
