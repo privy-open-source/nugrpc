@@ -5,8 +5,8 @@ export * from './core/api'
 export * from './utils/error'
 
 const NugrpcApi: Module<void> = function () {
-  this.requireModule('@nuxtjs/axios')
   this.addPlugin({ src: path.resolve(__dirname, './plugin/api.ts') })
+  this.requireModule('@nuxtjs/axios')
 }
 
 export default NugrpcApi

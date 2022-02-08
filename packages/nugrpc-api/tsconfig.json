@@ -5,6 +5,11 @@
     "types": [
       "node",
       "jest"
-    ]
-  }
+    ],
+
+    "baseUrl": ".",
+    "paths": {
+      "@privyid/nugrpc-api": ["src/"]
+    }
+  },
 }
