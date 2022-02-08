@@ -2,7 +2,12 @@
   "extends": "../../tsconfig.build.json",
 
   "compilerOptions": {
-    "outDir": "./dist"
+    "outDir": "./dist",
+
+    "baseUrl": ".",
+    "paths": {
+      "@privyid/nugrpc-api": ["src/"]
+    }
   },
 
   "include": [

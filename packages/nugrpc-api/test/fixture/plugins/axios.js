@@ -1,10 +1,6 @@
-import { Plugin } from '@nuxt/types'
-
-const extendAxios: Plugin = ({ $axios }) => {
+export default function extendAxios ({ $axios }) {
   $axios.onRequest((config) => {
     if (!config.headers['X-Custom-Header'])
       config.headers['X-Custom-Header'] = 'This is custom header'
   })
 }
-
-export default extendAxios

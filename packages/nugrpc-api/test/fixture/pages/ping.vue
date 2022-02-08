@@ -5,11 +5,10 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
+<script>
 import { $axios } from '@privyid/nugrpc-api'
 
-export default Vue.extend( {
+export default {
   async asyncData () {
     const response = await $axios.get('/api/ping')
     const message  = response.data.message
@@ -17,5 +16,5 @@ export default Vue.extend( {
 
     return { message, header }
   },
-})
+}
 </script>
