@@ -2440,6 +2440,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@privyid/nugrpc-validator@workspace:packages/nugrpc-validator":
+  version: 0.0.0-use.local
+  resolution: "@privyid/nugrpc-validator@workspace:packages/nugrpc-validator"
+  languageName: unknown
+  linkType: soft
+
 "@privyid/nugrpc-writer@workspace:^, @privyid/nugrpc-writer@workspace:packages/nugrpc-writer":
   version: 0.0.0-use.local
   resolution: "@privyid/nugrpc-writer@workspace:packages/nugrpc-writer"
