@@ -1,18 +1,18 @@
-import { Rule, ValidationResult, validateRules } from ".."
+import { Validator, ValidationResult, validateRules } from ".."
 
 export type ObjectRule<T> = {
-  [K in keyof T]: Rule<T[K]> | Array<Rule<T[K]>>;
+  [K in keyof T]: Validator<T[K]> | Array<Validator<T[K]>>;
 }
 
 export type ObjectResult<T> = ValidationResult & {
   [K in keyof T]: T[K];
 }
 
-export function object<R>(schema: ObjectRule<R>): Rule<ObjectResult<R>> {
+export function object<T>(schema: ObjectRule<T>): Validator<ObjectResult<T>> {
   return {
     validate (values) {
-      const keys    = Object.keys(schema) as Array<string & keyof R>
-      const entries = [] as Array<[keyof R, ValidationResult]>
+      const keys    = Object.keys(schema) as Array<string & keyof T>
+      const entries = [] as Array<[keyof T, ValidationResult]>
       const result  = {
         $valid  : true,
         $message: '',
@@ -24,7 +24,7 @@ export function object<R>(schema: ObjectRule<R>): Rule<ObjectResult<R>> {
         const value = values?.[key]
         const check = Array.isArray(rules)
           ? validateRules(rules, value)
-          : rules.validate(value) as unknown as ValidationResult
+          : rules.validate(value, values) as unknown as ValidationResult
 
         result.$valid = result.$valid && check.$valid
 
@@ -34,7 +34,7 @@ export function object<R>(schema: ObjectRule<R>): Rule<ObjectResult<R>> {
       if (!result.$valid)
         result.$message = 'validation.error.object'
 
-      return Object.assign(result, Object.fromEntries(entries)) as any
+      return Object.assign(result, Object.fromEntries(entries)) as unknown as ObjectResult<T>
     }
   }
 }

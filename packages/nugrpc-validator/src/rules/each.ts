@@ -1,4 +1,4 @@
-import { Rule, validateRules, ValidationResult } from ".."
+import { Validator, validateRules, ValidationResult } from ".."
 
 export class ArrayResult<R> extends Array<R> implements ValidationResult {
   public $valid: boolean  = true
@@ -12,11 +12,11 @@ export class ArrayResult<R> extends Array<R> implements ValidationResult {
   }
 }
 
-export function each<R>(rules: Rule<R> | Array<Rule<R>>): Rule<ArrayResult<R>> {
+export function each<R>(rules: Validator<R> | Array<Validator<R>>, allowEmpty = false): Validator<ArrayResult<R>> {
   return {
     validate (values) {
       const result = new ArrayResult<R>({
-        $valid  : false,
+        $valid  : !allowEmpty,
         $message: 'validation.error.each',
       })
 
@@ -31,7 +31,7 @@ export function each<R>(rules: Rule<R> | Array<Rule<R>>): Rule<ArrayResult<R>> {
             ? result.$valid && check.$valid
             : check.$valid
 
-          result.push(check as any)
+          result.push(check as unknown as R)
         }
       }
 
@@ -42,5 +42,7 @@ export function each<R>(rules: Rule<R> | Array<Rule<R>>): Rule<ArrayResult<R>> {
     }
   }
 }
+
+export { each as repeat }
 
 export default each

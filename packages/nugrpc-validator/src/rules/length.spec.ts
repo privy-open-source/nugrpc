@@ -112,7 +112,7 @@ describe('minLength', () => {
     expect(validator.validate(items).$valid).toBe(true)
   })
 
-  it('should return false if value is not string or array', () => {
+  it('should return invalid if value is not string or array', () => {
     const validator = minLength(3)
 
     expect(validator.validate(null).$valid).toBe(false)

@@ -1,12 +1,14 @@
-import { createRule, Rule, ValidationResult } from ".."
+import { createRule, Validator, ValidationResult } from ".."
 
-export function required(): Rule<ValidationResult> {
+export function required(): Validator<ValidationResult> {
   return createRule('validation.error.required', (value) => {
-    return value === undefined
+    const isEmpty = value === undefined
       || value === null
       || Number.isNaN(value)
       || (Array.isArray(value) && value.length === 0)
       || (String(value).trim().length === 0)
+
+    return !isEmpty
   })
 }
 

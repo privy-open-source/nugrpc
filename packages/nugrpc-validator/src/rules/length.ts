@@ -1,10 +1,10 @@
-import { createRule, Rule } from ".."
+import { createRule, Validator } from ".."
 
-function isString (value: any): value is string {
+function isString (value: unknown): value is string {
   return typeof value === 'string' || value instanceof String;
 }
 
-export function length (length: number): Rule {
+export function length (length: number): Validator {
   return createRule('validation.error.must_be_length_between', (value) => {
     if (isString(value))
       return value.trim().length === length
@@ -16,7 +16,7 @@ export function length (length: number): Rule {
   })
 }
 
-export function minLength (length: number): Rule {
+export function minLength (length: number): Validator {
   return createRule('validation.error.must_be_no_less_than_length', (value) => {
     if (isString(value))
       return value.trim().length >= length
@@ -28,7 +28,7 @@ export function minLength (length: number): Rule {
   })
 }
 
-export function maxLength (length: number): Rule {
+export function maxLength (length: number): Validator {
   return createRule('validation.error.must_be_no_more_than_length', (value) => {
     if (isString(value))
       return value.trim().length <= length
