@@ -8,18 +8,20 @@ export type ObjectResult<T> = ValidationResult & {
   [K in keyof T]: T[K];
 }
 
-export function object<T>(schema: ObjectRule<T>): Validator<ObjectResult<T>> {
+export interface ObjectValidator<T> extends Validator<ObjectResult<T>> {
+  validateOnly<K extends keyof T> (keys: Array<K>, value: any, values?: any): ObjectResult<Pick<T, K>>;
+}
+
+export function object<T>(schema: ObjectRule<T>): ObjectValidator<T> {
   return {
-    validate (values) {
-      const keys    = Object.keys(schema) as Array<string & keyof T>
+    validateOnly (keys, values) {
       const entries = [] as Array<[keyof T, ValidationResult]>
       const result  = {
         $valid  : true,
         $message: '',
       } as ValidationResult
 
-      for (let i = 0; i < keys.length; i++) {
-        const key   = keys[i]
+      for (const key of keys) {
         const rules = schema[key]
         const value = values?.[key]
         const check = Array.isArray(rules)
@@ -35,7 +37,11 @@ export function object<T>(schema: ObjectRule<T>): Validator<ObjectResult<T>> {
         result.$message = 'validation.error.object'
 
       return Object.assign(result, Object.fromEntries(entries)) as unknown as ObjectResult<T>
-    }
+    },
+
+    validate (values) {
+      return this.validateOnly(Object.keys(schema) as Array<keyof T>, values)
+    },
   }
 }
 
