@@ -4,7 +4,7 @@ export type ValidationResult = {
 }
 
 export type Validator<R = ValidationResult> = {
-  validate: (value: any, values?: any) => R;
+  validate (value: any, values?: any): R;
 }
 
 export function validateRules (rules: Array<Validator<any>>, value: any, values?: any): ValidationResult {

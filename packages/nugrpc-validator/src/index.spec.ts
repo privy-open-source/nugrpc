@@ -13,7 +13,7 @@ describe('Validation', () => {
         id  : [required()],
         name: [required()],
       })),
-      privyId: each(required()),
+      privyId: each(required()).minLength(5),
       nik    : when((form) => form.age > 15, [required()]),
     })
 
@@ -29,5 +29,6 @@ describe('Validation', () => {
     expect(errors.$valid).toBe(false)
     expect(errors.detail.$message).toBe('validation.error.each')
     expect(errors.detail[0].name.$message).toBe('validation.error.required')
+    expect(errors.privyId.$message).toBe('validation.error.must_be_no_less_than_length')
   })
 })
