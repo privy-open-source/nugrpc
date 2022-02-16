@@ -38,7 +38,7 @@ describe('minValue', () => {
     expect(validator.validate(Infinity).$valid).toBe(false)
     expect(validator.validate(NaN).$valid).toBe(false)
     /* @ts-expect-error */
-    expect(validator.validate(Symbol).$valid).toBe(false)
+    expect(validator.validate(Symbol()).$valid).toBe(false)
   })
 })
 
@@ -80,6 +80,6 @@ describe('maxValue', () => {
     expect(validator.validate(Infinity).$valid).toBe(false)
     expect(validator.validate(NaN).$valid).toBe(false)
     /* @ts-expect-error */
-    expect(validator.validate(Symbol).$valid).toBe(false)
+    expect(validator.validate(Symbol()).$valid).toBe(false)
   })
 })
