@@ -1,8 +1,5 @@
 import { createRule, Validator } from ".."
-
-function isString (value: unknown): value is string {
-  return typeof value === 'string' || value instanceof String;
-}
+import { isString } from "../utils"
 
 export function length (length: number): Validator {
   return createRule('validation.error.must_be_length_between', (value) => {

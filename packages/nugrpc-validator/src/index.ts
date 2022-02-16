@@ -3,11 +3,13 @@ export type ValidationResult = {
   $message: string;
 }
 
+export type Value = string | number | boolean | null | undefined | Date | Value[] | { [Key in string]?: Value }
+
 export type Validator<R = ValidationResult> = {
-  validate (value: any, values?: any): R;
+  validate (value: Value, values?: Value): R;
 }
 
-export function validateRules (rules: Array<Validator<any>>, value: any, values?: any): ValidationResult {
+export function validateRules (rules: Array<Validator<unknown>>, value: Value, values?: Value): ValidationResult {
   const result: ValidationResult = {
     $valid  : true,
     $message: '',
@@ -28,7 +30,7 @@ export function validateRules (rules: Array<Validator<any>>, value: any, values?
   return result
 }
 
-export function createRule(name: string, validate: (value: any) => boolean): Validator<ValidationResult> {
+export function createRule(name: string, validate: (value: Value) => boolean): Validator<ValidationResult> {
   return {
     validate (value) {
       const valid = validate(value)

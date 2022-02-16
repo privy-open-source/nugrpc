@@ -1,4 +1,5 @@
 import { createRule, Validator } from ".."
+import { isString } from "../utils"
 import { createRegexpRule } from "./match"
 
 export function isAlphaNumeric (): Validator {
@@ -15,6 +16,9 @@ export function isAlphaNumericSpaceAndSpecialCharacter (): Validator {
 
 export function isJson(): Validator {
   return createRule('validation.error.must_be_json', (value) => {
+    if (!isString(value))
+      return false
+
     try {
       JSON.parse(value)
     } catch {

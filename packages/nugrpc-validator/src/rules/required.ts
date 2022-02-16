@@ -1,12 +1,13 @@
 import { createRule, Validator, ValidationResult } from ".."
+import { isEmptyArray, isEmptyString, isNotNumber, isNull, isNumber, isUndefined } from "../utils"
 
 export function required(): Validator<ValidationResult> {
   return createRule('validation.error.required', (value) => {
-    const isEmpty = value === undefined
-      || value === null
-      || Number.isNaN(value)
-      || (Array.isArray(value) && value.length === 0)
-      || (String(value).trim().length === 0)
+    const isEmpty = isUndefined(value)
+      || isNull(value)
+      || isNotNumber(value)
+      || isEmptyArray(value)
+      || isEmptyString(value)
 
     return !isEmpty
   })

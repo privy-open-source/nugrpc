@@ -42,7 +42,7 @@ describe('when', () => {
     expect(ruleB.validate).toBeCalled()
   })
 
-  it('should not execute rules if condition true', () => {
+  it('should not execute falsy rules if condition true', () => {
     const ruleA: Validator = mockValidator()
     const ruleB: Validator = mockValidator()
     const validator        = when(() => true, [ruleA], [ruleB])
