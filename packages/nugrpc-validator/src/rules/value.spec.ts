@@ -29,7 +29,7 @@ describe('minValue', () => {
     expect(validator.validate(input).$valid).toBe(true)
   })
 
-  it('should return invalid if value is not number nor string', () => {
+  it('should be return invalid if value is not number nor string', () => {
     const validator = minValue(10)
 
     expect(validator.validate(null).$valid).toBe(false)
@@ -39,6 +39,14 @@ describe('minValue', () => {
     expect(validator.validate(NaN).$valid).toBe(false)
     /* @ts-expect-error */
     expect(validator.validate(Symbol()).$valid).toBe(false)
+  })
+
+  it('should be able to use date as parameter and input', () => {
+    const min       = new Date('2022-02-10')
+    const validator = minValue(min)
+
+    expect(validator.validate(new Date('2022-02-15')).$valid).toBe(true)
+    expect(validator.validate(new Date('2022-02-01')).$valid).toBe(false)
   })
 })
 
@@ -81,5 +89,13 @@ describe('maxValue', () => {
     expect(validator.validate(NaN).$valid).toBe(false)
     /* @ts-expect-error */
     expect(validator.validate(Symbol()).$valid).toBe(false)
+  })
+
+  it('should be able to use date as parameter and input', () => {
+    const min       = new Date('2022-02-10')
+    const validator = maxValue(min)
+
+    expect(validator.validate(new Date('2022-02-7')).$valid).toBe(true)
+    expect(validator.validate(new Date('2022-02-20')).$valid).toBe(false)
   })
 })

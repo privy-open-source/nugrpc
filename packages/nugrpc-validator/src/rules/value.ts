@@ -1,24 +1,38 @@
 import { createRule, Validator } from ".."
-import { isNumber, isString } from "../utils"
+import { isDate, isNumber, isString } from "../utils"
 
-export function minValue (number: number): Validator {
+export function minValue (min: number | Date): Validator {
   return createRule('validation.error.must_be_no_less_than_value', (value) => {
-    if (!isNumber(value) && !isString(value))
-      return false
+    if (isDate(min))
+      return isDate(value) && value >= min
 
-    const numValue = Number.parseFloat(`${value}`)
+    if (isNumber(value))
+      return Number.isFinite(value) && value >= min
 
-    return Number.isFinite(numValue) && numValue >= number
+    if (isString(value)) {
+      const numValue = Number.parseFloat(value)
+
+      return Number.isFinite(numValue) && numValue >= min
+    }
+
+    return false
   })
 }
 
-export function maxValue (number: number): Validator {
+export function maxValue (max: number | Date): Validator {
   return createRule('validation.error.must_be_no_less_than_value', (value) => {
-    if (!isNumber(value) && !isString(value))
-      return false
+    if (isDate(max))
+      return isDate(value) && value <= max
 
-    const numValue = Number.parseFloat(`${value}`)
+    if (isNumber(value))
+      return Number.isFinite(value) && value <= max
 
-    return Number.isFinite(numValue) && numValue <= number
+    if (isString(value)) {
+      const numValue = Number.parseFloat(value)
+
+      return Number.isFinite(numValue) && numValue <= max
+    }
+
+    return false
   })
 }
