@@ -14,6 +14,10 @@ export function isDate (value: unknown): value is Date {
   return value instanceof Date
 }
 
+export function isObject (value: unknown): value is Record<string, unknown> {
+  return !!value && typeof value === 'object' && value.constructor === Object
+}
+
 export function isNull (value: unknown): value is null {
   return value === null
 }
@@ -32,4 +36,8 @@ export function isEmptyArray (value: unknown): value is [] {
 
 export function isEmptyString (value: unknown): value is '' {
   return isString(value) && value.trim().length === 0
+}
+
+export function get<T, K extends string & keyof T>(values: T, key: K): T[K] | undefined {
+  return isObject(values) ? values[key] : undefined
 }

@@ -49,7 +49,6 @@ errors.$valid // true | false
 - [x] minLength()
 - [x] maxLength()
 - [x] length()
-- [ ] equalTo()
 - [ ] isAlpha()
 - [ ] isAlphaSpace()
 - [ ] isAlphaUnderscore()
@@ -72,3 +71,4 @@ errors.$valid // true | false
 - [x] object()
 - [x] each()
 - [x] when()
+- [x] equalTo()

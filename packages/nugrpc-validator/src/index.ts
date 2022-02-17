@@ -5,6 +5,8 @@ export type ValidationResult = {
 
 export type Value = string | number | boolean | null | undefined | Date | Value[] | { [Key in string]?: Value }
 
+export type ValueKey = string & keyof Value
+
 export type Validator<R = ValidationResult> = {
   validate (value: Value, values?: Value): R;
 }
@@ -30,10 +32,10 @@ export function validateRules (rules: Array<Validator<unknown>>, value: Value, v
   return result
 }
 
-export function createRule(name: string, validate: (value: Value) => boolean): Validator<ValidationResult> {
+export function createRule (name: string, validate: (value: Value, values?: Value) => boolean): Validator<ValidationResult> {
   return {
-    validate (value) {
-      const valid = validate(value)
+    validate (...parameters) {
+      const valid = validate(...parameters)
 
       return {
         $valid  : valid,
