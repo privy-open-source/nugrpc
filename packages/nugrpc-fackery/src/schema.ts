@@ -10,6 +10,7 @@ export type PrimitiveValueOf<T extends PrimitiveType> = PrimitiveMap[T]
 
 export type TypeContext = {
   type: PrimitiveType;
+  format?: string;
   name?: string;
   modelName?: string;
 }
@@ -24,7 +25,7 @@ export type ObjectType<T> = {
   [K in keyof T]: Type<T[K]>;
 }
 
-export type ExtractValue<T extends ReadonlyArray<Type<any>>> = {
+export type ExtractValue<T extends ReadonlyArray<Type<unknown>>> = {
   [K in keyof T]: T[K] extends Type<infer V> ? V : never;
 };
 
@@ -67,9 +68,9 @@ export function createObject<T> (objects: ObjectType<T>, modelName?: string): Ty
   }
 }
 
-export function createTuple<T extends ReadonlyArray<Type<any>>>(...types: T): Type<ExtractValue<T>> {
+export function createTuple<T extends ReadonlyArray<Type<unknown>>>(...types: T): Type<ExtractValue<T>> {
   return (context, resolve) => {
-    return types.map((type) => type(context, resolve)) as any
+    return types.map((type) => type(context, resolve)) as unknown as ExtractValue<T>
   }
 }
 

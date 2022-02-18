@@ -1,5 +1,5 @@
 import { Validator, ValidationResult, validateRules, Value, ValueKey } from ".."
-import { get } from "../utils"
+import { get, isObject } from "../utils"
 
 export type ObjectRule<T> = {
   [K in keyof T]: Validator<T[K]> | Array<Validator<T[K]>>;
@@ -23,11 +23,12 @@ export function object<T>(schema: ObjectRule<T>): ObjectValidator<T> {
       } as ValidationResult
 
       for (const key of keys) {
-        const rules = schema[key]
-        const value = get(values, key as ValueKey)
-        const check = Array.isArray(rules)
+        const rules   = schema[key]
+        const values_ = isObject(values) ? values : {}
+        const value   = get(values, key as ValueKey)
+        const check   = Array.isArray(rules)
           ? validateRules(rules, value, values)
-          : rules.validate(value, values) as unknown as ValidationResult
+          : rules.validate(value, values_) as unknown as ValidationResult
 
         result.$valid = result.$valid && check.$valid
 

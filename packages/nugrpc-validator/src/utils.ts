@@ -38,6 +38,6 @@ export function isEmptyString (value: unknown): value is '' {
   return isString(value) && value.trim().length === 0
 }
 
-export function get<T, K extends string & keyof T>(values: T, key: K): T[K] | undefined {
+export function get<T, K extends keyof T & string>(values: T, key: K): T[K] | undefined {
   return isObject(values) ? values[key] : undefined
 }

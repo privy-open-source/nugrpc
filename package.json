@@ -7,9 +7,8 @@
   ],
   "scripts": {
     "build": "yarn workspaces foreach -vt run build",
-    "test": "yarn workspaces foreach -vp run test",
-    "coverage": "yarn workspaces foreach -v run coverage",
-    "check": "yarn dlx @yarnpkg/doctor packages/"
+    "check": "yarn dlx @yarnpkg/doctor packages/",
+    "test": "jest"
   },
   "license": "MIT"
 }

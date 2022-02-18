@@ -31,12 +31,12 @@ describe('getCode', () => {
 })
 
 describe('getDecoder', () => {
-  function isClass (func: any): boolean {
+  function isClass (func: unknown): boolean {
     return typeof func === 'function'
       && /^class\s/.test(Function.prototype.toString.call(func));
   }
 
-  const cases: Array<[string, any]> = [
+  const cases: Array<[string, unknown]> = [
     ['type.googleapis.com/google.rpc.BadRequest',           google.rpc.BadRequest],
     ['type.googleapis.com/google.rpc.ErrorInfo',            google.rpc.ErrorInfo],
     ['type.googleapis.com/google.rpc.RetryInfo',            google.rpc.RetryInfo],

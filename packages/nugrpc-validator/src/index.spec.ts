@@ -14,7 +14,7 @@ describe('Validation', () => {
         name: [required()],
       })),
       privyId: each(required()).minLength(5),
-      nik    : when((form) => form.age > 15, [required()]),
+      nik    : when((form) => !!form.age && form.age > 15, [required()]),
     })
 
     const data = {

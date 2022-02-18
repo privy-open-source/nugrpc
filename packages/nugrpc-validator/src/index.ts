@@ -1,14 +1,18 @@
+import { isObject } from "./utils"
+
 export type ValidationResult = {
   $valid  : boolean;
   $message: string;
 }
 
-export type Value = string | number | boolean | null | undefined | Date | Value[] | { [Key in string]?: Value }
+export type Value = string | number | boolean | null | undefined | Date | Value[] | ObjectValue
+
+export type ObjectValue = { [Key in string]?: Value }
 
 export type ValueKey = string & keyof Value
 
 export type Validator<R = ValidationResult> = {
-  validate (value: Value, values?: Value): R;
+  validate (value: Value, values?: ObjectValue): R;
 }
 
 export function validateRules (rules: Array<Validator<unknown>>, value: Value, values?: Value): ValidationResult {
@@ -19,7 +23,7 @@ export function validateRules (rules: Array<Validator<unknown>>, value: Value, v
 
   for (let i = 0; i < rules.length; i++) {
     const rule  = rules[i]
-    const check = rule.validate(value, values) as ValidationResult
+    const check = rule.validate(value, isObject(values) ? values : {}) as ValidationResult
 
     if (!check.$valid) {
       result.$valid   = check.$valid
@@ -32,7 +36,7 @@ export function validateRules (rules: Array<Validator<unknown>>, value: Value, v
   return result
 }
 
-export function createRule (name: string, validate: (value: Value, values?: Value) => boolean): Validator<ValidationResult> {
+export function createRule (name: string, validate: (value: Value, values?: ObjectValue) => boolean): Validator<ValidationResult> {
   return {
     validate (...parameters) {
       const valid = validate(...parameters)

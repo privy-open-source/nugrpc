@@ -6,6 +6,7 @@ export {
   createBoolean as boolean,
   createArray as array,
   createObject as object,
+  createTuple as tuple,
 } from './schema'
 
 export * from './rules'

@@ -41,6 +41,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
+
     - run: yarn install --immutable
     - run: yarn build
     - run: yarn test
+
+    - uses: codecov/codecov-action@v2
+      if: matrix.node-version == 16.x
+      with:
+        fail_ci_if_error: true

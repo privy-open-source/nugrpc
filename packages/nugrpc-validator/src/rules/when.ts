@@ -1,6 +1,6 @@
-import { Validator, validateRules, ValidationResult } from ".."
+import { Validator, validateRules, ValidationResult, ObjectValue } from ".."
 
-export type WhenCondition = (values: any) => boolean;
+export type WhenCondition = (values: ObjectValue) => boolean;
 
 export function when (condition: WhenCondition, ifTrue: Validator[], ifFalse: Validator[] = []): Validator {
   return {
