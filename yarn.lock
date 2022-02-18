@@ -10047,6 +10047,8 @@ __metadata:
 "nugrpc-monorepo@workspace:.":
   version: 0.0.0-use.local
   resolution: "nugrpc-monorepo@workspace:."
+  dependencies:
+    jest: ^27.5.1
   languageName: unknown
   linkType: soft
 

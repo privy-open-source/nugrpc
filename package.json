@@ -10,5 +10,8 @@
     "check": "yarn dlx @yarnpkg/doctor packages/",
     "test": "jest"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
 }
