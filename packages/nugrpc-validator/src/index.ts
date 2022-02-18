@@ -7,7 +7,7 @@ export type ValidationResult = {
 
 export type Value = string | number | boolean | null | undefined | Date | Value[] | ObjectValue
 
-export type ObjectValue = { [Key in string]?: Value }
+export type ObjectValue = { [Key in string]: Value }
 
 export type ValueKey = string & keyof Value
 

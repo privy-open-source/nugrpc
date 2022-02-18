@@ -45,7 +45,5 @@ describe('mustBeIn', () => {
     expect(validator.validate({}).$valid).toBe(false)
     expect(validator.validate(Infinity).$valid).toBe(false)
     expect(validator.validate(NaN).$valid).toBe(false)
-    /* @ts-expect-error */
-    expect(validator.validate(Symbol()).$valid).toBe(false)
   })
 })

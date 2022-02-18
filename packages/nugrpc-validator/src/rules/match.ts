@@ -1,16 +1,11 @@
-import { Validator } from ".."
+import { Validator, createRule } from ".."
+import { isString, isNumber } from "../utils"
 
 export function createRegexpRule (name: string, regex: RegExp): Validator {
-  return {
-    validate (value) {
-      const valid = !value || regex.test(String(value).trim())
-
-      return {
-        $valid  : valid,
-        $message: valid === false ? name: '',
-      }
-    }
-  }
+  return createRule(name, (value) => {
+    return (isString(value) || isNumber(value))
+      && regex.test(String(value).trim())
+  })
 }
 
 export function match (regex: RegExp) {

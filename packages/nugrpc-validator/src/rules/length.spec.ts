@@ -58,8 +58,6 @@ describe('length', () => {
     expect(validator.validate({}).$valid).toBe(false)
     expect(validator.validate(Infinity).$valid).toBe(false)
     expect(validator.validate(NaN).$valid).toBe(false)
-    /* @ts-expect-error */
-    expect(validator.validate(Symbol).$valid).toBe(false)
   })
 })
 
@@ -121,8 +119,6 @@ describe('minLength', () => {
     expect(validator.validate({}).$valid).toBe(false)
     expect(validator.validate(Infinity).$valid).toBe(false)
     expect(validator.validate(NaN).$valid).toBe(false)
-    /* @ts-expect-error */
-    expect(validator.validate(Symbol()).$valid).toBe(false)
   })
 })
 
@@ -184,7 +180,5 @@ describe('maxLength', () => {
     expect(validator.validate({}).$valid).toBe(false)
     expect(validator.validate(Infinity).$valid).toBe(false)
     expect(validator.validate(NaN).$valid).toBe(false)
-    /* @ts-expect-error */
-    expect(validator.validate(Symbol()).$valid).toBe(false)
   })
 })
