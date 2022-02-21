@@ -48,3 +48,14 @@ export function createRule (name: string, validate: (value: Value, values?: Obje
     }
   }
 }
+
+export * from './rules/each'
+export * from './rules/equal-to'
+export * from './rules/is'
+export * from './rules/length'
+export * from './rules/match'
+export * from './rules/must-be-in'
+export * from './rules/object'
+export * from './rules/required'
+export * from './rules/value'
+export * from './rules/when'

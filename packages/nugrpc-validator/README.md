@@ -56,7 +56,7 @@ errors.$valid // true | false
 - [x] isDigit()
 - [x] isAlphaNumeric()
 - [x] isAlphaNumericSpace()
-- [x] isAlphaNumericSpaceWithSpecialCharacter()
+- [x] IsAlphaNumericSpaceAndSpecialCharacter()
 - [x] isDate()
 - [x] isTime() - ! slightly different implementation with Carstenz
 - [x] isUuid()

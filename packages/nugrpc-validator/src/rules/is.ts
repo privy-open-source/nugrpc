@@ -5,6 +5,7 @@ import isValidUUID from "validator/lib/isUUID"
 import isValidPhone from "validator/lib/isMobilePhone"
 import isValidInt from "validator/lib/isInt"
 import isValidFloat from "validator/lib/isFloat"
+import isValidURL from "validator/lib/isURL"
 
 import { createRule, Validator } from ".."
 import { isString, isNumber, isDate as isDateType } from "../utils"
@@ -100,6 +101,12 @@ export function isPhone(...parameters: ParametersOf<typeof isValidPhone>): Valid
 export function isJson(...parameters: ParametersOf<typeof isValidJSON>): Validator {
   return createRule('validation.error.must_be_json', (value) => {
     return isString(value) && isValidJSON(value, ...parameters)
+  })
+}
+
+export function isUrl(...parameters: ParametersOf<typeof isValidURL>): Validator {
+  return createRule('validation.error.must_be_url', (value) => {
+    return isString(value) && isValidURL(value, ...parameters)
   })
 }
 

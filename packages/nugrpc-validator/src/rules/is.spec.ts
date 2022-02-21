@@ -16,6 +16,7 @@ import {
   isPhone,
   isTime,
   isUuid,
+  isUrl,
 } from "./is"
 
 describe('isAlpha', () => {
@@ -599,6 +600,35 @@ describe('isFloat', () => {
 
   it.each(cases)('%s should return %s', (value, expected) => {
     const validator = isFloat()
+    const result    = validator.validate(value)
+
+    expect(result.$valid).toBe(expected)
+  })
+})
+
+describe('isUrl', () => {
+  const cases: [Value, boolean][] = [
+    ['http://www.example.com',        true],
+    ['www.example.com',               true],
+    ['www.example.com/path',          true],
+    ['www.example.com/path?query=1',  true],
+    ['e@mail+com',                    false],
+    [1233,                            false],
+    [1e6,                             false],
+    [1.25555,                         false],
+    [NaN,                             false],
+    [Infinity,                        false],
+    [{},                              false],
+    [null,                            false],
+    [true,                            false],
+    [false,                           false],
+    [undefined,                       false],
+    [['12346'],                       false],
+    [{ id: 1 },                       false],
+  ]
+
+  it.each(cases)('%s should return %s', (value, expected) => {
+    const validator = isUrl()
     const result    = validator.validate(value)
 
     expect(result.$valid).toBe(expected)
