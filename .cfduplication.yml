@@ -3,5 +3,5 @@ MinLineCount: 10
 
 # files/patterns to exclude
 IgnorePatterns:
-  - dist/**
-  - **/*.spec.ts
+  - dist\**
+  - "**\*.spec.ts"
