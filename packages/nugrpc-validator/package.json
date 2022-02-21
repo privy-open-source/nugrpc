@@ -1,0 +1,22 @@
+{
+  "name": "@privyid/nugrpc-validator",
+  "packageManager": "yarn@3.1.1",
+  "scripts": {
+    "clean": "rimraf dist",
+    "compile": "tsc -p tsconfig.build.json",
+    "build": "yarn clean && yarn compile",
+    "test": "jest",
+    "coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "@types/rimraf": "^3",
+    "@types/validator": "^13",
+    "jest": "^27.5.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.1.3",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "validator": "^13.7.0"
+  }
+}

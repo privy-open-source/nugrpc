@@ -10,6 +10,7 @@ export type TypedRule<T extends PrimitiveType> = {
 export type Matcher = ((name: string) => boolean) | RegExp | string[] | string
 
 export type Rule = (TypedRule<'string'> | TypedRule<'number'> | TypedRule<'boolean'>) & {
+  format?: Matcher;
   name?: Matcher;
   modelName?: Matcher;
 }
@@ -46,10 +47,13 @@ export function measurePriorities (rule: Rule): number {
   let result = 1
 
   if (rule.modelName !== undefined)
-    result += measureMatcher(rule.modelName) * 100
+    result += measureMatcher(rule.modelName) * 1000
 
   if (rule.name !== undefined)
-    result += measureMatcher(rule.name) * 10
+    result += measureMatcher(rule.name) * 100
+
+  if (rule.format !== undefined)
+    result += measureMatcher(rule.format) * 10
 
   return result
 }

@@ -1,3 +1,3 @@
-# nugrpc-lines
+# nugrpc-writer
 
 Text Writer utilities

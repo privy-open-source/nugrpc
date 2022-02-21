@@ -1,6 +1,8 @@
 # NuGRPC
 
 [![Node.js CI](https://github.com/privy-open-source/nugrpc/actions/workflows/node.js.yml/badge.svg)](https://github.com/privy-open-source/nugrpc/actions/workflows/node.js.yml)
+[![CodeFactor](https://www.codefactor.io/repository/github/privy-open-source/nugrpc/badge)](https://www.codefactor.io/repository/github/privy-open-source/nugrpc)
+[![codecov](https://codecov.io/gh/privy-open-source/nugrpc/branch/master/graph/badge.svg?token=P0V22AR9XR)](https://codecov.io/gh/privy-open-source/nugrpc)
 
 > Toolset for working with Nuxt and gRPC
 

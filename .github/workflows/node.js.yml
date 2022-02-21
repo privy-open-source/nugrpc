@@ -16,7 +16,10 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version:
+          - 12
+          - 14
+          - 16
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -41,6 +44,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
+
     - run: yarn install --immutable
     - run: yarn build
     - run: yarn test
+
+    - uses: codecov/codecov-action@v2
+      if: matrix.node-version == 16
+      with:
+        fail_ci_if_error: true

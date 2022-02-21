@@ -17,88 +17,44 @@ export type ErrorResponse = {
   details?: (ErrorDetail | undefined)[];
 }
 
-export function getDecoder(type: string): Decoder | null {
-  switch (type) {
-    case 'type.googleapis.com/google.rpc.BadRequest':
-      return google.rpc.BadRequest
+const DECODER_MAP: Record<string, Decoder> = {
+  'type.googleapis.com/google.rpc.BadRequest'         : google.rpc.BadRequest,
+  'type.googleapis.com/google.rpc.ErrorInfo'          : google.rpc.ErrorInfo,
+  'type.googleapis.com/google.rpc.RetryInfo'          : google.rpc.RetryInfo,
+  'type.googleapis.com/google.rpc.DebugInfo'          : google.rpc.DebugInfo,
+  'type.googleapis.com/google.rpc.QuotaFailure'       : google.rpc.QuotaFailure,
+  'type.googleapis.com/google.rpc.PreconditionFailure': google.rpc.PreconditionFailure,
+  'type.googleapis.com/google.rpc.RequestInfo'        : google.rpc.RequestInfo,
+  'type.googleapis.com/google.rpc.ResourceInfo'       : google.rpc.ResourceInfo,
+  'type.googleapis.com/google.rpc.Help'               : google.rpc.Help,
+  'type.googleapis.com/google.rpc.LocalizedMessage'   : google.rpc.LocalizedMessage,
+}
 
-    case 'type.googleapis.com/google.rpc.ErrorInfo':
-      return google.rpc.ErrorInfo
+const ERROR_CODE_MAP: Record<number, number> = {
+  [google.rpc.Code.INVALID_ARGUMENT]   : 422,
+  [google.rpc.Code.FAILED_PRECONDITION]: 400,
+  [google.rpc.Code.OUT_OF_RANGE]       : 400,
+  [google.rpc.Code.UNAUTHENTICATED]    : 401,
+  [google.rpc.Code.PERMISSION_DENIED]  : 403,
+  [google.rpc.Code.NOT_FOUND]          : 404,
+  [google.rpc.Code.ABORTED]            : 409,
+  [google.rpc.Code.ALREADY_EXISTS]     : 409,
+  [google.rpc.Code.RESOURCE_EXHAUSTED] : 429,
+  [google.rpc.Code.CANCELLED]          : 499,
+  [google.rpc.Code.DATA_LOSS]          : 500,
+  [google.rpc.Code.UNKNOWN]            : 500,
+  [google.rpc.Code.INTERNAL]           : 500,
+  [google.rpc.Code.UNIMPLEMENTED]      : 501,
+  [google.rpc.Code.UNAVAILABLE]        : 503,
+  [google.rpc.Code.DEADLINE_EXCEEDED]  : 504,
+}
 
-    case 'type.googleapis.com/google.rpc.RetryInfo':
-      return google.rpc.RetryInfo
-
-    case 'type.googleapis.com/google.rpc.DebugInfo':
-      return google.rpc.DebugInfo
-
-    case 'type.googleapis.com/google.rpc.QuotaFailure':
-      return google.rpc.QuotaFailure
-
-    case 'type.googleapis.com/google.rpc.PreconditionFailure':
-      return google.rpc.PreconditionFailure
-
-    case 'type.googleapis.com/google.rpc.RequestInfo':
-      return google.rpc.RequestInfo
-
-    case 'type.googleapis.com/google.rpc.ResourceInfo':
-      return google.rpc.ResourceInfo
-
-    case 'type.googleapis.com/google.rpc.Help':
-      return google.rpc.Help
-
-    case 'type.googleapis.com/google.rpc.LocalizedMessage':
-      return google.rpc.LocalizedMessage
-
-  }
-
-  return null
+export function getDecoder(type: string): Decoder | undefined {
+  return DECODER_MAP[type]
 }
 
 export function getCode(code: number): number {
-  switch (code) {
-    case google.rpc.Code.INVALID_ARGUMENT:
-      return 422
-
-    case google.rpc.Code.FAILED_PRECONDITION:
-    case google.rpc.Code.OUT_OF_RANGE:
-      return 400
-
-    case google.rpc.Code.UNAUTHENTICATED:
-      return 401
-
-    case google.rpc.Code.PERMISSION_DENIED:
-      return 403
-
-    case google.rpc.Code.NOT_FOUND:
-      return 404
-
-    case google.rpc.Code.ABORTED:
-    case google.rpc.Code.ALREADY_EXISTS:
-      return 409
-
-    case google.rpc.Code.RESOURCE_EXHAUSTED:
-      return 429
-
-    case google.rpc.Code.CANCELLED:
-      return 499
-
-    case google.rpc.Code.DATA_LOSS:
-    case google.rpc.Code.UNKNOWN:
-    case google.rpc.Code.INTERNAL:
-      return 500
-
-    case google.rpc.Code.UNIMPLEMENTED:
-      return 501
-
-    case google.rpc.Code.UNAVAILABLE:
-      return 503
-
-    case google.rpc.Code.DEADLINE_EXCEEDED:
-      return 504
-
-    default:
-      return 500
-  }
+  return ERROR_CODE_MAP[code] ?? 500
 }
 
 export function isServiceError(error: any): error is ServiceError {
