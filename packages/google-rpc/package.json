@@ -1,6 +1,6 @@
 {
   "name": "@privyid/google-rpc",
-  "packageManager": "yarn@3.1.1",
+  "packageManager": "yarn@3.2.0",
   "scripts": {
     "clean": "rimraf index.js index.d.ts",
     "build": "yarn clean && yarn build:js && yarn build:ts",
