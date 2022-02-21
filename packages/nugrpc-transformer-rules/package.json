@@ -10,11 +10,11 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/rimraf": "^3",
-    "jest": "^27.5.1",
-    "rimraf": "^3.0.2",
-    "ts-jest": "^27.1.3",
-    "typescript": "^4.5.5"
+    "@types/rimraf": "3.0.2",
+    "jest": "27.5.1",
+    "rimraf": "3.0.2",
+    "ts-jest": "27.1.3",
+    "typescript": "4.5.5"
   },
   "dependencies": {
     "@privyid/nugrpc-transformer": "workspace:^",
