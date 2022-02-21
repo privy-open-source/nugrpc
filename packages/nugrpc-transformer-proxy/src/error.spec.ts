@@ -47,7 +47,7 @@ describe('getDecoder', () => {
     ['type.googleapis.com/google.rpc.ResourceInfo',         google.rpc.ResourceInfo],
     ['type.googleapis.com/google.rpc.Help',                 google.rpc.Help],
     ['type.googleapis.com/google.rpc.LocalizedMessage',     google.rpc.LocalizedMessage],
-    ['type.googleapis.com/google.rpc.Unregitered',          null],
+    ['type.googleapis.com/google.rpc.Unregitered',          undefined],
   ]
 
   it.each(cases)('(%s) should be return a decoder %s', (name, result) => {
