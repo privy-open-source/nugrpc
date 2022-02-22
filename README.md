@@ -1,4 +1,4 @@
-# NuGRPC
+# NugRPC
 
 [![Node.js CI](https://github.com/privy-open-source/nugrpc/actions/workflows/node.js.yml/badge.svg)](https://github.com/privy-open-source/nugrpc/actions/workflows/node.js.yml)
 [![CodeFactor](https://www.codefactor.io/repository/github/privy-open-source/nugrpc/badge)](https://www.codefactor.io/repository/github/privy-open-source/nugrpc)
