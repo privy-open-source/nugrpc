@@ -13,7 +13,7 @@
     "@privyid/nugrpc-transformer-swagger": "workspace:^",
     "@privyid/nugrpc-transformer-ts": "workspace:^",
     "@privyid/nugrpc-utils": "workspace:^",
-    "fs-extra": "10.0.0",
+    "fs-extra": "10.0.1",
     "lodash": "4.17.21",
     "protobufjs": "6.11.2",
     "url-join": "4.0.1"
