@@ -2395,6 +2395,7 @@ __metadata:
     "@privyid/nugrpc-rules-parser": "workspace:^"
     "@privyid/nugrpc-transformer": "workspace:^"
     "@privyid/nugrpc-utils": "workspace:^"
+    "@privyid/nugrpc-validator": "workspace:^"
     "@privyid/nugrpc-writer": "workspace:^"
     "@types/babel__generator": ^7
     "@types/lodash": 4.14.178
@@ -2468,7 +2469,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@privyid/nugrpc-validator@workspace:packages/nugrpc-validator":
+"@privyid/nugrpc-validator@workspace:^, @privyid/nugrpc-validator@workspace:packages/nugrpc-validator":
   version: 0.0.0-use.local
   resolution: "@privyid/nugrpc-validator@workspace:packages/nugrpc-validator"
   dependencies:

@@ -26,3 +26,12 @@ message NormalMessage {
   // @rules: when(single_rule == "email", required | minLength(5))
   string conditional_case = 7;
 }
+
+message RepeatedMessage {
+  repeated NormalMessage messages = 1;
+}
+
+message NoValidation {
+  int32 id = 1;
+  string name = 2;
+}

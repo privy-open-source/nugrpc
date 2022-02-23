@@ -109,4 +109,7 @@ describe('Entrypoint', () => {
     expect(typeof validator.equalTo).toBe('function')
   })
 
+  it('should export function listRules', () => {
+    expect(Array.isArray(validator.listRules)).toBe(true)
+  })
 })

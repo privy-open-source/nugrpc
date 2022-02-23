@@ -59,3 +59,33 @@ export * from './rules/object'
 export * from './rules/required'
 export * from './rules/value'
 export * from './rules/when'
+
+export const listRules = [
+  'required',
+  'minValue',
+  'maxValue',
+  'minLength',
+  'maxLength',
+  'length',
+  'isAlpha',
+  'isAlphaSpace',
+  'isAlphaUnderscore',
+  'isLowerAlphaUnderscore',
+  'isDigit',
+  'isAlphaNumeric',
+  'isAlphaNumericSpace',
+  'IsAlphaNumericSpaceAndSpecialCharacter',
+  'isDate',
+  'isTime',
+  'isUuid',
+  'isInt',
+  'isFloat',
+  'isPhone',
+  'isEmail',
+  'isUrl',
+  'isJson',
+  'object',
+  'each',
+  'when',
+  'equalTo',
+]

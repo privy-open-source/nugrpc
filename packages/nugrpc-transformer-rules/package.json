@@ -25,6 +25,7 @@
     "@privyid/nugrpc-rules-parser": "workspace:^",
     "@privyid/nugrpc-transformer": "workspace:^",
     "@privyid/nugrpc-utils": "workspace:^",
+    "@privyid/nugrpc-validator": "workspace:^",
     "@privyid/nugrpc-writer": "workspace:^",
     "lodash": "^4.17.21"
   }

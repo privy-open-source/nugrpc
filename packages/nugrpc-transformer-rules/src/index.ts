@@ -4,7 +4,9 @@ import { isType, ReflectionObject, getModelName, Type, Model, isModel, Field } f
 import { parse, Rule } from "@privyid/nugrpc-rules-parser"
 import TextWriter from "@privyid/nugrpc-writer"
 import { normalizeCondition } from "./normalizer"
+import defaultConfig from "./default-config"
 
+type Plugin = (plugin: TransformerRules) => void
 export default class TransformerRules extends TransformAdapter implements Saveable {
   private writer: TextWriter
   private importDeps: Map<string, Set<string>>
@@ -15,35 +17,15 @@ export default class TransformerRules extends TransformAdapter implements Saveab
 
     this.writer     = new TextWriter()
     this.importDeps = new Map()
-    this.lookupDeps = new Map([
-      ['required', '@privyid/nugrpc-validator'],
-      ['minValue', '@privyid/nugrpc-validator'],
-      ['maxValue', '@privyid/nugrpc-validator'],
-      ['minLength', '@privyid/nugrpc-validator'],
-      ['maxLength', '@privyid/nugrpc-validator'],
-      ['length', '@privyid/nugrpc-validator'],
-      ['isAlpha', '@privyid/nugrpc-validator'],
-      ['isAlphaSpace', '@privyid/nugrpc-validator'],
-      ['isAlphaUnderscore', '@privyid/nugrpc-validator'],
-      ['isLowerAlphaUnderscore', '@privyid/nugrpc-validator'],
-      ['isDigit', '@privyid/nugrpc-validator'],
-      ['isAlphaNumeric', '@privyid/nugrpc-validator'],
-      ['isAlphaNumericSpace', '@privyid/nugrpc-validator'],
-      ['IsAlphaNumericSpaceAndSpecialCharacter', '@privyid/nugrpc-validator'],
-      ['isDate', '@privyid/nugrpc-validator'],
-      ['isTime', '@privyid/nugrpc-validator'],
-      ['isUuid', '@privyid/nugrpc-validator'],
-      ['isInt', '@privyid/nugrpc-validator'],
-      ['isFloat', '@privyid/nugrpc-validator'],
-      ['isPhone', '@privyid/nugrpc-validator'],
-      ['isEmail', '@privyid/nugrpc-validator'],
-      ['isUrl', '@privyid/nugrpc-validator'],
-      ['isJson', '@privyid/nugrpc-validator'],
-      ['object', '@privyid/nugrpc-validator'],
-      ['each', '@privyid/nugrpc-validator'],
-      ['when', '@privyid/nugrpc-validator'],
-      ['equalTo', '@privyid/nugrpc-validator'],
-    ])
+    this.lookupDeps = new Map()
+
+    this.use(defaultConfig)
+  }
+
+  use (plugin: Plugin): this {
+    plugin(this)
+
+    return this
   }
 
   addRule (name: string, from: string): this {
@@ -130,23 +112,19 @@ export default class TransformerRules extends TransformAdapter implements Saveab
   }
 
   toString(): string {
-    if (this.importDeps.size > 0) {
-      const writer = new TextWriter()
+    const writer = new TextWriter()
 
-      for (const [url, fns] of this.importDeps.entries()) {
-        writer.write('import {')
-        writer.tab(1)
+    for (const [url, fns] of this.importDeps.entries()) {
+      writer.write('import {')
+      writer.tab(1)
 
-        for (const fn of fns)
-          writer.write(`${fn},`)
+      for (const fn of fns)
+        writer.write(`${fn},`)
 
-        writer.tab(-1)
-        writer.write(`} from '${url}'`)
-      }
-
-      return `${writer.toString()}${this.writer.toString()}`
+      writer.tab(-1)
+      writer.write(`} from '${url}'`)
     }
 
-    return this.writer.toString()
+    return `${writer.toString()}${this.writer.toString()}`
   }
 }
