@@ -1,7 +1,8 @@
 {
   "name": "@privyid/nugrpc-codegen",
   "packageManager": "yarn@3.2.0",
-  "types": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rimraf dist",
     "compile": "tsc -p tsconfig.build.json",

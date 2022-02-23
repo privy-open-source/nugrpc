@@ -1,6 +1,8 @@
 {
   "name": "@privyid/nugrpc-transformer-rules",
   "packageManager": "yarn@3.2.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rimraf dist",
     "compile": "tsc -p tsconfig.build.json",
