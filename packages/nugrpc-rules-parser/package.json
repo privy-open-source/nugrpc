@@ -11,7 +11,7 @@
     "coverage": "jest --coverage"
   },
   "devDependencies": {
-    "@types/jest": "27.4.0",
+    "@types/jest": "27.4.1",
     "@types/rimraf": "3.0.2",
     "jest": "27.5.1",
     "rimraf": "3.0.2",
