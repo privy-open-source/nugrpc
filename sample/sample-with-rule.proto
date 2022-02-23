@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package sample.transformer.validation;
+
+option go_package = "sample/transformer/validation";
+
+message NormalMessage {
+  // @Rules: Required
+  int32 single_rule = 1;
+
+  // @Rules: Required()
+  int32 single_rule_wParantheses = 2;
+
+  // @Rules: Required | MinLength(1) | MaxLength(5)
+  string multiple_rules = 3;
+
+  // @Rules: Required | MinValue(1)
+  int32 rule_on_top = 4;
+
+  // @rules: required | is-alpha-space | is-uuid
+  string kebab_case = 5;
+
+  // @rules: required | isAlphaNumeric
+  string camel_case = 6;
+
+  // @rules: when(single_rule == "email", required | minLength(5))
+  string conditional_case = 7;
+}
+
+message RepeatedMessage {
+  repeated NormalMessage messages = 1;
+}
+
+message NoValidation {
+  int32 id = 1;
+  string name = 2;
+}
