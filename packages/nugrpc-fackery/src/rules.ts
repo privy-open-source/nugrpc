@@ -1,4 +1,5 @@
 import { PrimitiveType, PrimitiveValueOf } from "./schema"
+import safeRegex from "safe-regex"
 
 export type RuleHandler<T extends PrimitiveType> = () => PrimitiveValueOf<T>
 
@@ -18,7 +19,7 @@ export type Rule = (TypedRule<'string'> | TypedRule<'number'> | TypedRule<'boole
 export type Presets = Rule[]
 
 export function isMatch (text: string, rule: Matcher): boolean {
-  if (rule instanceof RegExp)
+  if (rule instanceof RegExp && safeRegex(rule))
     return rule.test(text)
 
   if (typeof rule === 'function')
