@@ -1,4 +1,4 @@
-import { Validator, ValidationResult, validateRules, Value, ValueKey } from ".."
+import { Validator, ValidationResult, validateRules, Value, ValueKey } from "../rule"
 import { get, isObject } from "../utils"
 
 export type ObjectRule<T> = {

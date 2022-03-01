@@ -1,4 +1,4 @@
-import { Validator } from '..'
+import { Validator } from '../rule'
 import { object } from './object'
 
 const mockValidator = (): Validator => {

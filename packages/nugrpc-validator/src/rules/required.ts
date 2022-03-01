@@ -1,4 +1,4 @@
-import { createRule, Validator, ValidationResult } from ".."
+import { createRule, Validator, ValidationResult } from "../rule"
 import { isEmptyArray, isEmptyString, isNotNumber, isNull, isNumber, isUndefined } from "../utils"
 
 export function required(): Validator<ValidationResult> {

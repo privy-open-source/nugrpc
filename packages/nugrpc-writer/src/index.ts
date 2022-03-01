@@ -1,4 +1,4 @@
-export class TextWriter {
+export default class TextWriter {
   private lines: string[];
   private index: number;
   private tabs: number;
@@ -65,5 +65,3 @@ export class TextWriter {
     return `${this.lines.join('\n')}\n`
   }
 }
-
-export default TextWriter

@@ -1,4 +1,4 @@
-import { createRule, Validator } from ".."
+import { createRule, Validator } from "../rule"
 import { isNumber, isString } from "../utils"
 
 export function mustBeIn (...inValues: Array<string | number | string[] | number[]>): Validator {

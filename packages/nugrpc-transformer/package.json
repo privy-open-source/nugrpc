@@ -1,12 +1,18 @@
 {
   "name": "@privyid/nugrpc-transformer",
   "packageManager": "yarn@3.2.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
-    "clean": "rimraf dist",
-    "compile": "tsc -p tsconfig.build.json",
-    "build": "yarn clean && yarn compile",
+    "build": "unbuild",
     "test": "jest",
     "coverage": "jest --coverage"
   },
@@ -14,11 +20,8 @@
     "@privyid/nugrpc-utils": "workspace:^"
   },
   "devDependencies": {
-    "@types/rimraf": "3.0.2",
     "jest": "27.5.1",
-    "rimraf": "3.0.2",
-    "ts-jest": "27.1.3",
-    "typescript": "4.6.2"
+    "unbuild": "^0.6.9"
   },
   "license": "MIT"
 }

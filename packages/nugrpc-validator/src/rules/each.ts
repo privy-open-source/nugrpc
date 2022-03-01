@@ -1,4 +1,4 @@
-import { Validator, validateRules, ValidationResult } from ".."
+import { Validator, validateRules, ValidationResult } from "../rule"
 import { maxLength, minLength } from "./length"
 
 export class ArrayResult<R> extends Array<R> implements ValidationResult {

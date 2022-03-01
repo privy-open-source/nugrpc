@@ -1,4 +1,4 @@
-import { createRule, Validator } from ".."
+import { createRule, Validator } from "../rule"
 import { isDate, isNumber, isString } from "../utils"
 
 export function minValue (min: number | Date): Validator {

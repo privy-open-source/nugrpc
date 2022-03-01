@@ -1,4 +1,4 @@
-import type { Validator } from '..'
+import type { Validator } from '../rule'
 import { when } from './when'
 
 const mockValidator = (): Validator => {
