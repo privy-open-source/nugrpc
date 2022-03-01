@@ -1,14 +1,15 @@
 {
   "name": "@privid/nugrpc-api",
   "packageManager": "yarn@3.2.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "clean": "rimraf dist",
-    "compile": "tsc -p tsconfig.build.json",
-    "build": "yarn clean && yarn compile",
-    "test": "jest",
-    "coverage": "jest --coverage"
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
