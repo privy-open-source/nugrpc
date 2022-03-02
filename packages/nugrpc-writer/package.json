@@ -17,10 +17,10 @@
     "coverage": "jest --coverage"
   },
   "devDependencies": {
-    "esbuild": "^0.14.23",
-    "esbuild-jest": "^0.5.0",
+    "esbuild": "0.14.23",
+    "esbuild-jest": "0.5.0",
     "jest": "27.5.1",
-    "unbuild": "^0.6.9"
+    "unbuild": "0.6.9"
   },
   "license": "MIT"
 }
