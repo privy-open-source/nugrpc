@@ -19,11 +19,11 @@
   "devDependencies": {
     "@types/jest": "27.4.1",
     "@types/lodash": "4.14.179",
-    "alias": "^0.0.5",
-    "alias-hq": "^5.3.2",
-    "hq": "^0.0.4",
+    "alias": "0.0.5",
+    "alias-hq": "5.3.2",
+    "hq": "0.0.4",
     "jest": "27.5.1",
-    "unbuild": "^0.6.9"
+    "unbuild": "0.6.9"
   },
   "dependencies": {
     "lodash": "^4.17.21",
