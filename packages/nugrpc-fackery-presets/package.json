@@ -1,23 +1,31 @@
 {
   "name": "@privyid/nugrpc-fackery-presets",
   "packageManager": "yarn@3.2.0",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
-    "clean": "rimraf dist",
-    "compile": "tsc -p tsconfig.build.json",
-    "build": "yarn clean && yarn compile",
+    "build": "unbuild",
     "test": "jest",
     "coverage": "jest --coverage"
   },
   "devDependencies": {
     "@privyid/nugrpc-fackery": "workspace:^",
-    "@types/rimraf": "3.0.2",
     "jest": "27.5.1",
-    "rimraf": "3.0.2",
-    "ts-jest": "27.1.3",
-    "typescript": "4.6.2"
+    "unbuild": "^0.6.9"
   },
   "dependencies": {
     "@faker-js/faker": "6.0.0-alpha.7"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "peerDependencies": {
+    "@privyid/nugrpc-fackery": "workspace:^"
+  }
 }

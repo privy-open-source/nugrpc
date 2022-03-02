@@ -1,4 +1,4 @@
-import { Validator, createRule, ValueKey } from ".."
+import { Validator, createRule, ValueKey } from "../rule"
 import { get } from "../utils"
 
 export function equalTo (key: string): Validator {

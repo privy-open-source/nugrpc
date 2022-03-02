@@ -6,12 +6,13 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "yarn workspaces foreach -vt run build",
+    "build": "yarn workspaces foreach -vtp run build",
     "check": "yarn dlx @yarnpkg/doctor packages/",
     "test": "jest"
   },
   "license": "MIT",
   "devDependencies": {
-    "jest": "27.5.1"
+    "jest": "27.5.1",
+    "unbuild": "^0.6.9"
   }
 }

@@ -1,4 +1,4 @@
-import { Validator, createRule } from ".."
+import { Validator, createRule } from "../rule"
 import { isString, isNumber } from "../utils"
 
 export function createRegexpRule (name: string, regex: RegExp): Validator {

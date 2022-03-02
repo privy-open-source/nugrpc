@@ -1,4 +1,4 @@
-import { Value } from ".."
+import { Value } from "../rule"
 import {
   isAlpha,
   isAlphaNumeric,

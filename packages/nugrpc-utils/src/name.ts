@@ -1,7 +1,6 @@
 import { camelCase, upperFirst } from 'lodash'
-import { Model } from './is'
+import { Model, isModel } from './is'
 import { Method, Service } from 'protobufjs'
-import { isModel } from '.'
 
 export function pascalCase (text: string): string {
   return upperFirst(camelCase(text))

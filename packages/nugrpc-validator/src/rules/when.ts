@@ -1,4 +1,4 @@
-import { Validator, validateRules, ValidationResult, ObjectValue } from ".."
+import { Validator, validateRules, ValidationResult, ObjectValue } from "../rule"
 
 export type WhenCondition = (values: ObjectValue) => boolean;
 

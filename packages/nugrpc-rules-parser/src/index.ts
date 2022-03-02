@@ -127,5 +127,3 @@ export function parse (text: string): Rule[] {
 
   return []
 }
-
-export default { parse, isValid }

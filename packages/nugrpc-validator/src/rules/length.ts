@@ -1,4 +1,4 @@
-import { createRule, Validator } from ".."
+import { createRule, Validator } from "../rule"
 import { isString } from "../utils"
 
 export function length (length: number): Validator {
