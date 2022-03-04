@@ -30,7 +30,7 @@
     "@privyid/nugrpc-transformer": "workspace:^",
     "@types/fs-extra": "9.0.13",
     "@types/lodash": "4.14.179",
-    "esbuild": "0.14.23",
+    "esbuild": "0.14.25",
     "esbuild-jest": "0.5.0",
     "jest": "27.5.1",
     "unbuild": "0.6.9"
