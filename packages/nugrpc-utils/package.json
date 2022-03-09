@@ -23,7 +23,7 @@
     "alias-hq": "5.3.2",
     "hq": "0.0.4",
     "jest": "27.5.1",
-    "pathe": "^0.2.0",
+    "pathe": "0.2.0",
     "unbuild": "0.7.0"
   },
   "dependencies": {
