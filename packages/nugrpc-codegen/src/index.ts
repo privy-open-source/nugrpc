@@ -1,6 +1,6 @@
-import fs from 'fs-extra'
-import path from 'path'
-import { load } from '@privyid/nugrpc-utils'
+import fs from "fs-extra"
+import path from "pathe"
+import { load } from "@privyid/nugrpc-utils"
 import type { TransformContext, TransformAdapter, Saveable } from '@privyid/nugrpc-transformer'
 
 export type Transformer = { new(context: TransformContext): TransformAdapter } & typeof TransformAdapter & Saveable
@@ -24,7 +24,7 @@ export function generate (options: InputOption | InputOption[]): void {
 
     const formatter   = new Formatter(context)
     const result      = formatter.process(root).toString()
-    const destination = path.posix.resolve(output)
+    const destination = path.resolve(output)
 
     fs.ensureFileSync(destination)
     fs.writeFileSync(destination, result)

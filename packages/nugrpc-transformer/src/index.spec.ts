@@ -1,6 +1,6 @@
 import { load, ReflectionObject } from "@privyid/nugrpc-utils"
 import { TransformAdapter, TransformContext } from "."
-import path from 'path'
+import path from "pathe"
 
 describe('Transfomer Base Class', () => {
   it('should travel nodes tree and calling .process()', () => {
