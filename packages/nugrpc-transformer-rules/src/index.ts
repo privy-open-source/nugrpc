@@ -81,7 +81,7 @@ export default class TransformerRules extends TransformAdapter implements Saveab
         if (name === 'when')
           options[0] = normalizeCondition(options[0])
 
-        return `${name}(${options})`
+        return `${name}(${options.join(', ')})`
       })
       .join(', ')
 

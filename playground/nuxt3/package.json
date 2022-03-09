@@ -1,0 +1,19 @@
+{
+  "name": "nuxt3-app",
+  "packageManager": "yarn@3.2.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "start": "node .output/server/index.mjs"
+  },
+  "devDependencies": {
+    "nuxt3": "latest"
+  },
+  "dependencies": {
+    "@privyid/nugrpc-api": "workspace:^"
+  },
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  }
+}

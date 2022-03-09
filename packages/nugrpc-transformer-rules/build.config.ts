@@ -8,6 +8,6 @@ export default defineBuildConfig({
   rollup     : {
     emitCJS  : true,
     cjsBridge: false,
-    esbuild  : { tsconfig: 'tsconfig.build.json' }
+    esbuild  : { tsconfig: 'tsconfig.build.json' },
   },
 })

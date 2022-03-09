@@ -4,7 +4,7 @@ module.exports = {
     "/^@privyid/google-rpc": '<rootDir>/google-rpc',
     "/^@privyid/(.*)$/"    : '<rootDir>/$1/src',
   },
-  transform       : {
+  transform: {
     '^.+\\.tsx?$': ['esbuild-jest', { sourcemap: true }]
   },
 };

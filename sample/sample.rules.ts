@@ -18,7 +18,7 @@ export const NORMAL_MESSAGE_RULES = object({
   rule_on_top: [required(), minValue(1)],
   kebab_case: [required(), isAlphaSpace(), isUuid()],
   camel_case: [required(), isAlphaNumeric()],
-  conditional_case: [when(({ single_rule }) => single_rule == "email",[required(), minLength(5)])],
+  conditional_case: [when(({ single_rule }) => single_rule == "email", [required(), minLength(5)])],
 })
 
 export const REPEATED_MESSAGE_RULES = object({
