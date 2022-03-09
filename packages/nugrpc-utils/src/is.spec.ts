@@ -1,5 +1,5 @@
 import { isType, isService, isEnum, isModel, isNamespace, isOneOf, isMap } from "./is"
-import path from "path"
+import path from "pathe"
 import { load } from "./proto"
 
 const root    = load(path.resolve(__dirname, '../../../sample/sample.proto'))

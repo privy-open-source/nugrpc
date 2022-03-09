@@ -2484,6 +2484,7 @@ __metadata:
     axios: ^0.26.0
     jest: 27.5.1
     nuxt: 2.15.8
+    pathe: ^0.2.0
     unbuild: 0.7.0
   languageName: unknown
   linkType: soft
@@ -2514,6 +2515,7 @@ __metadata:
     fs-extra: 10.0.1
     jest: 27.5.1
     lodash: 4.17.21
+    pathe: ^0.2.0
     protobufjs: 6.11.2
     unbuild: 0.7.0
     url-join: 4.0.1
@@ -2596,6 +2598,7 @@ __metadata:
     "@types/lodash": 4.14.179
     jest: 27.5.1
     lodash: ^4.17.21
+    pathe: ^0.2.0
     unbuild: 0.7.0
   languageName: unknown
   linkType: soft
@@ -2609,6 +2612,7 @@ __metadata:
     "@types/jest": 27.4.1
     jest: 27.5.1
     openapi-types: 10.0.0
+    pathe: ^0.2.0
     unbuild: 0.7.0
   languageName: unknown
   linkType: soft
@@ -2622,6 +2626,7 @@ __metadata:
     "@privyid/nugrpc-writer": "workspace:^"
     "@types/jest": 27.4.1
     jest: 27.5.1
+    pathe: ^0.2.0
     unbuild: 0.7.0
   languageName: unknown
   linkType: soft
@@ -2632,6 +2637,7 @@ __metadata:
   dependencies:
     "@privyid/nugrpc-utils": "workspace:^"
     jest: 27.5.1
+    pathe: ^0.2.0
     unbuild: 0.7.0
   languageName: unknown
   linkType: soft
@@ -2647,6 +2653,7 @@ __metadata:
     hq: 0.0.4
     jest: 27.5.1
     lodash: ^4.17.21
+    pathe: ^0.2.0
     protobufjs: ^6.11.2
     unbuild: 0.7.0
   languageName: unknown

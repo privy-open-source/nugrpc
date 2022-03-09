@@ -1,4 +1,4 @@
-import path from 'path'
+import path from "pathe"
 import { generate, InputOption, Transformer } from '.'
 import TransformerTS from '@privyid/nugrpc-transformer-ts'
 import TransformerSwagger from '@privyid/nugrpc-transformer-swagger'

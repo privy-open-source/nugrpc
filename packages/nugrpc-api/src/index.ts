@@ -1,5 +1,5 @@
 import { Module } from '@nuxt/types'
-import path from 'path'
+import path from "pathe"
 
 export * from './core/api'
 export * from './utils/error'

@@ -1,6 +1,6 @@
 import { load } from "@privyid/nugrpc-utils"
 import { TransformAdapter } from "@privyid/nugrpc-transformer"
-import * as path from "path"
+import * as path from "pathe"
 import * as fs from "fs"
 import Transformer from "."
 
