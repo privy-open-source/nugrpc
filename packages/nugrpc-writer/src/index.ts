@@ -1,3 +1,5 @@
+import { EOL } from 'os'
+
 export default class TextWriter {
   private lines: string[];
   private index: number;
@@ -62,6 +64,6 @@ export default class TextWriter {
   }
 
   toString () {
-    return `${this.lines.join('\n')}\n`
+    return `${this.lines.join(EOL)}${EOL}`
   }
 }
