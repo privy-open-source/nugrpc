@@ -1,7 +1,5 @@
 import { pascalCase } from "@privyid/nugrpc-utils"
 
-const RULE_COMMENT_REGEX = /^@rules:\s*?([\w-]+\s*?(?:\(.*?\))?(?:\s*?\|\s*?[\w-]+\s*?(?:\(.*?\))?)*)$/i
-
 const RULE_REGEX = /^([\w-]+)\s*?(?:\((.*)\))?$/
 
 const ESCAPE_CHAR = "\\"
@@ -43,15 +41,32 @@ export interface Rule {
   options: Array<string | Rule[]>;
 }
 
+export function findShortcutTag (text: string): string | undefined {
+  return Object.keys(SHORTCUT)
+    .find((key) => {
+      return String(text)
+        .toLowerCase()
+        .startsWith(`@${key}`)
+    })
+}
+
 export function isShortcutTag (text: string): boolean {
-  return Object.keys(SHORTCUT).some((key) => {
-    return String(text).toLowerCase().startsWith(`@${key}`)
-  })
+  return findShortcutTag(text) !== undefined
+}
+
+export function isRulesTag (text: string): boolean {
+  const startTag = text.slice(0, 7).toLocaleLowerCase()
+  const rulesTag = text.slice(7).trim()
+
+  return startTag.startsWith('@rules:')
+    && rulesTag.length > 0
+    && !rulesTag.startsWith('|')
+    && !rulesTag.endsWith('|')
+    && splitBy(rulesTag, '|').every((rule) => RULE_REGEX.test(rule))
 }
 
 export function isValid (text: string): boolean {
-  return isShortcutTag(text)
-    || RULE_COMMENT_REGEX.test(text)
+  return isShortcutTag(text) || isRulesTag(text)
 }
 
 export function splitBy (params: string, delimiter: string): string[] {
@@ -103,12 +118,7 @@ export function parseRule (text: string): Rule {
 }
 
 export function parse (text: string): Rule[] {
-  const shortcutKey = Object.keys(SHORTCUT)
-    .find((key) => {
-      return String(text)
-        .toLowerCase()
-        .startsWith(`@${key}`)
-    })
+  const shortcutKey = findShortcutTag(text)
 
   if (shortcutKey) {
     return [{
@@ -117,13 +127,9 @@ export function parse (text: string): Rule[] {
     }]
   }
 
-  const syntax = text.match(RULE_COMMENT_REGEX)
-  const rules  = syntax?.[1]
+  if (!isRulesTag(text))
+    return []
 
-  if (rules) {
-    return splitBy(rules, '|')
-      .map((rule) => parseRule(rule))
-  }
-
-  return []
+  return splitBy(text.slice(7), '|')
+    .map((rule) => parseRule(rule))
 }

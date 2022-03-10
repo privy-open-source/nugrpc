@@ -19,7 +19,7 @@
   "devDependencies": {
     "@types/jest": "27.4.1",
     "jest": "27.5.1",
-    "unbuild": "0.6.9"
+    "unbuild": "0.7.0"
   },
   "dependencies": {
     "@privyid/nugrpc-utils": "workspace:^"

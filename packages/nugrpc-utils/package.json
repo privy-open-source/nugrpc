@@ -22,7 +22,8 @@
     "alias": "0.0.5",
     "hq": "0.0.4",
     "jest": "27.5.1",
-    "unbuild": "0.6.9"
+    "pathe": "0.2.0",
+    "unbuild": "0.7.0"
   },
   "dependencies": {
     "lodash": "^4.17.21",

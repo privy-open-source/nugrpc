@@ -24,7 +24,8 @@
   "devDependencies": {
     "@types/jest": "27.4.1",
     "jest": "27.5.1",
-    "unbuild": "0.6.9"
+    "pathe": "0.2.0",
+    "unbuild": "0.7.0"
   },
   "license": "MIT"
 }

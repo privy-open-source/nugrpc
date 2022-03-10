@@ -1,3 +1,4 @@
+import { EOL } from "os"
 import {
   TransformAdapter,
   TransformContext,
@@ -225,7 +226,7 @@ export default class TransformerSwagger extends TransformAdapter implements Save
   }
 
   toString (): string {
-    return JSON.stringify(this.toObject(), null, 2) + '\n'
+    return JSON.stringify(this.toObject(), null, 2).replace(/\n/g, EOL) + EOL
   }
 }
 

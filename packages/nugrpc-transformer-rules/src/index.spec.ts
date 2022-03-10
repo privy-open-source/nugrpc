@@ -3,7 +3,7 @@ import { TransformAdapter } from '@privyid/nugrpc-transformer'
 import { load } from '@privyid/nugrpc-utils'
 import Transformer from '.'
 import fs from "fs"
-import path from "path"
+import path from "pathe"
 
 describe('Transformer Rules', () => {
   it('should be an adapter', () => {

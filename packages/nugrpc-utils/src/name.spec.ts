@@ -1,6 +1,6 @@
 import { pascalCase, getServiceName, getMethodName, getModelName, getUrl } from "./name"
 import { load } from "./proto"
-import path from "path"
+import path from "pathe"
 
 describe('pascalCase', () => {
   const cases: [string, string][] = [
