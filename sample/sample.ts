@@ -4,7 +4,7 @@
  */
 import { useAxios, ApiResponse, AxiosRequestConfig } from '@privyid/nugrpc-api'
 
-const $api = useAxios()
+const $api = useAxios().create({ baseURL: '/' })
 
 export type NormalMessage = {
   field_bool: boolean;

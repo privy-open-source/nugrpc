@@ -3,16 +3,16 @@
   "packageManager": "yarn@3.2.0",
   "private": true,
   "workspaces": [
-    "packages/*",
-    "playground/*"
+    "packages/*"
   ],
   "scripts": {
     "build": "yarn workspaces foreach -vtp run build",
     "check": "yarn dlx @yarnpkg/doctor packages/",
-    "test": "jest"
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage"
   },
   "license": "MIT",
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "jest": "27.5.1",
     "unbuild": "0.7.0"
   }

@@ -1,81 +1,65 @@
-import Axios from 'axios'
+import Axios, { AxiosCreateConfig, AxiosInstance } from 'axios'
+import defu from 'defu'
 import type {
-  AxiosError,
   AxiosResponse,
-  AxiosInstance,
   AxiosRequestConfig,
 } from 'axios'
-import { QueueAdapter } from './queue'
-import { cancelAll, DedupeAdapter } from './dedupe'
+import DedupeAdapter from './dedupe'
+import QueueAdapter from './queue'
 
 declare module 'axios' {
-  interface AxiosRequestConfig {
+  export interface AxiosCreateConfig extends Omit<AxiosRequestConfig, 'headers'> {
+    headers?: AxiosRequestHeaders | Partial<{
+      delete: AxiosRequestHeaders,
+      get: AxiosRequestHeaders,
+      head: AxiosRequestHeaders,
+      post: AxiosRequestHeaders,
+      put: AxiosRequestHeaders,
+      patch: AxiosRequestHeaders,
+    }>;
+  }
+
+  export interface AxiosRequestConfig {
     priority?: number;
     requestId?: string;
   }
-}
 
-export interface Error {
-  type_url: string;
-  value: string;
-}
-
-export interface ErrorResponse {
-  code: number;
-  message: string;
-  details: Error[];
+  export interface AxiosStatic extends AxiosInstance {
+    create (config?: AxiosCreateConfig): AxiosInstance;
+  }
 }
 
 export type { AxiosRequestConfig }
-
-export type ApiError = AxiosError<ErrorResponse>
 
 export type ApiResponse<T> = Promise<AxiosResponse<T>>
 
 export type RequestHook = (config: AxiosRequestConfig) => AxiosRequestConfig | Promise<AxiosRequestConfig> | void
 
-export type ResponseHook = (config: AxiosResponse) => AxiosResponse | Promise<AxiosResponse> | void
+export type ResponseHook = (response: AxiosResponse) => AxiosResponse | Promise<AxiosResponse> | void
 
-export type ErrorHook = (error: Error | AxiosError) => Error | AxiosError | void
+export type ErrorHook = (error: any) => any
 
-export const isAxiosError = Axios.isAxiosError
+export type Hook = RequestHook | ResponseHook | ErrorHook
 
-export const isCancel = Axios.isCancel
+export type Hooks = {
+  onRequest: RequestHook;
+  onResponse: ResponseHook;
+  onRequestError: ErrorHook;
+  onResponseError: ErrorHook;
+}
 
-export interface AxiosHooks {
-  onRequest: RequestHook[];
-  onResponse: ResponseHook[];
-  onErrorRequest: ErrorHook[];
-  onErrorResponse: ErrorHook[];
+export type HooksMap = {
+  [K in keyof Hooks]: Map<number, Hooks[K]>
 }
 export interface AxiosExtended extends AxiosInstance {
-  hooks: AxiosHooks;
-  extend (this: AxiosExtended, newOptions?: AxiosRequestConfig): AxiosExtended;
-  cancelAll: typeof cancelAll;
+  hooks: HooksMap;
+  cancel: InstanceType<typeof DedupeAdapter>['cancel'];
+  cancelAll: InstanceType<typeof DedupeAdapter>['cancelAll'];
+  dedupe: DedupeAdapter;
+  queue: QueueAdapter;
+  create (this: AxiosExtended, config?: AxiosCreateConfig): AxiosExtended,
 }
 
-
-export function isApiError (error: unknown): error is ApiError {
-  return isAxiosError(error)
-    && Boolean(error.response)
-    && Array.isArray(error.response?.data.details)
-}
-
-export function getCode (error: unknown): number {
-  if (isAxiosError(error))
-    return error.response?.status ?? 500
-
-  return 500
-}
-
-export function getMessage (error: unknown): string {
-  if (isAxiosError(error))
-    return error.response?.data.message
-
-  return error instanceof Error
-    ? error.message
-    : 'Unknown Error'
-}
 
 let singleton: AxiosExtended
 
@@ -90,69 +74,112 @@ export function setAxios (instance: AxiosExtended) {
   singleton = instance
 }
 
-export function onRequest (fn: RequestHook, instance = useAxios()): void {
-  instance.hooks.onRequest.push(fn)
-  instance.interceptors.request.use((config) => fn(config) ?? config)
-}
-
-export function onResponse (fn: ResponseHook, instance = useAxios()) {
-  instance.hooks.onResponse.push(fn)
-  instance.interceptors.response.use((response) => fn(response) ?? response)
-}
-
-export function onErrorRequest (fn: ErrorHook, instance = useAxios()) {
-  instance.hooks.onErrorRequest.push(fn)
-  instance.interceptors.request.use(undefined, (error) => fn(error) ?? Promise.reject(error))
-}
-
-export function onErrorResponse (fn: ErrorHook, instance = useAxios()) {
-  instance.hooks.onErrorResponse.push(fn)
-  instance.interceptors.response.use(undefined, (error) => fn(error) ?? Promise.reject(error))
-}
-
-export function onError (fn: ErrorHook, instance = useAxios()) {
-  onErrorRequest(fn, instance)
-  onErrorResponse(fn, instance)
-}
-
-export function extendAxios(options?: AxiosRequestConfig, oldInstance = useAxios()): AxiosExtended {
-  // @ts-expect-error
-  const instance = oldInstance.create(options)
-
-  for (const hook of oldInstance.hooks.onRequest)
-    onRequest(hook, instance)
-
-  for (const hook of oldInstance.hooks.onResponse)
-    onResponse(hook, instance)
-
-  for (const hook of oldInstance.hooks.onErrorRequest)
-    onErrorRequest(hook, instance)
-
-  for (const hook of oldInstance.hooks.onErrorResponse)
-    onErrorResponse(hook, instance)
-
-  return instance
-}
-
-export function createAxios (options?: AxiosRequestConfig): AxiosExtended {
-  const adapter  = DedupeAdapter(QueueAdapter(options?.adapter ?? Axios.defaults.adapter!))
-  const instance = Axios.create({
-    adapter,
+export function createAxios (options?: AxiosCreateConfig): AxiosExtended {
+  const originalAdapter = options?.adapter ?? Axios.defaults.adapter!
+  const queue           = new QueueAdapter(originalAdapter)
+  const dedupe          = new DedupeAdapter(queue.adapter())
+  const adapter         = dedupe.adapter()
+  const instance        = Axios.create({
     ...options,
+    adapter,
   })
 
-  const hooks: AxiosHooks = {
-    onRequest      : [],
-    onResponse     : [],
-    onErrorRequest : [],
-    onErrorResponse: [],
+  const hooks: HooksMap = {
+    onRequest      : new Map(),
+    onResponse     : new Map(),
+    onRequestError : new Map(),
+    onResponseError: new Map(),
   }
 
   return Object.assign(instance, {
-    cancelAll: cancelAll,
+    cancel   : dedupe.cancel.bind(dedupe),
+    cancelAll: dedupe.cancelAll.bind(dedupe),
+    queue    : queue,
+    dedupe   : dedupe,
     hooks    : hooks,
-    extend   : function (this: AxiosExtended, newOptions?: AxiosRequestConfig) {
-      return extendAxios(newOptions, this)
+    create   : function (this: AxiosExtended, newOptions: AxiosCreateConfig = {}): AxiosExtended {
+      const instance = createAxios(defu(
+        newOptions,
+        { adapter: originalAdapter },
+        this.defaults as AxiosCreateConfig,
+      ))
+
+      return copyHook(this, instance)
     }
   })
+}
+
+export function onRequest (fn: RequestHook, instance = useAxios()) {
+  return addHook('onRequest', fn, instance)
+}
+
+export function onResponse (fn: ResponseHook, instance = useAxios()) {
+  return addHook('onResponse', fn, instance)
+}
+
+export function onRequestError (fn: ErrorHook, instance = useAxios()) {
+  return addHook('onRequestError', fn, instance)
+}
+
+export function onResponseError (fn: ErrorHook, instance = useAxios()) {
+  return addHook('onResponseError', fn, instance)
+}
+
+export function onError (fn: ErrorHook, instance = useAxios()) {
+  const a = onRequestError(fn, instance)
+  const b = onResponseError(fn, instance)
+
+  return [a, b]
+}
+
+export function addHook<K extends keyof Hooks> (name: K, fn: Hooks[K], instance = useAxios()): number | undefined {
+  let id: number | undefined
+
+  if (name === 'onRequest')
+    id = instance.interceptors.request.use((config) => fn(config) ?? Promise.resolve(config))
+
+  else if (name === 'onRequestError')
+    id = instance.interceptors.request.use(undefined, (error) => fn(error) ?? Promise.reject(error))
+
+  else if (name === 'onResponse')
+    id = instance.interceptors.response.use((response) => fn(response) ?? Promise.resolve(response))
+
+  else if (name === 'onResponseError')
+    id = instance.interceptors.response.use(undefined, (error) => fn(error) ?? Promise.reject(error))
+
+  if (id !== undefined)
+    instance.hooks[name].set(id, fn)
+
+  return id
+}
+
+export function removeHook<K extends keyof HooksMap> (name: K, id: number, instance = useAxios()): void {
+  if (name === 'onRequest' || name === 'onRequestError')
+    instance.interceptors.request.eject(id)
+
+  else if (name === 'onResponse' || name === 'onResponseError')
+    instance.interceptors.response.eject(id)
+
+  instance.hooks[name].delete(id)
+}
+
+export function resetHook (instance = useAxios()) {
+  const hooks = Object.keys(instance.hooks) as Array<keyof HooksMap>
+
+  for (const name of hooks) {
+    for (const id of instance.hooks[name].keys()) {
+      removeHook(name, id, instance)
+    }
+  }
+}
+
+export function copyHook (from: AxiosExtended, to: AxiosExtended): AxiosExtended {
+  const hooks = Object.keys(from.hooks) as Array<keyof HooksMap>
+
+  for (const name of hooks) {
+    for (const fn of from.hooks[name].values())
+      addHook(name, fn, to)
+  }
+
+  return to
 }

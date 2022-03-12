@@ -1,25 +1,36 @@
 import type PQueue from 'p-queue'
 import type { AxiosAdapter } from 'axios'
 
-let queue: PQueue
+type PQueueOptions = NonNullable<ConstructorParameters<typeof PQueue>[0]>
 
-export async function useQueue() {
-  if (!queue) {
-    const { default: PQueue } = await import('p-queue')
+export default class QueueAdapter {
+  protected fetch: AxiosAdapter;
+  protected queue?: PQueue;
+  protected options?: PQueueOptions;
 
-    queue = new PQueue({ concurrency: 5 })
+  constructor (adapter: AxiosAdapter, options: PQueueOptions = { concurrency: 5 }) {
+    this.fetch   = adapter
+    this.options = options
   }
 
-  return queue
-}
+  async getQueue () {
+    if (!this.queue) {
+      const PQueue = (await import('p-queue')).default
 
-export const QueueAdapter = (adapter: AxiosAdapter): AxiosAdapter => {
-  return async (config) => {
-    const queue = await useQueue()
+      this.queue = new PQueue(this.options)
+    }
 
-    return queue.add(() => adapter(config), {
-      priority: config.priority,
-      signal  : config.signal,
-    })
+    return this.queue
+  }
+
+  adapter (): AxiosAdapter {
+    return async (config) => {
+      const queue = await this.getQueue()
+
+      return queue.add(() => this.fetch(config), {
+        priority: config.priority,
+        signal  : config.signal,
+      })
+    }
   }
 }

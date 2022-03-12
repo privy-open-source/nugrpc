@@ -6,9 +6,14 @@
   "types": "./dist/module.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/module.cjs",
-      "import": "./dist/module.mjs",
-      "types": "./dist/module.d.ts"
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./error": {
+      "require": "./dist/error.cjs",
+      "import": "./dist/error.mjs",
+      "types": "./dist/error.d.ts"
     }
   },
   "scripts": {
@@ -25,8 +30,6 @@
     "axios-mock-adapter": "^1.20.0",
     "cross-env": "^7.0.3",
     "jest": "27.5.1",
-    "ts-jest": "^27.1.3",
-    "ts-node": "^10.7.0",
     "unbuild": "0.6.9"
   },
   "license": "MIT"
