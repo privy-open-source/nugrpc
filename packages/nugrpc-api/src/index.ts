@@ -29,9 +29,9 @@ export interface AxiosCreateConfig extends Omit<AxiosRequestConfig, 'headers'> {
   queue?: QueueOptions;
 }
 
-type onFulfilledOf<T> = T extends (onFulfilled: infer R) => any ? R : never
+type onFulfilledOf<T> = T extends (onFulfilled: infer R) => any ? NonNullable<R> : never
 
-type onRejectedOf<T> = T extends (onFulfilled: any, onRejected: infer R) => any ? R : never
+type onRejectedOf<T> = T extends (onFulfilled: any, onRejected: infer R) => any ? NonNullable<R> : never
 
 export type { AxiosRequestConfig }
 
