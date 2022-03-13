@@ -33,7 +33,7 @@ export default class QueueAdapter {
       const it   = index + mid
       const node = this.queue[it]
 
-      if (node.priority >= value.priority) {
+      if (value.priority > node.priority) {
         index  = it + 1
         count -= (mid + 1)
       } else
@@ -44,7 +44,7 @@ export default class QueueAdapter {
   }
 
   dequeue () {
-    return this.queue.shift()
+    return this.queue.pop()
   }
 
   add (config: AxiosRequestConfig): AxiosPromise {

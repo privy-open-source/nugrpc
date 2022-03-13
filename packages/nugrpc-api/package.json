@@ -1,9 +1,9 @@
 {
   "name": "@privyid/nugrpc-api",
   "packageManager": "yarn@3.2.0",
-  "main": "./dist/module.cjs",
-  "module": "./dist/module.mjs",
-  "types": "./dist/module.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/index.cjs",
