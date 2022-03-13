@@ -2,13 +2,10 @@
   "extends": "../../tsconfig.json",
 
   "compilerOptions": {
+    "baseUrl": "../../",
     "types": [
       "node",
       "jest"
-    ],
-
-    "lib": ["DOM"],
-
-    "baseUrl": ".",
-  },
+    ]
+  }
 }

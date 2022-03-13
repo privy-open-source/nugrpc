@@ -8,10 +8,11 @@
   "scripts": {
     "build": "yarn workspaces foreach -vtp run build",
     "check": "yarn dlx @yarnpkg/doctor packages/",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "license": "MIT",
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "jest": "27.5.1",
     "unbuild": "0.7.0"
   }

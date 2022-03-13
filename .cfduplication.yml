@@ -5,3 +5,4 @@ MinLineCount: 10
 IgnorePatterns:
   - dist/**
   - "**/*.spec.ts"
+  - "**/build.config.ts"

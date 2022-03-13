@@ -1,5 +1,5 @@
 {
-  "name": "@privid/nugrpc-api",
+  "name": "@privyid/nugrpc-api",
   "packageManager": "yarn@3.2.0",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -9,6 +9,11 @@
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
+    },
+    "./error": {
+      "require": "./dist/error.cjs",
+      "import": "./dist/error.mjs",
+      "types": "./dist/error.d.ts"
     }
   },
   "scripts": {
@@ -17,16 +22,17 @@
     "coverage": "jest --coverage"
   },
   "dependencies": {
-    "@nuxt/types": "2.15.8",
-    "@nuxtjs/axios": "^5.13.6",
+    "abort-controller": "^3.0.0",
     "axios": "^0.26.0",
-    "pathe": "^0.2.0"
+    "defu": "^5.0.1",
+    "native-abort-controller": "^1.0.4"
   },
   "devDependencies": {
-    "@nuxt/test-utils": "0.2.2",
+    "@jest/globals": "^27.5.1",
+    "axios-mock-adapter": "^1.20.0",
+    "cross-env": "^7.0.3",
     "jest": "27.5.1",
-    "nuxt": "2.15.8",
-    "unbuild": "0.7.0"
+    "unbuild": "0.6.9"
   },
   "license": "MIT"
 }
