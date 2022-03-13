@@ -18,15 +18,15 @@
   },
   "scripts": {
     "build": "unbuild",
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
+    "test": "jest",
     "coverage": "jest --coverage"
   },
   "dependencies": {
     "axios": "^0.26.0",
-    "defu": "^5.0.1",
-    "p-queue": "^7.2.0"
+    "defu": "^5.0.1"
   },
   "devDependencies": {
+    "@jest/globals": "^27.5.1",
     "axios-mock-adapter": "^1.20.0",
     "cross-env": "^7.0.3",
     "jest": "27.5.1",

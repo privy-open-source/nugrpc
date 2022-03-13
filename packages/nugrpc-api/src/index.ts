@@ -1,24 +1,13 @@
-import Axios, { AxiosCreateConfig, AxiosInstance } from 'axios'
+import Axios, { AxiosInstance, AxiosRequestHeaders, AxiosStatic } from 'axios'
 import defu from 'defu'
 import type {
   AxiosResponse,
   AxiosRequestConfig,
 } from 'axios'
 import DedupeAdapter from './dedupe'
-import QueueAdapter from './queue'
+import QueueAdapter, { QueueOptions } from './queue'
 
 declare module 'axios' {
-  export interface AxiosCreateConfig extends Omit<AxiosRequestConfig, 'headers'> {
-    headers?: AxiosRequestHeaders | Partial<{
-      delete: AxiosRequestHeaders,
-      get: AxiosRequestHeaders,
-      head: AxiosRequestHeaders,
-      post: AxiosRequestHeaders,
-      put: AxiosRequestHeaders,
-      patch: AxiosRequestHeaders,
-    }>;
-  }
-
   export interface AxiosRequestConfig {
     priority?: number;
     requestId?: string;
@@ -28,16 +17,31 @@ declare module 'axios' {
     create (config?: AxiosCreateConfig): AxiosInstance;
   }
 }
+export interface AxiosCreateConfig extends Omit<AxiosRequestConfig, 'headers'> {
+  headers?: AxiosRequestHeaders | Partial<{
+    delete: AxiosRequestHeaders;
+    get: AxiosRequestHeaders;
+    head: AxiosRequestHeaders;
+    post: AxiosRequestHeaders;
+    put: AxiosRequestHeaders;
+    patch: AxiosRequestHeaders;
+  }>;
+  queue?: QueueOptions;
+}
+
+type onFulfilledOf<T> = T extends (onFulfilled: infer R) => any ? R : never
+
+type onRejectedOf<T> = T extends (onFulfilled: any, onRejected: infer R) => any ? R : never
 
 export type { AxiosRequestConfig }
 
 export type ApiResponse<T> = Promise<AxiosResponse<T>>
 
-export type RequestHook = (config: AxiosRequestConfig) => AxiosRequestConfig | Promise<AxiosRequestConfig> | void
+export type RequestHook = onFulfilledOf<AxiosStatic['interceptors']['request']['use']>
 
-export type ResponseHook = (response: AxiosResponse) => AxiosResponse | Promise<AxiosResponse> | void
+export type ResponseHook = onFulfilledOf<AxiosStatic['interceptors']['response']['use']>
 
-export type ErrorHook = (error: any) => any
+export type ErrorHook = onRejectedOf<AxiosStatic['interceptors']['response']['use']>
 
 export type Hook = RequestHook | ResponseHook | ErrorHook
 
@@ -74,9 +78,9 @@ export function setAxios (instance: AxiosExtended) {
   singleton = instance
 }
 
-export function createAxios (options?: AxiosCreateConfig): AxiosExtended {
-  const originalAdapter = options?.adapter ?? Axios.defaults.adapter!
-  const queue           = new QueueAdapter(originalAdapter)
+export function createAxios (options: AxiosCreateConfig = {}): AxiosExtended {
+  const originalAdapter = options.adapter ?? Axios.defaults.adapter!
+  const queue           = new QueueAdapter(originalAdapter, options.queue)
   const dedupe          = new DedupeAdapter(queue.adapter())
   const adapter         = dedupe.adapter()
   const instance        = Axios.create({
@@ -101,7 +105,7 @@ export function createAxios (options?: AxiosCreateConfig): AxiosExtended {
       const instance = createAxios(defu(
         newOptions,
         { adapter: originalAdapter },
-        this.defaults as AxiosCreateConfig,
+        options,
       ))
 
       return copyHook(this, instance)

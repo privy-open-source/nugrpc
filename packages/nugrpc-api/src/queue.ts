@@ -1,36 +1,113 @@
-import type PQueue from 'p-queue'
-import type { AxiosAdapter } from 'axios'
+// import type PQueue from 'p-queue'
+import type { AxiosAdapter, AxiosPromise, AxiosRequestConfig, AxiosResponse } from 'axios'
+import Axios from 'axios'
 
-type PQueueOptions = NonNullable<ConstructorParameters<typeof PQueue>[0]>
+interface QueueJob {
+  config: AxiosRequestConfig;
+  priority: number;
+  resolve: (value: AxiosResponse | PromiseLike<AxiosResponse>) => void;
+  reject: (reason: any) => void;
+}
 
+export interface QueueOptions {
+  worker: number;
+}
 export default class QueueAdapter {
   protected fetch: AxiosAdapter;
-  protected queue?: PQueue;
-  protected options?: PQueueOptions;
+  protected queue: QueueJob[];
+  protected options: QueueOptions;
+  protected process: number;
 
-  constructor (adapter: AxiosAdapter, options: PQueueOptions = { concurrency: 5 }) {
+  constructor (adapter: AxiosAdapter, options: QueueOptions = { worker: 5 }) {
     this.fetch   = adapter
     this.options = options
+    this.queue   = []
+    this.process = 0
   }
 
-  async getQueue () {
-    if (!this.queue) {
-      const PQueue = (await import('p-queue')).default
+  enqueue (value: QueueJob) {
+    let index = 0
+    let count = this.queue.length
 
-      this.queue = new PQueue(this.options)
+    while (count > 0) {
+      const mid  = Math.trunc(count / 2)
+      const it   = index + mid
+      const node = this.queue[it]
+
+      if (node.priority >= value.priority) {
+        index  = it + 1
+        count -= (mid + 1)
+      } else
+        count = mid
     }
 
-    return this.queue
+    this.queue.splice(index, 0, value)
+  }
+
+  dequeue () {
+    return this.queue.shift()
+  }
+
+  add (config: AxiosRequestConfig): AxiosPromise {
+    return new Promise((resolve, reject) => {
+      const onResolved: QueueJob['resolve'] = (response) => {
+        resolve(response)
+        onDone()
+      }
+
+      const onRejected: QueueJob['reject'] = (error) => {
+        reject(error)
+        onDone()
+      }
+
+      const onAborted = () => {
+        onRejected(new Axios.Cancel())
+      }
+
+      const onDone = () => {
+        if (config.signal)
+          config.signal.removeEventListener('abort', onAborted)
+      }
+
+      if (config.signal)
+        config.signal.addEventListener('abort', onAborted)
+
+      if (config.signal?.aborted !== true) {
+        const queue: QueueJob = {
+          resolve : onResolved,
+          reject  : onRejected,
+          config  : config,
+          priority: config.priority ?? 1,
+        }
+
+        this.enqueue(queue)
+        this.run()
+      }
+    })
+  }
+
+  run () {
+    if (this.queue.length > 0 && this.process < this.options.worker) {
+      this.process++
+
+      const job    = this.dequeue()!
+      const signal = job.config.signal
+
+      if (signal?.aborted !== true) {
+        this.fetch(job.config)
+          .then(job.resolve)
+          .catch(job.reject)
+          .finally(() => {
+            this.process--
+            this.run()
+          })
+      }
+    }
   }
 
   adapter (): AxiosAdapter {
     return async (config) => {
-      const queue = await this.getQueue()
-
-      return queue.add(() => this.fetch(config), {
-        priority: config.priority,
-        signal  : config.signal,
-      })
+      return this.add(config)
     }
   }
 }

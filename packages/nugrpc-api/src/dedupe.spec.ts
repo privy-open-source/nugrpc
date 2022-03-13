@@ -1,11 +1,11 @@
 import Axios from "axios"
 import MockAdapter from "axios-mock-adapter"
-import { createAxios, useAxios } from "."
+import { useAxios } from "."
 
 let mock: MockAdapter
 
 beforeAll(() => {
-  mock = new MockAdapter(Axios, { delayResponse: 10 })
+  mock = new MockAdapter(Axios)
 })
 
 afterEach(() => {

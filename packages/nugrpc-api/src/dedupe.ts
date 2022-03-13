@@ -12,16 +12,14 @@ export default class DedupeAdapter {
   cancel (requestId: string) {
     const controller = this.limit.get(requestId)
 
-    if (controller && !controller.signal.aborted)
+    if (controller)
       controller.abort()
   }
 
   cancelAll () {
     for (const controller of this.limit.values()) {
-      if (!controller.signal.aborted)
-        controller.abort()
+      controller.abort()
     }
-
   }
 
   adapter (): AxiosAdapter {

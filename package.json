@@ -8,7 +8,7 @@
   "scripts": {
     "build": "yarn workspaces foreach -vtp run build",
     "check": "yarn dlx @yarnpkg/doctor packages/",
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage"
+    "test": "jest --coverage"
   },
   "license": "MIT",
   "devDependencies": {
