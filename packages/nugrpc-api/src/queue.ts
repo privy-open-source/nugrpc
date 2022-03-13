@@ -5,7 +5,7 @@ interface QueueJob {
   config: AxiosRequestConfig;
   priority: number;
   resolve: (value: AxiosResponse | PromiseLike<AxiosResponse>) => void;
-  reject: (reason: any) => void;
+  reject: (reason: unknown) => void;
 }
 
 export interface QueueOptions {
