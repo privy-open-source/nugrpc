@@ -1,3 +1,4 @@
+import { AbortController } from "native-abort-controller"
 import type { AxiosAdapter } from "axios"
 
 export default class DedupeAdapter {

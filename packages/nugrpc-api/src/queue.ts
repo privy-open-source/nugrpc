@@ -1,4 +1,3 @@
-// import type PQueue from 'p-queue'
 import type { AxiosAdapter, AxiosPromise, AxiosRequestConfig, AxiosResponse } from 'axios'
 import Axios from 'axios'
 

@@ -1,6 +1,7 @@
 import Axios from "axios"
 import MockAdapter from "axios-mock-adapter"
 import { useAxios } from "."
+import { AbortController } from "native-abort-controller"
 
 let mock: MockAdapter
 

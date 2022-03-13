@@ -1,13 +1,11 @@
 import MockAdapter from "axios-mock-adapter"
 import Axios from "axios"
-import { createAxios, useAxios } from "."
+import { createAxios } from "."
 
 let mock: MockAdapter
 
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
-
 beforeAll(() => {
-  mock = new MockAdapter(Axios, { delayResponse: 10 })
+  mock = new MockAdapter(Axios, { delayResponse: 1 })
 })
 
 afterEach(() => {
@@ -21,18 +19,19 @@ describe('QueueAdapter', () => {
     const result = []
     const api    = createAxios({ queue: { worker: 2 }})
 
-    api.get('/ping').then(() => result.push(1))
-    api.get('/ping').then(() => result.push(2))
-    api.get('/ping').then(() => result.push(3))
-    api.get('/ping').then(() => result.push(4))
-
-    await delay(10)
+    await Promise.race([
+      Promise.all([
+        api.get('/ping').then(() => result.push(1)),
+        api.get('/ping').then(() => result.push(2)),
+      ]),
+      Promise.all([
+        api.get('/ping').then(() => result.push(3)),
+        api.get('/ping').then(() => result.push(4)),
+      ])
+    ])
 
     expect(result).toHaveLength(2)
-
-    await delay(10)
-
-    expect(result).toHaveLength(4)
+    expect(result).toStrictEqual([1, 2])
   })
 
   it('should run request with higher priority first', async () => {
@@ -41,13 +40,13 @@ describe('QueueAdapter', () => {
     const result = []
     const api    = createAxios({ queue: { worker: 1 }})
 
-    api.get('/ping').then(() => result.push(1))
-    api.get('/ping', { priority: 2 }).then(() => result.push(2))
-    api.get('/ping', { priority: 3 }).then(() => result.push(3))
-    api.get('/ping').then(() => result.push(4))
-    api.get('/ping').then(() => result.push(5))
-
-    await delay(55)
+    await Promise.all([
+      api.get('/ping').then(() => result.push(1)),
+      api.get('/ping', { priority: 2 }).then(() => result.push(2)),
+      api.get('/ping', { priority: 3 }).then(() => result.push(3)),
+      api.get('/ping').then(() => result.push(4)),
+      api.get('/ping').then(() => result.push(5)),
+    ])
 
     expect(result).toHaveLength(5)
     expect(result).toStrictEqual([1, 3, 2, 4, 5])
