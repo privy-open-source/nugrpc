@@ -1,5 +1,5 @@
 module.exports = {
-  buildModules    : ['@nuxtjs/composition-api/module', '@privyid/nugrpc-api'],
+  buildModules    : ['@nuxtjs/composition-api/module', '@privyid/nugrpc-api-nuxt'],
   plugins         : [{ src: '@/plugins/axios' }],
   serverMiddleware: [
     { path: '/api/ping', handler: '@/api/ping' },

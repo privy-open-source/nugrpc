@@ -1,6 +1,6 @@
 import MockAdapter from "axios-mock-adapter"
 import Axios from "axios"
-import { createAxios } from "."
+import { createApi } from "."
 
 let mock: MockAdapter
 
@@ -17,7 +17,7 @@ describe('QueueAdapter', () => {
     mock.onGet('/ping').reply(200, 'Pong')
 
     const result = []
-    const api    = createAxios({ queue: { worker: 2 }})
+    const api    = createApi({ queue: { worker: 2 }})
 
     await Promise.race([
       Promise.all([
@@ -38,7 +38,7 @@ describe('QueueAdapter', () => {
     mock.onGet('/ping').reply(200, 'Pong')
 
     const result = []
-    const api    = createAxios({ queue: { worker: 1 }})
+    const api    = createApi({ queue: { worker: 1 }})
 
     await Promise.all([
       api.get('/ping').then(() => result.push(1)),

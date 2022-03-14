@@ -1,7 +1,29 @@
 {
   "name": "@privyid/nugrpc-api-nuxt",
   "packageManager": "yarn@3.2.0",
+  "main": "./dist/module.cjs",
+  "module": "./dist/module.mjs",
+  "types": "./dist/module.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/module.cjs",
+      "import": "./dist/module.mjs",
+      "types": "./dist/module.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "unbuild",
+    "test": "jest",
+    "coverage": "jest --coverage"
+  },
   "devDependencies": {
-    "@nuxt/types": "^2.15.8"
+    "@nuxt/schema": "^0.1.0-edge",
+    "@nuxt/types": "^2.15.8",
+    "unbuild": "^0.7.0"
+  },
+  "dependencies": {
+    "@privyid/nugrpc-api": "workspace:^",
+    "defu": "^5.0.1",
+    "pathe": "^0.2.0"
   }
 }

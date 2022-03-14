@@ -11,7 +11,7 @@
     "nuxt3": "latest"
   },
   "dependencies": {
-    "@privyid/nugrpc-api": "workspace:^"
+    "@privyid/nugrpc-api-nuxt": "workspace:^"
   },
   "installConfig": {
     "hoistingLimits": "workspaces"

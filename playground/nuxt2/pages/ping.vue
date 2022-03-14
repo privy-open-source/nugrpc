@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import { $axios } from '@privyid/nugrpc-api'
+import { useApi } from '@privyid/nugrpc-api'
 
 export default {
   async asyncData () {
-    const response = await $axios.get('/api/ping')
+    const response = await useApi().get('/api/ping', { requestId: 'ping' })
     const message  = response.data.message
     const header   = response.data.data.header
 

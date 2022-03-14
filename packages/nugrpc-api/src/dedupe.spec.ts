@@ -1,7 +1,7 @@
+import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
 import Axios from "axios"
 import MockAdapter from "axios-mock-adapter"
-import { useAxios } from "."
-import { AbortController } from "native-abort-controller"
+import { useApi } from "."
 
 let mock: MockAdapter
 
@@ -17,7 +17,7 @@ describe('DedupeAdapter', () => {
   it('should cancel previous request with same requestId', async () => {
     mock.onGet('/api/ping').reply(200, { message: 'Pong' })
 
-    const api    = useAxios()
+    const api    = useApi()
     const a      = api.get('/api/ping', { requestId: 'ping' })
     const b      = api.get('/api/ping', { requestId: 'ping' })
     const result = await Promise.allSettled([a, b])
@@ -29,7 +29,7 @@ describe('DedupeAdapter', () => {
   it('should do nothing if requestId is different', async () => {
     mock.onGet('/api/ping').reply(200, { message: 'Pong' })
 
-    const api    = useAxios()
+    const api    = useApi()
     const a      = api.get('/api/ping', { requestId: 'ping/a' })
     const b      = api.get('/api/ping', { requestId: 'ping/b' })
     const result = await Promise.allSettled([a, b])
@@ -41,7 +41,7 @@ describe('DedupeAdapter', () => {
   it('should be able to cancel via AbortController', async () => {
     mock.onGet('/api/ping').reply(200, { message: 'Pong' })
 
-    const api        = useAxios()
+    const api        = useApi()
     const controller = new AbortController()
     const signal     = controller.signal
 
@@ -61,7 +61,7 @@ describe('cancel', () => {
   it('should be cancel request only specific requestId', async () => {
     mock.onGet('/api/ping').reply(200, { message: 'Pong' })
 
-    const api = useAxios()
+    const api = useApi()
     const a   = api.get('/api/ping', { requestId: 'ping/i' })
     const b   = api.get('/api/ping', { requestId: 'ping/j' })
 
@@ -78,7 +78,7 @@ describe('cancelAll', () => {
   it('should be cancel all active request', async () => {
     mock.onGet('/api/ping').reply(200, { message: 'Pong' })
 
-    const api = useAxios()
+    const api = useApi()
     const a   = api.get('/api/ping', { requestId: 'ping/x' })
     const b   = api.get('/api/ping', { requestId: 'ping/y' })
 

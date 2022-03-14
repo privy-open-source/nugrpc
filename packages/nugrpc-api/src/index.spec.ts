@@ -2,7 +2,7 @@ import Axios, { AxiosResponse } from "axios"
 import MockAdapter from "axios-mock-adapter"
 import { jest }from "@jest/globals"
 import {
-  createAxios,
+  createApi,
   onError,
   onRequest,
   onRequestError,
@@ -10,8 +10,8 @@ import {
   onResponseError,
   removeHook,
   resetHook,
-  setAxios,
-  useAxios,
+  setApi,
+  useApi,
 } from "."
 
 let mock: MockAdapter
@@ -24,23 +24,23 @@ afterEach(() => {
   mock.reset()
 })
 
-describe('useAxios', () => {
+describe('useApi', () => {
   it('should return same instance and same instance (singleton)', () => {
-    const a = useAxios()
-    const b = useAxios()
+    const a = useApi()
+    const b = useApi()
 
     expect(a).toStrictEqual(b)
   })
 })
 
-describe('setAxios', () => {
+describe('setApi', () => {
   it('should be able to replace global instance', () => {
-    const old   = useAxios()
-    const fresh = createAxios()
+    const old   = useApi()
+    const fresh = createApi()
 
-    setAxios(fresh)
+    setApi(fresh)
 
-    const last = useAxios()
+    const last = useApi()
 
     expect(last).toStrictEqual(fresh)
     expect(last).not.toStrictEqual(old)
@@ -51,7 +51,7 @@ describe('Hooks utils', () => {
   it('should be able to registering on-request hook using onRequest()', async () => {
     mock.onGet('/api/user').reply(200, [])
 
-    const api      = useAxios()
+    const api      = useApi()
     const fn       = jest.fn((config) => config)
     const config   = { headers: { foo: 'bar' }}
     const expected = expect.objectContaining({
@@ -71,7 +71,7 @@ describe('Hooks utils', () => {
   it('should be able to registering on-response hook using onResponse()', async () => {
     mock.onGet('/api/user').reply(200, { foo: 'bar' })
 
-    const api      = useAxios()
+    const api      = useApi()
     const fn       = jest.fn((response: AxiosResponse) => response)
     const expected = expect.objectContaining({
       data: { foo: 'bar' }
@@ -86,7 +86,7 @@ describe('Hooks utils', () => {
   })
 
   it('should be able to registering on-request-error hook using onRequestError()', async () => {
-    const api = useAxios()
+    const api = useApi()
     const fn  = jest.fn((error) => Promise.reject(error))
 
     onRequestError(fn)
@@ -109,7 +109,7 @@ describe('Hooks utils', () => {
       details: [],
     })
 
-    const api = useAxios()
+    const api = useApi()
     const fn  = jest.fn((error) => error)
 
     onResponseError(fn)
@@ -128,7 +128,7 @@ describe('Hooks utils', () => {
       details: [],
     })
 
-    const api = useAxios()
+    const api = useApi()
     const fn  = jest.fn((error) => Promise.reject(error))
 
     onError(fn)
@@ -155,7 +155,7 @@ describe('Hooks utils', () => {
   it('should be able to remove hook with removeHook()', async () => {
     mock.onGet('/api/user').reply(200, [])
 
-    const api = useAxios()
+    const api = useApi()
     const fn  = jest.fn((response: AxiosResponse) => response)
     const id  = onResponse(fn)
 
@@ -169,7 +169,7 @@ describe('Hooks utils', () => {
   it('should remove all hook with resetHook()', async () => {
     mock.onGet('/api/user').reply(200, [])
 
-    const api = useAxios()
+    const api = useApi()
     const fn  = jest.fn(() => {})
 
     onRequest(fn)
@@ -190,7 +190,7 @@ describe('Inherit instance', () => {
     mock.onGet('/v1/api/user').reply(200, { data: 'v1' })
     mock.onGet('/v2/api/user').reply(200, { data: 'v2' })
 
-    const a = createAxios({ baseURL: '/v1', headers: { foo: 'bar' } })
+    const a = createApi({ baseURL: '/v1', headers: { foo: 'bar' } })
     const b = a.create({ baseURL: '/v2' })
 
     expect(b).not.toStrictEqual(a)
@@ -205,7 +205,7 @@ describe('Inherit instance', () => {
     mock.onGet('/v1/api/user').reply(200, { data: 'v1' })
     mock.onGet('/v2/api/user').reply(200, { data: 'v2' })
 
-    const a  = createAxios({ baseURL: '/v1', headers: { foo: 'bar' } })
+    const a  = createApi({ baseURL: '/v1', headers: { foo: 'bar' } })
     const fn = jest.fn((config) => config)
 
     onRequest(fn, a)

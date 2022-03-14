@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import { $axios, getCode, getMessage } from '@privyid/nugrpc-api'
+import { useApi, getCode, getMessage } from '@privyid/nugrpc-api'
 
 export default {
   async asyncData() {
     try {
-      await $axios.get('/api/error')
+      await useApi().get('/api/error')
     } catch (error) {
       return {
         code   : getCode(error),
