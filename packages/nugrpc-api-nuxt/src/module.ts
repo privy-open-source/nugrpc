@@ -1,4 +1,4 @@
-import { Module } from "@nuxt/types"
+import { Module, NuxtOptions } from "@nuxt/types"
 import { ModuleMeta } from "@nuxt/schema"
 import path from "pathe"
 import type { ApiInstance } from "@privyid/nugrpc-api"
@@ -24,7 +24,7 @@ export const meta: ModuleMeta = {
 }
 
 const NugrpcApi: Module<Partial<Options>> = function (_moduleOptions) {
-  const { nuxt } = this
+  const nuxt = this.nuxt
 
   // Combine options
   const moduleOptions = {
@@ -37,6 +37,7 @@ const NugrpcApi: Module<Partial<Options>> = function (_moduleOptions) {
     process.env.API_PORT ||
     moduleOptions.port ||
     process.env.PORT ||
+    process.env.NUXT_PORT ||
     process.env.npm_package_config_nuxt_port ||
     (this.options.server && this.options.server.port) ||
     3000
@@ -46,6 +47,7 @@ const NugrpcApi: Module<Partial<Options>> = function (_moduleOptions) {
     process.env.API_HOST ||
     moduleOptions.host ||
     process.env.HOST ||
+    process.env.NUXT_HOST ||
     process.env.npm_package_config_nuxt_host ||
     (this.options.server && this.options.server.host) ||
     'localhost'
@@ -88,7 +90,13 @@ declare module '@nuxt/types' {
     $api: ApiInstance;
   }
 
-  export interface NuxtOptions {
+  export interface NuxtConfig {
+    nugrcpApi?: Partial<Options>;
+  }
+}
+
+declare module '@nuxt/schema' {
+  export interface NuxtConfig {
     nugrcpApi?: Partial<Options>;
   }
 }
