@@ -19,10 +19,12 @@
   "dependencies": {
     "abortcontroller-polyfill": "^1.7.3",
     "axios": "^0.26.0",
-    "defu": "^5.0.1"
+    "defu": "^5.0.1",
+    "url-join": "^4.0.1"
   },
   "devDependencies": {
     "@jest/globals": "^27.5.1",
+    "@types/url-join": "^4",
     "axios-mock-adapter": "^1.20.0",
     "cross-env": "^7.0.3",
     "jest": "^27.5.1",

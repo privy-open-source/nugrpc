@@ -7,6 +7,7 @@ import type {
 } from 'axios'
 import DedupeAdapter from './dedupe'
 import QueueAdapter, { QueueOptions } from './queue'
+import urlJoin from 'url-join'
 
 declare module 'axios' {
   export interface AxiosRequestConfig {
@@ -29,6 +30,7 @@ export interface ApiConfig extends Omit<AxiosRequestConfig, 'headers'> {
     patch: AxiosRequestHeaders;
   }>;
   queue?: QueueOptions;
+  prefixURL?: string;
 }
 
 type onFulfilledOf<T> = T extends (onFulfilled: infer R) => number ? NonNullable<R> : never
@@ -80,12 +82,17 @@ export function setApi (instance: ApiInstance) {
 }
 
 export function createApi (options: ApiConfig = {}): ApiInstance {
+  const baseURL = (options.prefixURL && options.baseURL)
+    ? urlJoin(options.baseURL, options.prefixURL)
+    : options.baseURL
+
   const originalAdapter = options.adapter ?? Axios.defaults.adapter!
   const queue           = new QueueAdapter(originalAdapter, options.queue)
   const dedupe          = new DedupeAdapter(queue.adapter())
   const adapter         = dedupe.adapter()
   const instance        = Axios.create({
     ...options,
+    baseURL,
     adapter,
   })
 

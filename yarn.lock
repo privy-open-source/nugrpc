@@ -3003,6 +3003,7 @@ __metadata:
   resolution: "@privyid/nugrpc-api@workspace:packages/nugrpc-api"
   dependencies:
     "@jest/globals": ^27.5.1
+    "@types/url-join": ^4
     abortcontroller-polyfill: ^1.7.3
     axios: ^0.26.0
     axios-mock-adapter: ^1.20.0
@@ -3010,6 +3011,7 @@ __metadata:
     defu: ^5.0.1
     jest: ^27.5.1
     unbuild: 0.6.9
+    url-join: ^4.0.1
   languageName: unknown
   linkType: soft
 
@@ -4022,7 +4024,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/url-join@npm:4.0.1":
+"@types/url-join@npm:4.0.1, @types/url-join@npm:^4":
   version: 4.0.1
   resolution: "@types/url-join@npm:4.0.1"
   checksum: 29444b90e165b3970c8ad3fcef1e2de092e72b67e1f3aaff3016eea1697f98a01a28fb4f71f8044e3338a95bd2262327e9299be416efe5297018658760a331b4
@@ -14363,6 +14365,7 @@ __metadata:
   resolution: "nuxt3-app@workspace:playground/nuxt3"
   dependencies:
     "@privyid/nugrpc-api-nuxt": "workspace:^"
+    cross-env: ^7.0.3
     nuxt3: latest
   languageName: unknown
   linkType: soft
@@ -20195,7 +20198,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"url-join@npm:4.0.1":
+"url-join@npm:4.0.1, url-join@npm:^4.0.1":
   version: 4.0.1
   resolution: "url-join@npm:4.0.1"
   checksum: f74e868bf25dbc8be6a8d7237d4c36bb5b6c62c72e594d5ab1347fe91d6af7ccd9eb5d621e30152e4da45c2e9a26bec21390e911ab54a62d4d82e76028374ee5

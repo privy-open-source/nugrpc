@@ -38,7 +38,7 @@ export default class TransformerTS extends TransformAdapter implements Saveable 
     this.writer.write("import { useApi, ApiResponse, AxiosRequestConfig } from '@privyid/nugrpc-api'")
     this.writer.line()
 
-    this.writer.write(`export const $api = useApi().create({ baseURL: '${context.baseUrl ?? '/'}' })`)
+    this.writer.write(`export const $api = useApi().create({ prefixURL: '${context.baseUrl ?? '/'}' })`)
     this.writer.line()
   }
 

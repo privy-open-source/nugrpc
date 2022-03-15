@@ -223,4 +223,15 @@ describe('Inherit instance', () => {
     expect(fn).toBeCalled()
     expect(fn).toBeCalledWith(expected)
   })
+
+  it('should prefixing baseUrl if prefixURL is present', async () => {
+    mock.onGet('/v1/api/user').reply(200, { data: 'data-user' })
+
+    const a        = createApi({ baseURL: '/v1', headers: { foo: 'bar' } })
+    const b        = a.create({ prefixURL: 'api' })
+    const response = await b.get('user')
+
+    expect(response.status).toBe(200)
+    expect(response.data.data).toBe('data-user')
+  })
 })
