@@ -19,8 +19,8 @@
   "dependencies": {
     "abortcontroller-polyfill": "^1.7.3",
     "axios": "^0.26.0",
-    "defu": "^5.0.1",
-    "url-join": "^4.0.1"
+    "defu": "^6.0.0",
+    "native-abort-controller": "^1.0.4"
   },
   "devDependencies": {
     "@jest/globals": "^27.5.1",

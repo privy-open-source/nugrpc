@@ -22,7 +22,7 @@
     "unbuild": "0.7.0"
   },
   "dependencies": {
-    "@faker-js/faker": "6.0.0-beta.0"
+    "@faker-js/faker": "6.0.0"
   },
   "license": "MIT",
   "peerDependencies": {
