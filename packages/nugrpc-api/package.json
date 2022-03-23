@@ -24,7 +24,7 @@
   "dependencies": {
     "abort-controller": "^3.0.0",
     "axios": "^0.26.0",
-    "defu": "^5.0.1",
+    "defu": "^6.0.0",
     "native-abort-controller": "^1.0.4"
   },
   "devDependencies": {
