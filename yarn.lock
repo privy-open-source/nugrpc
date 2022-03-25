@@ -1067,7 +1067,7 @@ __metadata:
     defu: ^6.0.0
     jest: 27.5.1
     native-abort-controller: ^1.0.4
-    unbuild: 0.6.9
+    unbuild: 0.7.2
   languageName: unknown
   linkType: soft
 
@@ -1088,7 +1088,7 @@ __metadata:
     lodash: 4.17.21
     pathe: ^0.2.0
     protobufjs: 6.11.2
-    unbuild: 0.7.0
+    unbuild: 0.7.2
     url-join: 4.0.1
   peerDependencies:
     "@privyid/nugrpc-transformer": "workspace:^"
@@ -1102,7 +1102,7 @@ __metadata:
     "@faker-js/faker": 6.0.0
     "@privyid/nugrpc-fackery": "workspace:^"
     jest: 27.5.1
-    unbuild: 0.7.0
+    unbuild: 0.7.2
   peerDependencies:
     "@privyid/nugrpc-fackery": "workspace:^"
   languageName: unknown
@@ -1115,7 +1115,7 @@ __metadata:
     "@types/safe-regex": 1.1.3
     jest: 27.5.1
     safe-regex: ^2.1.1
-    unbuild: 0.7.0
+    unbuild: 0.7.2
   languageName: unknown
   linkType: soft
 
@@ -1126,7 +1126,7 @@ __metadata:
     "@privyid/nugrpc-utils": "workspace:^"
     "@types/jest": 27.4.1
     jest: 27.5.1
-    unbuild: 0.7.0
+    unbuild: 0.7.2
   languageName: unknown
   linkType: soft
 
@@ -1148,7 +1148,7 @@ __metadata:
     jest: 27.5.1
     lodash: 4.17.21
     protobufjs: 6.11.2
-    unbuild: 0.7.0
+    unbuild: 0.7.2
     url-join: 4.0.1
   languageName: unknown
   linkType: soft
@@ -1170,7 +1170,7 @@ __metadata:
     jest: 27.5.1
     lodash: ^4.17.21
     pathe: 0.2.0
-    unbuild: 0.7.0
+    unbuild: 0.7.2
   languageName: unknown
   linkType: soft
 
@@ -1184,7 +1184,7 @@ __metadata:
     jest: 27.5.1
     openapi-types: 10.0.0
     pathe: 0.2.0
-    unbuild: 0.7.0
+    unbuild: 0.7.2
   languageName: unknown
   linkType: soft
 
@@ -1198,7 +1198,7 @@ __metadata:
     "@types/jest": 27.4.1
     jest: 27.5.1
     pathe: 0.2.0
-    unbuild: 0.7.0
+    unbuild: 0.7.2
   languageName: unknown
   linkType: soft
 
@@ -1209,7 +1209,7 @@ __metadata:
     "@privyid/nugrpc-utils": "workspace:^"
     jest: 27.5.1
     pathe: 0.2.0
-    unbuild: 0.7.0
+    unbuild: 0.7.2
   languageName: unknown
   linkType: soft
 
@@ -1225,7 +1225,7 @@ __metadata:
     lodash: ^4.17.21
     pathe: 0.2.0
     protobufjs: ^6.11.2
-    unbuild: 0.7.0
+    unbuild: 0.7.2
   languageName: unknown
   linkType: soft
 
@@ -1237,7 +1237,7 @@ __metadata:
     esbuild: 0.14.27
     esbuild-jest: 0.5.0
     jest: 27.5.1
-    unbuild: 0.7.0
+    unbuild: 0.7.2
     validator: 13.7.0
   languageName: unknown
   linkType: soft
@@ -1249,7 +1249,7 @@ __metadata:
     esbuild: 0.14.27
     esbuild-jest: 0.5.0
     jest: 27.5.1
-    unbuild: 0.7.0
+    unbuild: 0.7.2
   languageName: unknown
   linkType: soft
 
@@ -1260,7 +1260,7 @@ __metadata:
     "@nuxt/types": 2.15.8
     "@types/rimraf": 3.0.2
     rimraf: 3.0.2
-    unbuild: 0.7.0
+    unbuild: 0.7.2
   languageName: unknown
   linkType: soft
 
@@ -1348,7 +1348,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:^21.0.1, @rollup/plugin-commonjs@npm:^21.0.2":
+"@rollup/plugin-commonjs@npm:^21.0.2":
   version: 21.0.2
   resolution: "@rollup/plugin-commonjs@npm:21.0.2"
   dependencies:
@@ -1392,18 +1392,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-replace@npm:^3.0.1":
-  version: 3.1.0
-  resolution: "@rollup/plugin-replace@npm:3.1.0"
-  dependencies:
-    "@rollup/pluginutils": ^3.1.0
-    magic-string: ^0.25.7
-  peerDependencies:
-    rollup: ^1.20.0 || ^2.0.0
-  checksum: 9f833d40f7ebd6bb32b1c7a118fedd27a6d63e591018543740c78d3bc6fe67efa7048c6457bcadf8f982385b78e33ff8e38a67ddd4d11c15d9c81898a0757c13
-  languageName: node
-  linkType: hard
-
 "@rollup/plugin-replace@npm:^4.0.0":
   version: 4.0.0
   resolution: "@rollup/plugin-replace@npm:4.0.0"
@@ -1439,7 +1427,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/pluginutils@npm:^4.1.2, @rollup/pluginutils@npm:^4.2.0":
+"@rollup/pluginutils@npm:^4.2.0":
   version: 4.2.0
   resolution: "@rollup/pluginutils@npm:4.2.0"
   dependencies:
@@ -2978,7 +2966,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^5.0.0, chalk@npm:^5.0.1":
+"chalk@npm:^5.0.1":
   version: 5.0.1
   resolution: "chalk@npm:5.0.1"
   checksum: 7b45300372b908f0471fbf7389ce2f5de8d85bb949026fd51a1b95b10d0ed32c7ed5aab36dd5e9d2bf3191867909b4404cef75c5f4d2d1daeeacd301dd280b76
@@ -4344,7 +4332,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.14.14, esbuild@npm:^0.14.25":
+"esbuild@npm:^0.14.25":
   version: 0.14.25
   resolution: "esbuild@npm:0.14.25"
   dependencies:
@@ -6578,7 +6566,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jiti@npm:^1.12.14, jiti@npm:^1.12.9, jiti@npm:^1.13.0":
+"jiti@npm:^1.12.9, jiti@npm:^1.13.0":
   version: 1.13.0
   resolution: "jiti@npm:1.13.0"
   bin:
@@ -7334,7 +7322,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mkdist@npm:^0.3.10, mkdist@npm:^0.3.9":
+"mkdist@npm:^0.3.10":
   version: 0.3.10
   resolution: "mkdist@npm:0.3.10"
   dependencies:
@@ -7363,7 +7351,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mlly@npm:^0.4.1, mlly@npm:^0.4.3":
+"mlly@npm:^0.4.3":
   version: 0.4.3
   resolution: "mlly@npm:0.4.3"
   checksum: d9d50babe73ab1157565e518dd38f7c4f0c3813ff36bb4eaff65ea51ea768f1ac76b0ae739edf261425dafe2efff11ef15546adbd94c2cd6e42beea8029a3aba
@@ -7594,7 +7582,7 @@ __metadata:
   dependencies:
     cross-env: ^7.0.3
     jest: 27.5.1
-    unbuild: 0.7.0
+    unbuild: 0.7.2
   languageName: unknown
   linkType: soft
 
@@ -8076,13 +8064,6 @@ __metadata:
   version: 1.1.2
   resolution: "prelude-ls@npm:1.1.2"
   checksum: c4867c87488e4a0c233e158e4d0d5565b609b105d75e4c05dc760840475f06b731332eb93cc8c9cecb840aa8ec323ca3c9a56ad7820ad2e63f0261dadcb154e4
-  languageName: node
-  linkType: hard
-
-"pretty-bytes@npm:^5.6.0":
-  version: 5.6.0
-  resolution: "pretty-bytes@npm:5.6.0"
-  checksum: 9c082500d1e93434b5b291bd651662936b8bd6204ec9fa17d563116a192d6d86b98f6d328526b4e8d783c07d5499e2614a807520249692da9ec81564b2f439cd
   languageName: node
   linkType: hard
 
@@ -8597,7 +8578,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-dts@npm:^4.1.0, rollup-plugin-dts@npm:^4.2.0":
+"rollup-plugin-dts@npm:^4.2.0":
   version: 4.2.0
   resolution: "rollup-plugin-dts@npm:4.2.0"
   dependencies:
@@ -8629,7 +8610,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.66.1, rollup@npm:^2.70.0":
+"rollup@npm:^2.70.0":
   version: 2.70.0
   resolution: "rollup@npm:2.70.0"
   dependencies:
@@ -9727,7 +9708,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.5.5, typescript@npm:^4.6.2":
+"typescript@npm:^4.6.2":
   version: 4.6.2
   resolution: "typescript@npm:4.6.2"
   bin:
@@ -9737,7 +9718,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.5.5#~builtin<compat/typescript>, typescript@patch:typescript@^4.6.2#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.6.2#~builtin<compat/typescript>":
   version: 4.6.2
   resolution: "typescript@patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=bda367"
   bin:
@@ -9756,46 +9737,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unbuild@npm:0.6.9":
-  version: 0.6.9
-  resolution: "unbuild@npm:0.6.9"
-  dependencies:
-    "@rollup/plugin-alias": ^3.1.9
-    "@rollup/plugin-commonjs": ^21.0.1
-    "@rollup/plugin-json": ^4.1.0
-    "@rollup/plugin-node-resolve": ^13.1.3
-    "@rollup/plugin-replace": ^3.0.1
-    "@rollup/pluginutils": ^4.1.2
-    chalk: ^5.0.0
-    consola: ^2.15.3
-    defu: ^5.0.1
-    esbuild: ^0.14.14
-    hookable: ^5.1.1
-    jiti: ^1.12.14
-    magic-string: ^0.25.7
-    mkdirp: ^1.0.4
-    mkdist: ^0.3.9
-    mlly: ^0.4.1
-    mri: ^1.2.0
-    pathe: ^0.2.0
-    pkg-types: ^0.3.2
-    pretty-bytes: ^5.6.0
-    rimraf: ^3.0.2
-    rollup: ^2.66.1
-    rollup-plugin-dts: ^4.1.0
-    rollup-plugin-esbuild: ^4.8.2
-    scule: ^0.2.1
-    typescript: ^4.5.5
-    untyped: ^0.3.0
-  bin:
-    unbuild: dist/cli.mjs
-  checksum: f3db7b040007247ffd7e1ba66e895bb6fd85a5f1e0f8253b862b6ef0f289d0d394e9cc8fee5edbdef901fcfaecafa2cea259b314919f2c2ca7855e22cdc0cdd6
-  languageName: node
-  linkType: hard
-
-"unbuild@npm:0.7.0":
-  version: 0.7.0
-  resolution: "unbuild@npm:0.7.0"
+"unbuild@npm:0.7.2":
+  version: 0.7.2
+  resolution: "unbuild@npm:0.7.2"
   dependencies:
     "@rollup/plugin-alias": ^3.1.9
     "@rollup/plugin-commonjs": ^21.0.2
@@ -9826,7 +9770,7 @@ __metadata:
     untyped: ^0.4.0
   bin:
     unbuild: dist/cli.mjs
-  checksum: 085af2e17825859e50979909c127e38a149abcc2f75ca57d5e47d1699d042ccbac696fadf6808b24e6ee7ac361915933efbc6452f5102fbb856997ff89fe473b
+  checksum: 6f412c9cbd2dca17ac9907440ebab5fe294446b0aa31073091fc6f9701929e292bf7365cb7e3097c761b76d695c073a6646d5012a8d5aa099fc78d946e57f014
   languageName: node
   linkType: hard
 
@@ -9919,13 +9863,6 @@ __metadata:
     has-value: ^0.3.1
     isobject: ^3.0.0
   checksum: 5990ecf660672be2781fc9fb322543c4aa592b68ed9a3312fa4df0e9ba709d42e823af090fc8f95775b4cd2c9a5169f7388f0cec39238b6d0d55a69fc2ab6b29
-  languageName: node
-  linkType: hard
-
-"untyped@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "untyped@npm:0.3.0"
-  checksum: f907032a4aee6db1564f799366c037a53a2b249fd7c418a0c3ce712e2fef01ea77f0f1296a95e7c21550283d09f598a0ba2c8801126eee7efb66afb6fe8819e0
   languageName: node
   linkType: hard
 
