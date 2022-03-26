@@ -5,7 +5,7 @@
     "@nuxt/types": "2.15.8",
     "@types/rimraf": "3.0.2",
     "rimraf": "3.0.2",
-    "unbuild": "0.7.0"
+    "unbuild": "0.7.2"
   },
   "license": "MIT"
 }
