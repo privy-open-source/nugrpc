@@ -19,7 +19,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/babel__generator": "7.6.4",
-    "@types/lodash": "4.14.180",
+    "@types/lodash": "4.14.181",
     "jest": "27.5.1",
     "pathe": "0.2.0",
     "unbuild": "0.7.2"

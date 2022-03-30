@@ -1080,7 +1080,7 @@ __metadata:
     "@privyid/nugrpc-transformer-ts": "workspace:^"
     "@privyid/nugrpc-utils": "workspace:^"
     "@types/fs-extra": 9.0.13
-    "@types/lodash": 4.14.180
+    "@types/lodash": 4.14.181
     esbuild: 0.14.28
     esbuild-jest: 0.5.0
     fs-extra: 10.0.1
@@ -1141,7 +1141,7 @@ __metadata:
     "@types/body-parser": 1.19.2
     "@types/express": 4.17.13
     "@types/jest": 27.4.1
-    "@types/lodash": 4.14.180
+    "@types/lodash": 4.14.181
     "@types/url-join": 4.0.1
     body-parser: 1.19.2
     express: 4.17.3
@@ -1166,7 +1166,7 @@ __metadata:
     "@privyid/nugrpc-validator": "workspace:^"
     "@privyid/nugrpc-writer": "workspace:^"
     "@types/babel__generator": 7.6.4
-    "@types/lodash": 4.14.180
+    "@types/lodash": 4.14.181
     jest: 27.5.1
     lodash: ^4.17.21
     pathe: 0.2.0
@@ -1218,7 +1218,7 @@ __metadata:
   resolution: "@privyid/nugrpc-utils@workspace:packages/nugrpc-utils"
   dependencies:
     "@types/jest": 27.4.1
-    "@types/lodash": 4.14.180
+    "@types/lodash": 4.14.181
     alias: 0.0.5
     hq: 0.0.4
     jest: 27.5.1
@@ -1730,10 +1730,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:4.14.180":
-  version: 4.14.180
-  resolution: "@types/lodash@npm:4.14.180"
-  checksum: fc42ae3473695cac6e91553f832fef8eb51a31c1c0381cafa81b00dc3efe18e279786bdda77caf0b90a8340ba2ba7aa46ae6541d69870565f775d04c89128bc1
+"@types/lodash@npm:4.14.181":
+  version: 4.14.181
+  resolution: "@types/lodash@npm:4.14.181"
+  checksum: 0d1863d8383fd2f8bb42e9e3fc1d6255bb88ff034d6df848941063698944313dae944fc1270315613e3d303fae7c7a9a86085ad3235ed6204c56c4b0b3699aa9
   languageName: node
   linkType: hard
 
