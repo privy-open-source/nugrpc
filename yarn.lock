@@ -639,13 +639,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@grpc/grpc-js@npm:1.5.10":
-  version: 1.5.10
-  resolution: "@grpc/grpc-js@npm:1.5.10"
+"@grpc/grpc-js@npm:1.6.1":
+  version: 1.6.1
+  resolution: "@grpc/grpc-js@npm:1.6.1"
   dependencies:
     "@grpc/proto-loader": ^0.6.4
     "@types/node": ">=12.12.47"
-  checksum: 1cce7479d68c0c5c39f99d7f61558d1c15b364f07a0b363610bc3b659707406536cefaacf3230ed6d5c57a208be2597cfee9a06303878c6e18711b0b5555a046
+  checksum: a2b998ca2f2e44f3a6355ed6260fe32cb3232ab3f66aa9fb01b2272073ee5a7c7c06435e81217e1a0af6ca65048f66ea7f9de023f311bfb4ab13cd9a250e6f9b
   languageName: node
   linkType: hard
 
@@ -1134,7 +1134,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@privyid/nugrpc-transformer-proxy@workspace:packages/nugrpc-transformer-proxy"
   dependencies:
-    "@grpc/grpc-js": 1.5.10
+    "@grpc/grpc-js": 1.6.1
     "@privyid/google-rpc": "workspace:^"
     "@privyid/nugrpc-transformer": "workspace:^"
     "@privyid/nugrpc-utils": "workspace:^"
