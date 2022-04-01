@@ -17,7 +17,7 @@
     "coverage": "jest --coverage"
   },
   "devDependencies": {
-    "esbuild": "0.14.28",
+    "esbuild": "0.14.29",
     "esbuild-jest": "0.5.0",
     "jest": "27.5.1",
     "unbuild": "0.7.2"
