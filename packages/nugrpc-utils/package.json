@@ -18,12 +18,12 @@
   },
   "devDependencies": {
     "@types/jest": "27.4.1",
-    "@types/lodash": "4.14.180",
+    "@types/lodash": "4.14.181",
     "alias": "0.0.5",
     "hq": "0.0.4",
     "jest": "27.5.1",
     "pathe": "0.2.0",
-    "unbuild": "0.7.0"
+    "unbuild": "0.7.2"
   },
   "dependencies": {
     "lodash": "^4.17.21",
