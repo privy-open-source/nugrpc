@@ -17,7 +17,7 @@
     "coverage": "jest --coverage"
   },
   "dependencies": {
-    "@grpc/grpc-js": "1.6.1",
+    "@grpc/grpc-js": "1.6.2",
     "@privyid/google-rpc": "workspace:^",
     "@privyid/nugrpc-transformer": "workspace:^",
     "@privyid/nugrpc-utils": "workspace:^",
