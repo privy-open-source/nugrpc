@@ -34,7 +34,7 @@
     "@types/lodash": "4.14.181",
     "@types/url-join": "4.0.1",
     "jest": "27.5.1",
-    "unbuild": "0.7.2"
+    "unbuild": "0.7.4"
   },
   "license": "MIT"
 }
