@@ -19,7 +19,7 @@
   "devDependencies": {
     "@types/jest": "27.4.1",
     "jest": "27.5.1",
-    "openapi-types": "10.0.0",
+    "openapi-types": "11.0.0",
     "pathe": "0.2.0",
     "unbuild": "0.7.4"
   },
