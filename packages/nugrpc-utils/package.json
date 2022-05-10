@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@types/jest": "27.4.1",
-    "@types/lodash": "4.14.181",
+    "@types/lodash": "4.14.182",
     "alias": "0.0.5",
     "hq": "0.0.4",
     "jest": "27.5.1",
