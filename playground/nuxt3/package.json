@@ -1,6 +1,6 @@
 {
   "name": "nuxt3-app",
-  "packageManager": "yarn@3.2.0",
+  "packageManager": "yarn@3.2.1",
   "private": true,
   "scripts": {
     "dev": "nuxi dev",
