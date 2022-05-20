@@ -15,3 +15,7 @@
 - Faker response generator for mocking on development phase
 - ~~Support both Nuxt 2 and Nuxt 3~~ - *TODO*
 - ~~Vue form builder~~ - *TODO*
+
+
+## License
+[MIT](/LICENSE) License

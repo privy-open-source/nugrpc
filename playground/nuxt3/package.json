@@ -1,6 +1,6 @@
 {
   "name": "nuxt3-app",
-  "packageManager": "yarn@3.2.0",
+  "packageManager": "yarn@3.2.1",
   "private": true,
   "scripts": {
     "dev": "cross-env PORT=5000 nuxi dev",
@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "nuxt3": "latest"
+    "nuxt": "3.0.0-rc.3"
   },
   "dependencies": {
     "@privyid/nugrpc-api-nuxt": "workspace:^"

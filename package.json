@@ -1,6 +1,6 @@
 {
   "name": "nugrpc-monorepo",
-  "packageManager": "yarn@3.2.0",
+  "packageManager": "yarn@3.2.1",
   "private": true,
   "workspaces": [
     "packages/*",
@@ -14,7 +14,7 @@
   "license": "MIT",
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "jest": "27.5.1",
-    "unbuild": "0.7.2"
+    "jest": "28.1.0",
+    "unbuild": "0.7.4"
   }
 }

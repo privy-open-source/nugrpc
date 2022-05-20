@@ -1,6 +1,6 @@
 {
   "name": "@privyid/nugrpc-transformer-proxy",
-  "packageManager": "yarn@3.2.0",
+  "packageManager": "yarn@3.2.1",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -17,12 +17,12 @@
     "coverage": "jest --coverage"
   },
   "dependencies": {
-    "@grpc/grpc-js": "1.6.1",
+    "@grpc/grpc-js": "1.6.7",
     "@privyid/google-rpc": "workspace:^",
     "@privyid/nugrpc-transformer": "workspace:^",
     "@privyid/nugrpc-utils": "workspace:^",
-    "body-parser": "1.19.2",
-    "express": "4.17.3",
+    "body-parser": "1.20.0",
+    "express": "4.18.1",
     "lodash": "4.17.21",
     "protobufjs": "6.11.2",
     "url-join": "4.0.1"
@@ -31,10 +31,10 @@
     "@types/body-parser": "1.19.2",
     "@types/express": "4.17.13",
     "@types/jest": "27.4.1",
-    "@types/lodash": "4.14.181",
+    "@types/lodash": "4.14.182",
     "@types/url-join": "4.0.1",
-    "jest": "27.5.1",
-    "unbuild": "0.7.2"
+    "jest": "28.1.0",
+    "unbuild": "0.7.4"
   },
   "license": "MIT"
 }

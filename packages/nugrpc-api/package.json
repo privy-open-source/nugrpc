@@ -1,6 +1,6 @@
 {
   "name": "@privyid/nugrpc-api",
-  "packageManager": "yarn@3.2.0",
+  "packageManager": "yarn@3.2.1",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -23,12 +23,12 @@
     "native-abort-controller": "^1.0.4"
   },
   "devDependencies": {
-    "@jest/globals": "^27.5.1",
+    "@jest/globals": "28.1.0",
     "@types/url-join": "^4",
     "axios-mock-adapter": "^1.20.0",
     "cross-env": "^7.0.3",
-    "jest": "27.5.1",
-    "unbuild": "0.7.2"
+    "jest": "28.1.0",
+    "unbuild": "0.7.4"
   },
   "license": "MIT"
 }

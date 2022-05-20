@@ -1,6 +1,6 @@
 {
   "name": "@privyid/nugrpc-codegen",
-  "packageManager": "yarn@3.2.0",
+  "packageManager": "yarn@3.2.1",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -21,7 +21,7 @@
     "@privyid/nugrpc-transformer-swagger": "workspace:^",
     "@privyid/nugrpc-transformer-ts": "workspace:^",
     "@privyid/nugrpc-utils": "workspace:^",
-    "fs-extra": "10.0.1",
+    "fs-extra": "10.1.0",
     "lodash": "4.17.21",
     "pathe": "^0.2.0",
     "protobufjs": "6.11.2",
@@ -30,11 +30,11 @@
   "devDependencies": {
     "@privyid/nugrpc-transformer": "workspace:^",
     "@types/fs-extra": "9.0.13",
-    "@types/lodash": "4.14.181",
-    "esbuild": "0.14.30",
+    "@types/lodash": "4.14.182",
+    "esbuild": "0.14.39",
     "esbuild-jest": "0.5.0",
-    "jest": "27.5.1",
-    "unbuild": "0.7.2"
+    "jest": "28.1.0",
+    "unbuild": "0.7.4"
   },
   "peerDependencies": {
     "@privyid/nugrpc-transformer": "workspace:^"
