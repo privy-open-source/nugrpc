@@ -1,6 +1,6 @@
 import Axios from "axios"
 import MockAdapter from "axios-mock-adapter"
-import { useAxios } from "."
+import { useApi } from "."
 import { getCode, getMessage, isApiError } from "./error"
 
 let mock: MockAdapter
@@ -22,7 +22,7 @@ describe('Error utils', () => {
         details: [],
       })
 
-      const api = useAxios()
+      const api = useApi()
 
       try {
         await api.get('/api/user')
@@ -49,7 +49,7 @@ describe('Error utils', () => {
         details: [],
       })
 
-      const api = useAxios()
+      const api = useApi()
 
       try {
         await api.get('/api/user')
@@ -66,7 +66,7 @@ describe('Error utils', () => {
         details: [],
       })
 
-      const api = useAxios()
+      const api = useApi()
 
       try {
         await api.get('/api/user')
@@ -99,7 +99,7 @@ describe('Error utils', () => {
         ],
       })
 
-      const api          = useAxios()
+      const api          = useApi()
       const normalError  = new Error('Not Error')
       const resposeError = await (api.get('/api/not-found').catch((error) => error))
       const grpcError    = await (api.get('/api/user').catch((error) => error))

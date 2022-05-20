@@ -2,7 +2,8 @@ import { defineBuildConfig } from "unbuild"
 
 export default defineBuildConfig({
   entries: [
-    './src/index',
+    './src/module',
+    { input: './src/runtime/', outDir: './dist/runtime/' },
   ],
   declaration: true,
   rollup     : {
@@ -10,4 +11,9 @@ export default defineBuildConfig({
     cjsBridge: true,
     esbuild  : { tsconfig: 'tsconfig.build.json' }
   },
+  externals: [
+    '@nuxt/types',
+    '@nuxt/schema',
+    '@nuxt/schema-edge',
+  ]
 })

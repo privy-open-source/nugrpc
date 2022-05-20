@@ -9,11 +9,6 @@
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
-    },
-    "./error": {
-      "require": "./dist/error.cjs",
-      "import": "./dist/error.mjs",
-      "types": "./dist/error.d.ts"
     }
   },
   "scripts": {
@@ -22,13 +17,14 @@
     "coverage": "jest --coverage"
   },
   "dependencies": {
-    "abort-controller": "^3.0.0",
+    "abortcontroller-polyfill": "^1.7.3",
     "axios": "^0.26.0",
     "defu": "^6.0.0",
     "native-abort-controller": "^1.0.4"
   },
   "devDependencies": {
     "@jest/globals": "28.1.0",
+    "@types/url-join": "^4",
     "axios-mock-adapter": "^1.20.0",
     "cross-env": "^7.0.3",
     "jest": "28.1.0",

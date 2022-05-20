@@ -3,15 +3,16 @@
   "packageManager": "yarn@3.2.1",
   "private": true,
   "scripts": {
-    "dev": "nuxi dev",
+    "dev": "cross-env PORT=5000 nuxi dev",
     "build": "nuxi build",
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
-    "nuxt3": "latest"
+    "cross-env": "^7.0.3",
+    "nuxt": "3.0.0-rc.3"
   },
   "dependencies": {
-    "@privyid/nugrpc-api": "workspace:^"
+    "@privyid/nugrpc-api-nuxt": "workspace:^"
   },
   "installConfig": {
     "hoistingLimits": "workspaces"

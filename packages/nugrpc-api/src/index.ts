@@ -1,3 +1,4 @@
+import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
 import Axios, { AxiosInstance, AxiosRequestHeaders, AxiosStatic } from 'axios'
 import defu from 'defu'
 import type {
@@ -6,6 +7,7 @@ import type {
 } from 'axios'
 import DedupeAdapter from './dedupe'
 import QueueAdapter, { QueueOptions } from './queue'
+import urlJoin from 'url-join'
 
 declare module 'axios' {
   export interface AxiosRequestConfig {
@@ -14,11 +16,12 @@ declare module 'axios' {
   }
 
   export interface AxiosStatic extends AxiosInstance {
-    create (config?: AxiosCreateConfig): AxiosInstance;
+    create (config?: ApiConfig): AxiosInstance;
   }
 }
-export interface AxiosCreateConfig extends Omit<AxiosRequestConfig, 'headers'> {
-  headers?: AxiosRequestHeaders | Partial<{
+export interface ApiConfig extends Omit<AxiosRequestConfig, 'headers'> {
+  headers?: AxiosRequestHeaders & Partial<{
+    common: AxiosRequestHeaders;
     delete: AxiosRequestHeaders;
     get: AxiosRequestHeaders;
     head: AxiosRequestHeaders;
@@ -27,6 +30,7 @@ export interface AxiosCreateConfig extends Omit<AxiosRequestConfig, 'headers'> {
     patch: AxiosRequestHeaders;
   }>;
   queue?: QueueOptions;
+  prefixURL?: string;
 }
 
 type onFulfilledOf<T> = T extends (onFulfilled: infer R) => number ? NonNullable<R> : never
@@ -55,36 +59,40 @@ export type Hooks = {
 export type HooksMap = {
   [K in keyof Hooks]: Map<number, Hooks[K]>
 }
-export interface AxiosExtended extends AxiosInstance {
+export interface ApiInstance extends AxiosInstance {
   hooks: HooksMap;
   cancel: InstanceType<typeof DedupeAdapter>['cancel'];
   cancelAll: InstanceType<typeof DedupeAdapter>['cancelAll'];
   dedupe: DedupeAdapter;
   queue: QueueAdapter;
-  create (this: AxiosExtended, config?: AxiosCreateConfig): AxiosExtended,
+  create (this: ApiInstance, config?: ApiConfig): ApiInstance,
 }
 
+let api: ApiInstance
 
-let singleton: AxiosExtended
+export function useApi (): ApiInstance {
+  if (!api)
+    api = createApi()
 
-export function useAxios (): AxiosExtended {
-  if (!singleton)
-    singleton = createAxios()
-
-  return singleton
+  return api
 }
 
-export function setAxios (instance: AxiosExtended) {
-  singleton = instance
+export function setApi (instance: ApiInstance) {
+  api = instance
 }
 
-export function createAxios (options: AxiosCreateConfig = {}): AxiosExtended {
+export function createApi (options: ApiConfig = {}): ApiInstance {
+  const baseURL = (options.prefixURL && options.baseURL)
+    ? urlJoin(options.baseURL, options.prefixURL)
+    : options.baseURL
+
   const originalAdapter = options.adapter ?? Axios.defaults.adapter!
   const queue           = new QueueAdapter(originalAdapter, options.queue)
   const dedupe          = new DedupeAdapter(queue.adapter())
   const adapter         = dedupe.adapter()
   const instance        = Axios.create({
     ...options,
+    baseURL,
     adapter,
   })
 
@@ -101,8 +109,8 @@ export function createAxios (options: AxiosCreateConfig = {}): AxiosExtended {
     queue    : queue,
     dedupe   : dedupe,
     hooks    : hooks,
-    create   : function (this: AxiosExtended, newOptions: AxiosCreateConfig = {}): AxiosExtended {
-      const instance = createAxios(defu(
+    create   : function (this: ApiInstance, newOptions: ApiConfig = {}): ApiInstance {
+      const instance = createApi(defu(
         newOptions,
         { adapter: originalAdapter },
         options,
@@ -113,30 +121,30 @@ export function createAxios (options: AxiosCreateConfig = {}): AxiosExtended {
   })
 }
 
-export function onRequest (fn: RequestHook, instance = useAxios()) {
+export function onRequest (fn: RequestHook, instance = useApi()) {
   return addHook('onRequest', fn, instance)
 }
 
-export function onResponse (fn: ResponseHook, instance = useAxios()) {
+export function onResponse (fn: ResponseHook, instance = useApi()) {
   return addHook('onResponse', fn, instance)
 }
 
-export function onRequestError (fn: ErrorHook, instance = useAxios()) {
+export function onRequestError (fn: ErrorHook, instance = useApi()) {
   return addHook('onRequestError', fn, instance)
 }
 
-export function onResponseError (fn: ErrorHook, instance = useAxios()) {
+export function onResponseError (fn: ErrorHook, instance = useApi()) {
   return addHook('onResponseError', fn, instance)
 }
 
-export function onError (fn: ErrorHook, instance = useAxios()) {
+export function onError (fn: ErrorHook, instance = useApi()) {
   const a = onRequestError(fn, instance)
   const b = onResponseError(fn, instance)
 
   return [a, b]
 }
 
-export function addHook<K extends keyof Hooks> (name: K, fn: Hooks[K], instance = useAxios()): number | undefined {
+export function addHook<K extends keyof Hooks> (name: K, fn: Hooks[K], instance = useApi()): number | undefined {
   let id: number | undefined
 
   if (name === 'onRequest')
@@ -157,7 +165,7 @@ export function addHook<K extends keyof Hooks> (name: K, fn: Hooks[K], instance 
   return id
 }
 
-export function removeHook<K extends keyof HooksMap> (name: K, id: number, instance = useAxios()): void {
+export function removeHook<K extends keyof HooksMap> (name: K, id: number, instance = useApi()): void {
   if (name === 'onRequest' || name === 'onRequestError')
     instance.interceptors.request.eject(id)
 
@@ -167,7 +175,7 @@ export function removeHook<K extends keyof HooksMap> (name: K, id: number, insta
   instance.hooks[name].delete(id)
 }
 
-export function resetHook (instance = useAxios()) {
+export function resetHook (instance = useApi()) {
   const hooks = Object.keys(instance.hooks) as Array<keyof HooksMap>
 
   for (const name of hooks) {
@@ -177,7 +185,7 @@ export function resetHook (instance = useAxios()) {
   }
 }
 
-export function copyHook (from: AxiosExtended, to: AxiosExtended): AxiosExtended {
+export function copyHook (from: ApiInstance, to: ApiInstance): ApiInstance {
   const hooks = Object.keys(from.hooks) as Array<keyof HooksMap>
 
   for (const name of hooks) {
@@ -187,3 +195,5 @@ export function copyHook (from: AxiosExtended, to: AxiosExtended): AxiosExtended
 
   return to
 }
+
+export * from "./error"

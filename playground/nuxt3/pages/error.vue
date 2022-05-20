@@ -6,13 +6,13 @@
 </template>
 
 <script setup>
-import { $axios, getCode, getMessage } from '@privyid/nugrpc-api'
+import { useApi, getCode, getMessage } from '@privyid/nugrpc-api'
 
 const code    = ref('')
 const message = ref('')
 
 try {
-  await $axios.get('/api/error')
+  await useApi().get('/api/error')
 } catch (error) {
   code.value    = getCode(error)
   message.value = getMessage(error)
