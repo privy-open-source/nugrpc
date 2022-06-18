@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "abortcontroller-polyfill": "^1.7.3",
-    "axios": "^0.26.0",
+    "axios": "^0.27.0",
     "defu": "^6.0.0",
     "native-abort-controller": "^1.0.4"
   },
