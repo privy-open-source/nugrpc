@@ -14,7 +14,8 @@
   "scripts": {
     "build": "unbuild",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "prepack": "yarn build"
   },
   "devDependencies": {
     "esbuild": "0.14.39",
