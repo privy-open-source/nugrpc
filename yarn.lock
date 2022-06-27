@@ -3583,7 +3583,7 @@ __metadata:
     "@privyid/nugrpc-utils": "workspace:^"
     "@types/jest": 28.1.2
     jest: 28.1.0
-    openapi-types: 11.0.1
+    openapi-types: 11.1.0
     pathe: 0.2.0
     unbuild: 0.7.4
   languageName: unknown
@@ -15162,10 +15162,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"openapi-types@npm:11.0.1":
-  version: 11.0.1
-  resolution: "openapi-types@npm:11.0.1"
-  checksum: 182c5b28199a0d030bf5f64b9c23f65dc800cdc845ae09c40aa5e03b862634a02526d5092af53bf853514af778ee2f36dead741e0521e01f944cf7f50927e14e
+"openapi-types@npm:11.1.0":
+  version: 11.1.0
+  resolution: "openapi-types@npm:11.1.0"
+  checksum: e0ebcd13ffe2d31445912d87e542988dc91c21134f3b286ab83af73dda9239c888a821a36f29c8b97ea050e2a639966d32abbe9a40310d55a0a73e53797ee311
   languageName: node
   linkType: hard
 
