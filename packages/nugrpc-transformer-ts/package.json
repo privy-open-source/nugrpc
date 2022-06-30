@@ -22,8 +22,8 @@
     "@privyid/nugrpc-writer": "workspace:^"
   },
   "devDependencies": {
-    "@types/jest": "28.1.2",
-    "jest": "28.1.0",
+    "@types/jest": "28.1.4",
+    "jest": "28.1.2",
     "pathe": "0.2.0",
     "unbuild": "0.7.4"
   },
