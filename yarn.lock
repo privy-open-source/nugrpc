@@ -3653,7 +3653,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@privyid/nugrpc-validator@workspace:packages/nugrpc-validator"
   dependencies:
-    "@types/validator": 13.7.3
+    "@types/validator": 13.7.4
     esbuild: 0.14.47
     esbuild-jest: 0.5.0
     jest: 28.1.0
@@ -4530,10 +4530,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/validator@npm:13.7.3":
-  version: 13.7.3
-  resolution: "@types/validator@npm:13.7.3"
-  checksum: 15b6b5a7f62e44b0a4a675182b98a4dd5b40556be4d94b4fa81fa3c9a629fd63daaf84c6fc1638ba4b70c12b75e8f97daf234071a7a431dcca4fd56dbaef0cf3
+"@types/validator@npm:13.7.4":
+  version: 13.7.4
+  resolution: "@types/validator@npm:13.7.4"
+  checksum: 718e72d86c897861bc7f35e7918e0305d4efa5891ffdce6a8b77dbdc6fd10a70c2c6851f716a7f75ab2b0c12b5534f74e6d6b1040ac6eb8ab40d918c022283e5
   languageName: node
   linkType: hard
 
