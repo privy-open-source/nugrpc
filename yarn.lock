@@ -503,6 +503,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/helper-validator-identifier@npm:^7.18.6":
+  version: 7.18.6
+  resolution: "@babel/helper-validator-identifier@npm:7.18.6"
+  checksum: e295254d616bbe26e48c196a198476ab4d42a73b90478c9842536cf910ead887f5af6b5c4df544d3052a25ccb3614866fa808dc1e3a5a4291acd444e243c0648
+  languageName: node
+  linkType: hard
+
 "@babel/helper-validator-option@npm:^7.16.7":
   version: 7.16.7
   resolution: "@babel/helper-validator-option@npm:7.16.7"
@@ -1715,13 +1722,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/types@npm:7.18.4":
-  version: 7.18.4
-  resolution: "@babel/types@npm:7.18.4"
+"@babel/types@npm:7.18.7":
+  version: 7.18.7
+  resolution: "@babel/types@npm:7.18.7"
   dependencies:
-    "@babel/helper-validator-identifier": ^7.16.7
+    "@babel/helper-validator-identifier": ^7.18.6
     to-fast-properties: ^2.0.0
-  checksum: 85df59beb99c1b95e9e41590442f2ffa1e5b1b558d025489db40c9f7c906bd03a17da26c3ec486e5800e80af27c42ca7eee9506d9212ab17766d2d68d30fbf52
+  checksum: 3114ce161c4ebcb70271e168aa5af5cecedf3278209161d5ba6124bd3f9cb02e3f3ace587ad1b53f7baa153b6b3714720721c72a9ef3ec451663862f9cc1f014
   languageName: node
   linkType: hard
 
@@ -3579,7 +3586,7 @@ __metadata:
   dependencies:
     "@babel/generator": ^7.17.3
     "@babel/parser": ^7.17.3
-    "@babel/types": 7.18.4
+    "@babel/types": 7.18.7
     "@privyid/nugrpc-rules-parser": "workspace:^"
     "@privyid/nugrpc-transformer": "workspace:^"
     "@privyid/nugrpc-utils": "workspace:^"
