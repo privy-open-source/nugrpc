@@ -22,7 +22,7 @@
     "alias": "0.0.5",
     "hq": "0.0.4",
     "jest": "28.1.2",
-    "pathe": "0.2.0",
+    "pathe": "0.3.2",
     "unbuild": "0.7.4"
   },
   "dependencies": {
