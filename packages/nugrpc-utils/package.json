@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.21",
-    "protobufjs": "^6.11.2"
+    "protobufjs": "^7.0.0"
   },
   "license": "MIT"
 }
