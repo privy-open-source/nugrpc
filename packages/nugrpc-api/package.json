@@ -23,11 +23,11 @@
     "native-abort-controller": "^1.0.4"
   },
   "devDependencies": {
-    "@jest/globals": "28.1.0",
+    "@jest/globals": "28.1.2",
     "@types/url-join": "^4",
     "axios-mock-adapter": "1.21.1",
     "cross-env": "^7.0.3",
-    "jest": "28.1.0",
+    "jest": "28.1.2",
     "unbuild": "0.7.4"
   },
   "license": "MIT"
