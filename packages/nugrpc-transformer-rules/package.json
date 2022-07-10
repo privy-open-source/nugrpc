@@ -27,7 +27,7 @@
   "dependencies": {
     "@babel/generator": "^7.17.3",
     "@babel/parser": "^7.17.3",
-    "@babel/types": "7.18.7",
+    "@babel/types": "7.18.8",
     "@privyid/nugrpc-rules-parser": "workspace:^",
     "@privyid/nugrpc-transformer": "workspace:^",
     "@privyid/nugrpc-utils": "workspace:^",
