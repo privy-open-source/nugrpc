@@ -17,8 +17,8 @@
     "coverage": "jest --coverage"
   },
   "devDependencies": {
-    "@types/validator": "13.7.3",
-    "esbuild": "0.14.47",
+    "@types/validator": "13.7.4",
+    "esbuild": "0.14.48",
     "esbuild-jest": "0.5.0",
     "jest": "28.1.2",
     "unbuild": "0.7.4"
