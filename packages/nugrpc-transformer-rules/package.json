@@ -20,14 +20,14 @@
   "devDependencies": {
     "@types/babel__generator": "7.6.4",
     "@types/lodash": "4.14.182",
-    "jest": "28.1.0",
+    "jest": "28.1.2",
     "pathe": "0.2.0",
     "unbuild": "0.7.4"
   },
   "dependencies": {
     "@babel/generator": "^7.17.3",
     "@babel/parser": "^7.17.3",
-    "@babel/types": "7.17.0",
+    "@babel/types": "7.18.8",
     "@privyid/nugrpc-rules-parser": "workspace:^",
     "@privyid/nugrpc-transformer": "workspace:^",
     "@privyid/nugrpc-utils": "workspace:^",
