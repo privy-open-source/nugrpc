@@ -30,7 +30,7 @@
   "devDependencies": {
     "@privyid/nugrpc-transformer": "workspace:^",
     "@types/fs-extra": "9.0.13",
-    "@types/lodash": "4.14.184",
+    "@types/lodash": "4.14.185",
     "esbuild": "0.15.8",
     "esbuild-jest": "0.5.0",
     "jest": "28.1.3",
