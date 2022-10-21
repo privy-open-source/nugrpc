@@ -25,7 +25,7 @@
     "lodash": "4.17.21",
     "pathe": "^0.2.0",
     "protobufjs": "6.11.2",
-    "url-join": "4.0.1"
+    "url-join": "5.0.0"
   },
   "devDependencies": {
     "@privyid/nugrpc-transformer": "workspace:^",
