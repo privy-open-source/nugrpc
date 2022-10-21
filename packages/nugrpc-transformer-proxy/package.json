@@ -24,7 +24,7 @@
     "body-parser": "1.20.0",
     "express": "4.18.2",
     "lodash": "4.17.21",
-    "protobufjs": "6.11.2",
+    "protobufjs": "7.0.0",
     "url-join": "4.0.1"
   },
   "devDependencies": {
