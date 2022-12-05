@@ -3904,7 +3904,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@privyid/nugrpc-fackery@workspace:packages/nugrpc-fackery"
   dependencies:
-    "@types/safe-regex": 1.1.3
+    "@types/safe-regex": 1.1.4
     jest: 28.1.3
     safe-regex: ^2.1.1
     unbuild: 0.7.4
@@ -4813,10 +4813,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/safe-regex@npm:1.1.3":
-  version: 1.1.3
-  resolution: "@types/safe-regex@npm:1.1.3"
-  checksum: dbc5ad87ace1003b04e6aabe4b4bed7f2cf0ac9395c0c9c945036124a6e50863685e7d5178f6625fcf9f83139afb5c741f6f8c4329b32d01717560e1fb530d6c
+"@types/safe-regex@npm:1.1.4":
+  version: 1.1.4
+  resolution: "@types/safe-regex@npm:1.1.4"
+  checksum: 6f26b08153ebefaf9837f857f5ced55da252972a507d920f42067bdb6d433d021586f87daa1d69683b67769377656a591ca22e30314d1276730322053bf765cc
   languageName: node
   linkType: hard
 
