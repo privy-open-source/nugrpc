@@ -1,5 +1,10 @@
 {
   "name": "@privyid/nugrpc-api-nuxt",
+  "packageManager": "yarn@3.2.1",
+  "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/module.cjs",
   "module": "./dist/module.mjs",
   "types": "./dist/module.d.ts",
@@ -15,7 +20,6 @@
     "test": "jest",
     "coverage": "jest --coverage"
   },
-  "packageManager": "yarn@3.2.1",
   "devDependencies": {
     "@nuxt/schema": "0.1.0-edge",
     "@nuxt/types": "2.15.8",

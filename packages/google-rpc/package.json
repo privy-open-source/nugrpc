@@ -1,6 +1,10 @@
 {
   "name": "@privyid/google-rpc",
   "packageManager": "yarn@3.2.1",
+  "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "clean": "rimraf index.js index.d.ts",
     "build": "yarn clean && yarn build:js && yarn build:ts",
