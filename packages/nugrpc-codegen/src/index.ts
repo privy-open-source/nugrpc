@@ -4,6 +4,7 @@ import { load } from "@privyid/nugrpc-utils"
 import type { TransformContext, TransformAdapter, Saveable } from '@privyid/nugrpc-transformer'
 
 export type Transformer = { new(context: TransformContext): TransformAdapter } & typeof TransformAdapter & Saveable
+
 export interface InputOption {
   input: string | string[];
   output: string;
