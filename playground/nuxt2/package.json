@@ -1,6 +1,7 @@
 {
   "name": "nuxt2-app",
   "packageManager": "yarn@3.2.1",
+  "private": true,
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
@@ -9,7 +10,7 @@
   },
   "dependencies": {
     "@privyid/nugrpc-api-nuxt": "workspace:^",
-    "nuxt": "^2.15.8"
+    "nuxt": "2.15.8"
   },
   "installConfig": {
     "hoistingLimits": "workspaces"

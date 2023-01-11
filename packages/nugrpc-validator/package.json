@@ -1,6 +1,10 @@
 {
   "name": "@privyid/nugrpc-validator",
   "packageManager": "yarn@3.2.1",
+  "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -17,10 +21,10 @@
     "coverage": "jest --coverage"
   },
   "devDependencies": {
-    "@types/validator": "13.7.2",
-    "esbuild": "0.14.42",
+    "@types/validator": "13.7.10",
+    "esbuild": "0.16.7",
     "esbuild-jest": "0.5.0",
-    "jest": "28.1.0",
+    "jest": "28.1.3",
     "unbuild": "0.7.4"
   },
   "dependencies": {

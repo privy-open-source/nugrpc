@@ -1,6 +1,10 @@
 {
   "name": "@privyid/nugrpc-transformer-rules",
   "packageManager": "yarn@3.2.1",
+  "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -19,15 +23,15 @@
   "license": "MIT",
   "devDependencies": {
     "@types/babel__generator": "7.6.4",
-    "@types/lodash": "4.14.182",
-    "jest": "28.1.0",
+    "@types/lodash": "4.14.184",
+    "jest": "28.1.3",
     "pathe": "0.2.0",
     "unbuild": "0.7.4"
   },
   "dependencies": {
     "@babel/generator": "^7.17.3",
     "@babel/parser": "^7.17.3",
-    "@babel/types": "7.18.4",
+    "@babel/types": "7.18.13",
     "@privyid/nugrpc-rules-parser": "workspace:^",
     "@privyid/nugrpc-transformer": "workspace:^",
     "@privyid/nugrpc-utils": "workspace:^",

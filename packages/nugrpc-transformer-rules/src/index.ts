@@ -7,6 +7,7 @@ import { normalizeCondition } from "./normalizer"
 import defaultConfig from "./default-config"
 
 type Plugin = (plugin: TransformerRules) => void
+
 export default class TransformerRules extends TransformAdapter implements Saveable {
   private writer: TextWriter
   private importDeps: Map<string, Set<string>>

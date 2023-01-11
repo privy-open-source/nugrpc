@@ -8,8 +8,8 @@
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
-    "nuxt": "3.0.0-rc.3"
+    "cross-env": "7.0.3",
+    "nuxt": "3.0.0-rc.9"
   },
   "dependencies": {
     "@privyid/nugrpc-api-nuxt": "workspace:^"
