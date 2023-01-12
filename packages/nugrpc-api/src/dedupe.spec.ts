@@ -1,4 +1,3 @@
-import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
 import Axios from "axios"
 import MockAdapter from "axios-mock-adapter"
 import { useApi } from "."

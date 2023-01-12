@@ -16,8 +16,8 @@ describe('QueueAdapter', () => {
   it('should run 2 requests first, and queue last 2 requests', async () => {
     mock.onGet('/ping').reply(200, 'Pong')
 
-    const result = []
-    const api    = createApi({ queue: { worker: 2 }})
+    const result: number[] = []
+    const api              = createApi({ queue: { worker: 2 }})
 
     await Promise.race([
       Promise.all([
@@ -37,8 +37,8 @@ describe('QueueAdapter', () => {
   it('should run request with higher priority first', async () => {
     mock.onGet('/ping').reply(200, 'Pong')
 
-    const result = []
-    const api    = createApi({ queue: { worker: 1 }})
+    const result: number[] = []
+    const api              = createApi({ queue: { worker: 1 }})
 
     await Promise.all([
       api.get('/ping').then(() => result.push(1)),

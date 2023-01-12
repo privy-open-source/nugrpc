@@ -1,4 +1,3 @@
-import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
 import Axios, { AxiosInstance, AxiosRequestHeaders, AxiosStatic } from 'axios'
 import defu from 'defu'
 import type {
@@ -7,7 +6,7 @@ import type {
 } from 'axios'
 import DedupeAdapter from './dedupe'
 import QueueAdapter, { QueueOptions } from './queue'
-import urlJoin from 'url-join'
+import { joinURL } from 'ufo'
 
 declare module 'axios' {
   export interface AxiosRequestConfig {
@@ -83,7 +82,7 @@ export function setApi (instance: ApiInstance) {
 
 export function createApi (options: ApiConfig = {}): ApiInstance {
   const baseURL = (options.prefixURL && options.baseURL)
-    ? urlJoin(options.baseURL, options.prefixURL)
+    ? joinURL(options.baseURL, options.prefixURL)
     : options.baseURL
 
   const originalAdapter = options.adapter ?? Axios.defaults.adapter!

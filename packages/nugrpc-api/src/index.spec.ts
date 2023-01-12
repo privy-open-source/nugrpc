@@ -143,7 +143,7 @@ describe('Hooks utils', () => {
       expect(fn).toBeCalledWith('Hehe')
     }
 
-    removeHook('onRequest', mockId)
+    removeHook('onRequest', mockId!)
 
     try {
       await api.get('/api/user')
