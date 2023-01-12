@@ -3,7 +3,7 @@ import { Module } from '@nuxt/types'
 export interface Service {
   target: string;
   protoFiles: string[];
-  mode?: 'live' | 'fakery'
+  mode?: 'live' | 'fakery' | 'bypass';
   swagger?: boolean;
 }
 

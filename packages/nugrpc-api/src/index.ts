@@ -1,4 +1,4 @@
-import Axios, { AxiosInstance, AxiosPromise, AxiosRequestHeaders, AxiosStatic } from 'axios'
+import Axios, { AxiosInstance, AxiosRequestHeaders, AxiosStatic } from 'axios'
 import defu from 'defu'
 import type {
   AxiosResponse,
