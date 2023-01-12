@@ -3,6 +3,7 @@ import MockAdapter from "axios-mock-adapter"
 import { jest }from "@jest/globals"
 import {
   createApi,
+  createLazyton,
   onError,
   onRequest,
   onRequestError,
@@ -233,5 +234,44 @@ describe('Inherit instance', () => {
 
     expect(response.status).toBe(200)
     expect(response.data.data).toBe('data-user')
+  })
+})
+
+describe('lazyton', () => {
+  it('should create lazy instance', () => {
+    const useLazy = createLazyton({ baseURL: '/v1' })
+
+    const a = useLazy()
+    const b = useLazy()
+
+    expect(typeof useLazy).toBe('function')
+    expect(a).toStrictEqual(b)
+  })
+
+  it('should inherit hook from global', async () => {
+    mock.onGet('/api/user').reply(200, [])
+
+    const useLazy = createLazyton({ baseURL: '/v1' })
+    const fn      = jest.fn((config) => config)
+
+    onRequest(fn)
+
+    await useLazy().get('/api/user')
+
+    expect(fn).toBeCalled()
+  })
+
+  it('should create fresh instace if parameter fresh set to true', async () => {
+    mock.onGet('/api/user').reply(200, [])
+
+    const useLazy = createLazyton({ baseURL: '/v1' }, true)
+    const fn      = jest.fn((config) => config)
+    const a       = useLazy()
+
+    onRequest(fn)
+
+    await a.get('/api/user')
+
+    expect(fn).not.toBeCalled()
   })
 })
