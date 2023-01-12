@@ -1,7 +1,7 @@
 {
   "name": "@privyid/nugrpc-api",
   "packageManager": "yarn@3.2.1",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publishConfig": {
     "access": "public"
   },
@@ -15,20 +15,22 @@
       "types": "./dist/index.d.ts"
     }
   },
+  "files": [
+    "dist/"
+  ],
   "scripts": {
+    "prepack": "yarn build",
     "build": "unbuild",
     "test": "jest",
     "coverage": "jest --coverage"
   },
   "dependencies": {
-    "abortcontroller-polyfill": "^1.7.3",
     "axios": "^0.26.0",
     "defu": "^6.0.0",
-    "native-abort-controller": "^1.0.4"
+    "ufo": "^1.0.1"
   },
   "devDependencies": {
     "@jest/globals": "28.1.3",
-    "@types/url-join": "4.0.1",
     "axios-mock-adapter": "1.21.2",
     "cross-env": "7.0.3",
     "jest": "28.1.3",

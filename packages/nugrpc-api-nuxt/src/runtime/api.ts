@@ -1,11 +1,21 @@
-import { Plugin } from '@nuxt/types'
-import { setApi, createApi, ApiConfig } from '@privyid/nugrpc-api'
+import {
+  useRuntimeConfig,
+  useRequestEvent,
+  defineNuxtPlugin
+} from '#imports'
+import getURL from 'requrl'
+import {
+  createApi,
+  ApiConfig,
+  setApi ,
+} from '@privyid/nugrpc-api'
+import { joinURL } from 'ufo'
 
-const plugin: Plugin = (context, inject) => {
-  const runtimeConfig = context.$config.nugrpcApi ?? {}
-  const baseURL       = process.client
-    ? (runtimeConfig.browserBaseURL || runtimeConfig.browserBaseUrl || runtimeConfig.baseURL || runtimeConfig.baseUrl || `<%= options.browserBaseURL || '' %>`)
-    : (runtimeConfig.baseURL || runtimeConfig.baseUrl || process.env._AXIOS_BASE_URL_ || `<%= options.baseURL || '' %>`)
+export default defineNuxtPlugin(() => {
+  const event   = useRequestEvent()
+  const config  = useRuntimeConfig()
+  const host    = getURL(event?.node?.req)
+  const baseURL = joinURL(host, config.app.baseURL)
 
   const options: ApiConfig = {
     baseURL,
@@ -20,7 +30,6 @@ const plugin: Plugin = (context, inject) => {
   const instance = createApi(options)
 
   setApi(instance)
-  inject('api', instance)
-}
 
-export default plugin
+  return { provide: { api: instance } }
+})

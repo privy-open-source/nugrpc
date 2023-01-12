@@ -11,6 +11,7 @@ interface QueueJob {
 export interface QueueOptions {
   worker: number;
 }
+
 export default class QueueAdapter {
   protected fetch: AxiosAdapter;
   protected queue: QueueJob[];

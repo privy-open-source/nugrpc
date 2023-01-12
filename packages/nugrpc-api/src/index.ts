@@ -1,4 +1,3 @@
-import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
 import Axios, { AxiosInstance, AxiosRequestHeaders, AxiosStatic } from 'axios'
 import defu from 'defu'
 import type {
@@ -7,7 +6,7 @@ import type {
 } from 'axios'
 import DedupeAdapter from './dedupe'
 import QueueAdapter, { QueueOptions } from './queue'
-import urlJoin from 'url-join'
+import { joinURL } from 'ufo'
 
 declare module 'axios' {
   export interface AxiosRequestConfig {
@@ -59,6 +58,7 @@ export type Hooks = {
 export type HooksMap = {
   [K in keyof Hooks]: Map<number, Hooks[K]>
 }
+
 export interface ApiInstance extends AxiosInstance {
   hooks: HooksMap;
   cancel: InstanceType<typeof DedupeAdapter>['cancel'];
@@ -70,6 +70,9 @@ export interface ApiInstance extends AxiosInstance {
 
 let api: ApiInstance
 
+/**
+ * Use global api instance
+ */
 export function useApi (): ApiInstance {
   if (!api)
     api = createApi()
@@ -77,13 +80,21 @@ export function useApi (): ApiInstance {
   return api
 }
 
+/**
+ * Set global api instance
+ * @param instance
+ */
 export function setApi (instance: ApiInstance) {
   api = instance
 }
 
+/**
+ * Create new api instance
+ * @param options
+ */
 export function createApi (options: ApiConfig = {}): ApiInstance {
   const baseURL = (options.prefixURL && options.baseURL)
-    ? urlJoin(options.baseURL, options.prefixURL)
+    ? joinURL(options.baseURL, options.prefixURL)
     : options.baseURL
 
   const originalAdapter = options.adapter ?? Axios.defaults.adapter!
@@ -121,22 +132,78 @@ export function createApi (options: ApiConfig = {}): ApiInstance {
   })
 }
 
+/**
+ * Add global on-request handler
+ * @param fn handler
+ */
+export function onRequest (fn: RequestHook): number
+/**
+ * Add on-request handler to instance
+ * @param fn handler
+ * @param instance target instance
+ */
+export function onRequest (fn: RequestHook, instance: ApiInstance): number
 export function onRequest (fn: RequestHook, instance = useApi()) {
   return addHook('onRequest', fn, instance)
 }
 
+/**
+ * Add global on-response handler
+ * @param fn handler
+ */
+export function onResponse (fn: ResponseHook): number
+/**
+ * Add on-response handler to instance
+ * @param fn handler
+ * @param instance target instance
+ */
+export function onResponse (fn: ResponseHook, instance: ApiInstance): number
 export function onResponse (fn: ResponseHook, instance = useApi()) {
   return addHook('onResponse', fn, instance)
 }
 
+/**
+ * Add global on-request-error
+ * @param fn handler
+ */
+export function onRequestError (fn: ErrorHook): number
+/**
+ * Add on-request-error to instance
+ * @param fn handler
+ * @param instance instance
+ */
+export function onRequestError (fn: ErrorHook, instance: ApiInstance): number
 export function onRequestError (fn: ErrorHook, instance = useApi()) {
   return addHook('onRequestError', fn, instance)
 }
 
+/**
+ * Add global on-response-error handler.
+ * @param fn
+ * @param instance
+ */
+export function onResponseError (fn: ErrorHook): number
+/**
+ * Add on-response-error handler to instance.
+ * @param fn handler
+ * @param instance target instance
+ */
+export function onResponseError (fn: ErrorHook, instance: ApiInstance): number
 export function onResponseError (fn: ErrorHook, instance = useApi()) {
   return addHook('onResponseError', fn, instance)
 }
 
+/**
+ * Add global onError handler, onError is equal to onRequestError + onResponseError
+ * @param fn handler
+ */
+export function onError (fn: ErrorHook): [number, number]
+/**
+ * Add onError handler to instance, onError is equal to onRequestError + onResponseError
+ * @param fn handler
+ * @param instance target instance
+ */
+export function onError (fn: ErrorHook, instance: ApiInstance): [number, number]
 export function onError (fn: ErrorHook, instance = useApi()) {
   const a = onRequestError(fn, instance)
   const b = onResponseError(fn, instance)
@@ -144,6 +211,12 @@ export function onError (fn: ErrorHook, instance = useApi()) {
   return [a, b]
 }
 
+/**
+ *
+ * @param name
+ * @param fn
+ * @param instance
+ */
 export function addHook<K extends keyof Hooks> (name: K, fn: Hooks[K], instance = useApi()): number | undefined {
   let id: number | undefined
 
@@ -165,6 +238,18 @@ export function addHook<K extends keyof Hooks> (name: K, fn: Hooks[K], instance 
   return id
 }
 
+/**
+ * Remove hook from global instance
+ * @param name hook name
+ * @param id hook id
+ */
+export function removeHook<K extends keyof HooksMap> (name: K, id: number): void
+/**
+ * Remove hook from instance
+ * @param name hook name
+ * @param id hook id
+ */
+export function removeHook<K extends keyof HooksMap> (name: K, id: number, instance: ApiInstance): void
 export function removeHook<K extends keyof HooksMap> (name: K, id: number, instance = useApi()): void {
   if (name === 'onRequest' || name === 'onRequestError')
     instance.interceptors.request.eject(id)
@@ -175,6 +260,16 @@ export function removeHook<K extends keyof HooksMap> (name: K, id: number, insta
   instance.hooks[name].delete(id)
 }
 
+/**
+ * Reset all global hooks
+ * @param instance
+ */
+export function resetHook (): void
+/**
+ * Reset all hook from instance
+ * @param instance target instance
+ */
+export function resetHook (instance: ApiInstance): void
 export function resetHook (instance = useApi()) {
   const hooks = Object.keys(instance.hooks) as Array<keyof HooksMap>
 
@@ -185,6 +280,11 @@ export function resetHook (instance = useApi()) {
   }
 }
 
+/**
+ * Copy hook from instance to instance
+ * @param from Source instance
+ * @param to Target instance
+ */
 export function copyHook (from: ApiInstance, to: ApiInstance): ApiInstance {
   const hooks = Object.keys(from.hooks) as Array<keyof HooksMap>
 
@@ -194,6 +294,28 @@ export function copyHook (from: ApiInstance, to: ApiInstance): ApiInstance {
   }
 
   return to
+}
+
+/**
+ * Create new instance lazy singleton instance
+ * @param options Axios create options
+ * @param fresh Create fresh instance instead of duplicate from global instance
+ * @example
+ *  const lazyApi = createLazyton({ prefixURL: '/api/anu' })
+ *
+ *  lazy().get('/url/endpoint/')
+ */
+export function createLazyton (options: ApiConfig = {}, fresh = false) {
+  let api: ApiInstance
+
+  return () => {
+    if (!api)
+      api = fresh
+        ? createApi(options)
+        : useApi().create(options)
+
+    return api
+  }
 }
 
 export * from "./error"
