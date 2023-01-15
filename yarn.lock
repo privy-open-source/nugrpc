@@ -2480,7 +2480,7 @@ __metadata:
     "@types/jest": 28.1.6
     "@types/lodash": 4.14.184
     "@types/url-join": 4.0.1
-    body-parser: 1.20.0
+    body-parser: 1.20.1
     express: 4.18.2
     jest: 28.1.3
     lodash: 4.17.21
@@ -4500,26 +4500,6 @@ __metadata:
     inherits: ^2.0.4
     readable-stream: ^3.4.0
   checksum: 5dbbcf9cbcf55221dc21f48968bc8cd6d78faea3c653d496ff8e0c382b95e8b6c4b9e818fe67de2f97ed0cd0c219c350ccce42aca91be33e0ad12e698c615061
-  languageName: node
-  linkType: hard
-
-"body-parser@npm:1.20.0":
-  version: 1.20.0
-  resolution: "body-parser@npm:1.20.0"
-  dependencies:
-    bytes: 3.1.2
-    content-type: ~1.0.4
-    debug: 2.6.9
-    depd: 2.0.0
-    destroy: 1.2.0
-    http-errors: 2.0.0
-    iconv-lite: 0.4.24
-    on-finished: 2.4.1
-    qs: 6.10.3
-    raw-body: 2.5.1
-    type-is: ~1.6.18
-    unpipe: 1.0.0
-  checksum: 12fffdeac82fe20dddcab7074215d5156e7d02a69ae90cbe9fee1ca3efa2f28ef52097cbea76685ee0a1509c71d85abd0056a08e612c09077cad6277a644cf88
   languageName: node
   linkType: hard
 
@@ -12032,15 +12012,6 @@ __metadata:
   version: 0.5.1
   resolution: "qs@npm:0.5.1"
   checksum: 7bf497f247f81a0b7514771eb6907ca8c88ac7e001f99393835807023254a3e45ec221d9fc4f5a7ae71d5eb8a334a3f779e11fe3dae1b1dfa664c2e08f1f19f4
-  languageName: node
-  linkType: hard
-
-"qs@npm:6.10.3":
-  version: 6.10.3
-  resolution: "qs@npm:6.10.3"
-  dependencies:
-    side-channel: ^1.0.4
-  checksum: 0fac5e6c7191d0295a96d0e83c851aeb015df7e990e4d3b093897d3ac6c94e555dbd0a599739c84d7fa46d7fee282d94ba76943983935cf33bba6769539b8019
   languageName: node
   linkType: hard
 
