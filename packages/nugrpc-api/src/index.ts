@@ -18,6 +18,7 @@ declare module 'axios' {
     create (config?: ApiConfig): AxiosInstance;
   }
 }
+
 export interface ApiConfig extends Omit<AxiosRequestConfig, 'headers'> {
   headers?: AxiosRequestHeaders & Partial<{
     common: AxiosRequestHeaders;
@@ -68,25 +69,54 @@ export interface ApiInstance extends AxiosInstance {
   create (this: ApiInstance, config?: ApiConfig): ApiInstance,
 }
 
-let api: ApiInstance
+export interface LazyInstance {
+  (): ApiInstance,
+  setApi (instance: ApiInstance): void,
+}
+
+/**
+ * Create new lazy-singleton instance
+ * @param options Axios create options
+ * @param fresh Create fresh instance instead of cloning global instance
+ * @example
+ *  const useApi = createLazyton({ prefixURL: '/api/anu' })
+ *
+ *  useApi().get('/url/endpoint/')
+ */
+export function createLazyton (options: ApiConfig = {}, fresh = false): LazyInstance {
+  let api: ApiInstance
+
+  const getApi = function () {
+    if (!api) {
+      api = fresh
+        ? createApi(options)
+        : useApi().create(options)
+    }
+
+    return api
+  }
+
+  const setApi = function (instance: ApiInstance) {
+    api = instance
+  }
+
+  return Object.assign(getApi, { setApi })
+}
 
 /**
  * Use global api instance
+ * @example
+ * let api = useApi()
+ *
+ * api.get('/some/endpoint')
  */
-export function useApi (): ApiInstance {
-  if (!api)
-    api = createApi()
-
-  return api
-}
+export const useApi = createLazyton({}, true)
 
 /**
  * Set global api instance
  * @param instance
  */
-export function setApi (instance: ApiInstance) {
-  api = instance
-}
+export const setApi = useApi.setApi
 
 /**
  * Create new api instance
@@ -212,11 +242,18 @@ export function onError (fn: ErrorHook, instance = useApi()) {
 }
 
 /**
- *
- * @param name
- * @param fn
- * @param instance
+ * Add hook to global instance
+ * @param name event name
+ * @param fn handler
  */
+export function addHook<K extends keyof Hooks> (name: K, fn: Hooks[K]): number | undefined
+/**
+ * Add hook to instance
+ * @param name event name
+ * @param fn handler
+ * @param instance target instance
+ */
+export function addHook<K extends keyof Hooks> (name: K, fn: Hooks[K], instance: ApiInstance): number | undefined
 export function addHook<K extends keyof Hooks> (name: K, fn: Hooks[K], instance = useApi()): number | undefined {
   let id: number | undefined
 
@@ -294,28 +331,6 @@ export function copyHook (from: ApiInstance, to: ApiInstance): ApiInstance {
   }
 
   return to
-}
-
-/**
- * Create new instance lazy singleton instance
- * @param options Axios create options
- * @param fresh Create fresh instance instead of duplicate from global instance
- * @example
- *  const lazyApi = createLazyton({ prefixURL: '/api/anu' })
- *
- *  lazy().get('/url/endpoint/')
- */
-export function createLazyton (options: ApiConfig = {}, fresh = false) {
-  let api: ApiInstance
-
-  return () => {
-    if (!api)
-      api = fresh
-        ? createApi(options)
-        : useApi().create(options)
-
-    return api
-  }
 }
 
 export * from "./error"

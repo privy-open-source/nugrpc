@@ -106,7 +106,7 @@ export default class QueueAdapter {
   }
 
   adapter (): AxiosAdapter {
-    return async (config) => {
+    return (config) => {
       return this.add(config)
     }
   }

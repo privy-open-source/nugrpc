@@ -1,4 +1,9 @@
-import { createResolver, defineNuxtModule, addPlugin } from "@nuxt/kit"
+import {
+  createResolver,
+  defineNuxtModule,
+  addPlugin,
+  extendViteConfig,
+ } from "@nuxt/kit"
 
 export default defineNuxtModule({
   meta: {
@@ -12,6 +17,10 @@ export default defineNuxtModule({
     addPlugin({
       mode: 'all',
       src : resolve('runtime/api')
+    })
+
+    extendViteConfig((config) => {
+      config.optimizeDeps?.include?.push('axios')
     })
   },
 })

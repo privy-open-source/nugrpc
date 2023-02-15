@@ -17,11 +17,19 @@ export const isAxiosError = Axios.isAxiosError
 
 export const isCancel = Axios.isCancel
 
+/**
+ * Check error is an ApiError
+ * @param error
+ */
 export function isApiError (error: unknown): error is ApiError {
   return isAxiosError(error)
     && Array.isArray(error.response?.data?.details)
 }
 
+/**
+ * Get error code
+ * @param error
+ */
 export function getCode (error: unknown): number {
   if (isAxiosError(error))
     return error.response?.status ?? 500
@@ -29,6 +37,10 @@ export function getCode (error: unknown): number {
   return 500
 }
 
+/**
+ * Get error message
+ * @param error
+ */
 export function getMessage (error: unknown): string {
   if (isAxiosError(error) && error.response?.data.message)
     return error.response.data.message
