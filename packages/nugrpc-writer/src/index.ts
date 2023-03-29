@@ -1,7 +1,7 @@
 import { EOL } from 'os'
 
 export default class TextWriter {
-  private lines: string[];
+  private lines: Array<string | symbol>;
   private index: number;
   private tabs: number;
 
@@ -17,7 +17,11 @@ export default class TextWriter {
     return this
   }
 
-  goto (index: number) {
+  goto (target: number | symbol) {
+    const index = typeof target === 'symbol'
+      ? this.lines.indexOf(target) + 1
+      : target
+
     this.index = Math.max(index - 1, 0)
 
     return this
@@ -36,11 +40,7 @@ export default class TextWriter {
   }
 
   write (...texts: string[]) {
-    const content = Array.from({ length: this.tabs })
-      .fill('  ')
-      .concat(texts) // eslint-disable-line unicorn/prefer-spread
-      .join('')
-      .trimEnd()
+    const content = `${'  '.repeat(this.tabs)}${texts.join('')}`.trimEnd()
 
     this.lines.splice(this.index++, 0, content)
 
@@ -51,7 +51,8 @@ export default class TextWriter {
     const oldContent = this.lines[this.index - 1]
     const newContent = texts.join('').trimEnd()
 
-    this.lines[this.index - 1] = `${oldContent}${newContent}`
+    if (typeof oldContent !== 'symbol')
+      this.lines[this.index - 1] = `${oldContent}${newContent}`
 
     return this
   }
@@ -59,6 +60,12 @@ export default class TextWriter {
   line (line = 1) {
     for (let u = 0; u < line; u++)
       this.lines.splice(this.index++, 0, '')
+
+    return this
+  }
+
+  mark (mark: symbol) {
+    this.lines.splice(this.index++, 0, mark)
 
     return this
   }
