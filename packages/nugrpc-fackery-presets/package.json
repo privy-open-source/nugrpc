@@ -23,7 +23,7 @@
   "devDependencies": {
     "@privyid/nugrpc-fackery": "workspace:^",
     "jest": "28.1.3",
-    "unbuild": "0.7.4"
+    "unbuild": "0.9.4"
   },
   "dependencies": {
     "@faker-js/faker": "6.3.1"
